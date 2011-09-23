@@ -1,0 +1,70 @@
+package PNI::File;
+use Mo;
+use File::Spec;
+use File::Temp;
+use JSON;
+
+my $suffix = '.pni';
+
+has content => ( default => sub { { edges => {}, nodes => {} } } );
+
+has path => (
+    default => sub {
+        my $self = shift;
+
+        # Create a temporary file,
+        my ( $fh, $path ) = File::Temp::tempfile( SUFFIX => $suffix );
+        close $fh;
+
+        return $path;
+      }
+
+);
+
+sub read {
+    my $self = shift;
+
+    local $/;
+    open my $fh, '<', $self->path;
+    my $text = <$fh>;
+    $self->content( decode_json($text) );
+    close $fh;
+
+}
+
+sub write {
+    my $self = shift;
+
+    my $path = $self->path;
+    open my $fh, '>', $self->path;
+    print $fh encode_json( $self->content );
+    close $fh;
+}
+
+1
+__END__
+
+=head1 NAME
+
+PNI::File - stores a scenario in a .pni file
+
+=head1 SYNOPSIS
+
+    use PNI::File;
+
+    my $file = PNI::File->new( path => '/path/to/my/file.pni' );
+
+=head1 ATTRIBUTES
+
+=head2 content
+
+=head2 path
+
+=head1 METHODS
+
+=head2 read
+
+=head2 write
+
+=cut
+
