@@ -11,10 +11,11 @@ WriteMakefile
     File::Find        => 0,
     File::Temp        => '0.22',
     File::Spec        => 0,
-    JSON              => '2.51',
+    JSON              => '2.22',
     Module::Pluggable => 0,
     Scalar::Util      => 0,
     Test::More        => 0,
     Time::HiRes       => 0,
   },
   VERSION_FROM => 'lib/PNI.pm',
+
