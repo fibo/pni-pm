@@ -116,7 +116,7 @@ Blah blah blah. ( this was the h2xs command :-)
 
 =head1 METHODS
 
-=head2 C<edge>
+=head2 edge
 
     my $source_node = PNI::node 'Some::Node';
     my $target_node = PNI::node 'Another::Node';
@@ -126,13 +126,13 @@ Blah blah blah. ( this was the h2xs command :-)
 
 Connects an output of a node to an input of another node.
 
-=head2 C<files>
+=head2 files
 
     my @pni_files = PNI::files;
 
 Returns a list of all .pni files in PNI.pm install dir and subdirs.
 
-=head2 C<node>
+=head2 node
 
 Creates a node by its PNI type, that is the name of a package under the
 PNI::Node namespace, and adds it to the root scenario. If you write
@@ -147,7 +147,7 @@ If no PNI type is passed, and you just write
     
 PNI creates an empty node.
 
-=head2 C<node_list>
+=head2 node_list
 
     my @nodes = PNI::node_list;
 
@@ -155,20 +155,20 @@ Returns a list of available PNI nodes.
 
 This method delegates to L<PNI::Finder> C<nodes> method.
 
-=head2 C<task>
+=head2 task
 
     PNI::task;
 
 Calls the task method for every loaded node.
 This method delegates to the root scenario task method.
 
-=head2 C<loop>
+=head2 loop
 
     PNI::loop;
 
 Starts the PNI main loop. It keeps calling C<task> as fast as it can.
 
-=head2 C<root>
+=head2 root
 
     my $root = PNI::root;
 
