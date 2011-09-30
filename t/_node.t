@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 11;
+use Test::More tests => 15;
 use PNI::Node;
 
 my $node = PNI::Node->new;
@@ -18,4 +18,12 @@ is $in, $node->get_in('in'), 'get_in';
 ok my $out = $node->new_out('out'), 'new_out';
 isa_ok $out, 'PNI::Out';
 is $out, $node->get_out('out'), 'get_out';
+
+my $root = PNI::Node->new( type => 'PNI::Root' );
+is $root->type, 'PNI::Root', 'type';
+
+my ( $x, $y ) = ( 100, 150 );
+ok $root->translate( $x, $y ), 'translate';
+is $root->box->center->x, $x, 'box center x';
+is $root->box->center->y, $y, 'box center y';
 
