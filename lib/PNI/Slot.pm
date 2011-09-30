@@ -5,6 +5,8 @@ extends 'PNI::Elem';
 has box  => ( default => sub { PNI::Rectangle->new } );
 has data => ( default => sub { undef } );
 
+sub translate { shift->box->translate(@_) }
+
 1
 __END__
 
@@ -17,6 +19,10 @@ PNI::Slot - is a basic unit of data
 =head2 data
 
 =head2 box
+
+=head1 METHODS
+
+=head2 translate
 
 =cut
 

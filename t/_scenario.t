@@ -8,9 +8,8 @@ isa_ok $scenario, 'PNI::Scenario';
 
 # Add two nodes.
 my $node1 = $scenario->new_node;
-isa_ok $node1, 'PNI::Node';
-
 my $node2 = $scenario->new_node;
+isa_ok $node1, 'PNI::Node';
 isa_ok $node2, 'PNI::Node';
 
 # Connect nodes with an edge.

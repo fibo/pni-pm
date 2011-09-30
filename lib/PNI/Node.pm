@@ -13,7 +13,7 @@ has type => ( default => sub { __PACKAGE__ } );
 
 sub new_in {
     my $self = shift;
-    my $id = shift or return;
+    my $id   = shift;
 
     my $in = PNI::In->new(
         node => $self,
@@ -26,7 +26,7 @@ sub new_in {
 
 sub new_out {
     my $self = shift;
-    my $id = shift or return;
+    my $id   = shift;
 
     my $out = PNI::Out->new(
         node => $self,
@@ -67,7 +67,12 @@ sub task { 1 }
 
 sub translate {
     my $self = shift;
-    $self->box->translate(@_);
+    $_->translate(@_) for ( 
+$self->box,
+$self->ins->list, 
+$self->outs->list 
+);
+return 1;
 }
 
 1

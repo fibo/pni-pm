@@ -2,21 +2,15 @@ use strict;
 use warnings;
 use PNI::Edge;
 use PNI::Node;
-use PNI::In;
-use PNI::Out;
-use Test::More tests => 4;
-
-my $edge = PNI::Edge->new;
-isa_ok $edge, 'PNI::Edge';
-
-is $edge->is_connected, 0, 'default is_connected';
+use Test::More tests => 3;
 
 my $node   = PNI::Node->new;
-my $source = PNI::In->new( name => 'out', node => $node );
-my $target = PNI::Out->new( name => 'in', node => $node );
+my $source = $node->new_out('out');
+my $target = $node->new_in('in');
 
-my $edge2 = PNI::Edge->new( source => $source, target => $target );
-isa_ok $edge2, 'PNI::Edge';
+my $edge = PNI::Edge->new( source => $source, target => $target );
+isa_ok $edge, 'PNI::Edge';
 
-is $edge2->is_connected, 1;
+is_deeply \( $source->edges->list ), \($edge), 'source edges';
+is $target->edge, $edge, 'target edge';
 
