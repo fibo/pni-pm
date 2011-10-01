@@ -20,14 +20,20 @@ ok my $out = $node->new_out('out'), 'new_out';
 isa_ok $out, 'PNI::Out';
 is $out, $node->get_out('out'), 'get_out';
 
-my ( $x, $y ) = ( 100, 150 );
-$node->translate( $x, $y );
-is $node->box->center->x, $x, 'box center x';
-is $node->box->center->y, $y, 'box center y';
-is $in->box->center->x,   $x, 'in center x';
-is $in->box->center->y,   $y, 'in center y';
-is $out->box->center->x,  $x, 'out center x';
-is $out->box->center->y,  $y, 'out center y';
+my $node_x = $node->box->center->x;
+my $node_y = $node->box->center->y;
+my $in_x   = $in->box->center->x;
+my $in_y   = $in->box->center->y;
+my $out_x  = $out->box->center->x;
+my $out_y  = $out->box->center->y;
+my ( $dx, $dy ) = ( 100, 150 );
+$node->translate( $dx, $dy );
+is $node->box->center->x, $node_x + $dx, 'box center x';
+is $node->box->center->y, $node_y + $dy, 'box center y';
+is $in->box->center->x,   $in_x + $dx,   'in center x';
+is $in->box->center->y,   $in_y + $dy,   'in center y';
+is $out->box->center->x,  $out_x + $dx,  'out center x';
+is $out->box->center->y,  $out_y + $dy,  'out center y';
 
 my $root = PNI::root;
 
