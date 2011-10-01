@@ -6,12 +6,8 @@ has center => ( default => sub { PNI::Point->new } );
 has height => ( default => sub { 0 } );
 has width  => ( default => sub { 0 } );
 
-sub translate {
-    my $self = shift;
-    my ( $x, $y ) = @_ or return;
-    $self->center->x($x);
-    $self->center->y($y);
-}
+sub translate { shift->center->translate(@_) }
+
 1
 __END__
 

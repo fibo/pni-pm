@@ -67,12 +67,8 @@ sub task { 1 }
 
 sub translate {
     my $self = shift;
-    $_->translate(@_) for ( 
-$self->box,
-$self->ins->list, 
-$self->outs->list 
-);
-return 1;
+    $_->translate(@_) for ( $self->box, $self->ins->list, $self->outs->list );
+    return 1;
 }
 
 1
