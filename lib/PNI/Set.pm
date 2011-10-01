@@ -3,8 +3,8 @@ use Mo;
 extends 'PNI::Elem';
 
 has elem => ( default => sub { {} } );
-has min   => ( default => sub { 0 } );
-has max   => ( default => sub { 0 } );
+has min  => ( default => sub { 0 } );
+has max  => ( default => sub { 0 } );
 
 sub add {
     my $self = shift;
@@ -32,6 +32,18 @@ __END__
 =head1 NAME
 
 PNI::Set - is a set of elements
+
+=head1 SYNOPSIS
+
+  my $set = PNI::Set->new;
+
+  my $elem1 = PNI::Elem->new;
+  $set->add($elem1);
+
+  my $elem2 = PNI::Elem->new;
+  $set->add($elem2);
+
+  $set->list;    # ($elem1,$elem2)
 
 =head1 ATTRIBUTES
 
