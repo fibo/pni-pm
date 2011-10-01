@@ -1,35 +1,41 @@
 use strict;
 use warnings;
 use PNI::Scenario;
-use Test::More tests => 4;
+use Test::More tests => 12;
 
 my $scenario = PNI::Scenario->new;
 isa_ok $scenario, 'PNI::Scenario';
 
+is $scenario->comments->list,  0, 'default comments';
+is $scenario->nodes->list,     0, 'default nodes';
+is $scenario->edges->list,     0, 'default edges';
+is $scenario->scenarios->list, 0, 'default scenarios';
+
 # Add two nodes.
 my $node1 = $scenario->new_node;
-my $node2 = $scenario->new_node;
-isa_ok $node1, 'PNI::Node';
-isa_ok $node2, 'PNI::Node';
+isa_ok $node1, 'PNI::Node', 'new_node';
+my $node2 = $scenario->new_node( type => 'PNI::Root' );
+is $scenario->nodes->list, 2, 'nodes list';
 
 # Connect nodes with an edge.
 my $source = $node1->new_out('out');
 my $target = $node2->new_in('in');
 
-my $edge   = $scenario->new_edge( source => $source, target => $target, );
-isa_ok $edge , 'PNI::Edge';
+my $edge = $scenario->new_edge( source => $source, target => $target );
+isa_ok $edge , 'PNI::Edge', 'new_edge';
+is $scenario->edges->list, 1, 'edges list';
+
+# Add a comment.
+my $comment1 = $scenario->new_comment;
+isa_ok $comment1, 'PNI::Comment', 'new_comment';
+my $comment2 = $scenario->new_comment;
+is $scenario->comments->list, 2, 'comments list';
+
+# Add a sub scenario.
+my $scen = $scenario->new_scenario;
+isa_ok $scen, 'PNI::Scenario', 'new_scen';
 
 __END__
-
-# Add a scenario.
-my $scenario2 = $scenario->add_scenario;
-isa_ok $scenario2, 'PNI::Scenario';
-
-my $node3 = $scenario2->add_node;
-
-my @scenarios = ($scenario2);
-my @get_scenarios = $scenario->get_scenarios;
-is_deeply \@scenarios, \@get_scenarios;
 
 # remove sub scenario
 ok $scenario->del_scenario($sub_scenario);

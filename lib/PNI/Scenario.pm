@@ -7,27 +7,31 @@ use PNI::Comment;
 use PNI::Set;
 
 has comments  => ( default => sub { PNI::Set->new } );
-has edges     => ( default => sub {  PNI::Set->new } );
-has nodes     => ( default => sub {  PNI::Set->new } );
-has scenarios => ( default => sub {  PNI::Set->new } );
+has edges     => ( default => sub { PNI::Set->new } );
+has nodes     => ( default => sub { PNI::Set->new } );
+has scenarios => ( default => sub { PNI::Set->new } );
+
+sub new_comment {
+    my $self    = shift;
+    my $comment = PNI::Comment->new(@_);
+    return $self->comments->add($comment);
+}
 
 sub new_edge {
     my $self = shift;
     my $edge = PNI::Edge->new(@_);
-    return $self->edges->add( $edge );
+    return $self->edges->add($edge);
 }
 
 sub new_node {
     my $self = shift;
-    my $arg  = {@_};
-
-    my $type = $arg->{type};
+    my $type = {@_}->{type};
 
     # If type is not provided return a dummy node.
     if ( not defined $type ) {
         my $node = PNI::Node->new;
 
-        return $self->nodes->{ $node->id } = $node
+        return $self->nodes->add($node);
     }
 
     my $node_class = "PNI::Node::$type";
@@ -43,48 +47,57 @@ sub new_node {
     #    $node->get_input($slot_name)->set_data($slot_data);
     #}
 
-    return $self->nodes->add( $node )
+    return $self->nodes->add($node);
 }
 
 sub new_scenario {
     my $self     = shift;
     my $scenario = PNI::Scenario->new(@_);
-    return $self->scenarios->add( $scenario )
+    return $self->scenarios->add($scenario);
+}
+
+sub del_comment {
+    my $self    = shift;
+    my $comment = shift;
+    $self->comments->del($comment);
 }
 
 sub del_edge {
-    my $self = shift;
-    my $edge = shift or return;
 
-    $edge->source->del_edge($edge);
-    $edge->target->del_edge;
-
-    $self->edges->del( $edge );
+    #    my $self = shift;
+    #    my $edge = shift or return;
+    #
+    #    $edge->source->del_edge($edge);
+    #    $edge->target->del_edge;
+    #
+    #    $self->edges->del($edge);
 }
 
 sub del_node {
-    my $self = shift;
-    my $node = shift or return;
 
-    $self->del_edge($_) for $node->input_edges;
-    $self->del_edge($_) for $node->output_edges;
-
-    $self->nodes->del( $node );
+    #    my $self = shift;
+    #    my $node = shift or return;
+    #
+    #    $self->del_edge($_) for $node->input_edges;
+    #    $self->del_edge($_) for $node->output_edges;
+    #
+    #    $self->nodes->del($node);
 }
 
 sub del_scenario {
-    my $self     = shift;
-    my $scenario = shift or return;
 
-    # Clean up all items contained in the scenario.
-
-    # Deleting a node deletes also the edges connected to it.
-    $scenario->del_node($_) for $scenario->get_nodes;
-
-    # Deleting a scenario deletes also the nodes contained in it.
-    $scenario->del_scenario($_) for $scenario->get_scenarios;
-
-    delete $self->scenarios->{ $scenario->id };
+    #    my $self = shift;
+    #    my $scenario = shift or return;
+    #
+    #    # Clean up all items contained in the scenario.
+    #
+    #    # Deleting a node deletes also the edges connected to it.
+    #    $scenario->del_node($_) for $scenario->get_nodes;
+    #
+    #    # Deleting a scenario deletes also the nodes contained in it.
+    #    $scenario->del_scenario($_) for $scenario->get_scenarios;
+    #
+    #    $self->scenarios->del($scenario);
 }
 
 sub task {
@@ -134,7 +147,7 @@ sub task {
     # Finally, run all sub scenarios tasks.
     $_->task for ( $self->get_scenarios );
 
-    return 1
+    return 1;
 }
 
 1
@@ -173,19 +186,23 @@ PNI::Scenario - is a set of nodes connected by edges
 
 =head1 METHODS
 
-=head2 C<new_edge>
+=head2 new_comment
 
-=head2 C<new_node>
+=head2 new_edge
 
-=head2 C<new_scenario>
+=head2 new_node
 
-=head2 C<del_edge>
+=head2 new_scenario
 
-=head2 C<del_node>
+=head2 del_comment
 
-=head2 C<del_scenario>
+=head2 del_edge
 
-=head2 C<task>
+=head2 del_node
+
+=head2 del_scenario
+
+=head2 task
 
 =cut
 

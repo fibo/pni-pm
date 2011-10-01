@@ -6,4 +6,3 @@ use PNI::Rectangle;
 my $rectangle = PNI::Rectangle->new;
 isa_ok $rectangle,'PNI::Rectangle';
 
-
