@@ -2,6 +2,7 @@ package PNI::Scenario;
 use Mo;
 extends 'PNI::Node';
 use PNI::Edge;
+use PNI::File;
 use PNI::Node;
 use PNI::Comment;
 use PNI::Set;
@@ -10,6 +11,8 @@ has comments  => ( default => sub { PNI::Set->new } );
 has edges     => ( default => sub { PNI::Set->new } );
 has nodes     => ( default => sub { PNI::Set->new } );
 has scenarios => ( default => sub { PNI::Set->new } );
+
+has file => ( default => sub { PNI::File->new } );
 
 sub new_comment {
     my $self    = shift;
@@ -25,14 +28,9 @@ sub new_edge {
 
 sub new_node {
     my $self = shift;
-    my $type = {@_}->{type};
 
     # If type is not provided return a dummy node.
-    if ( not defined $type ) {
-        my $node = PNI::Node->new;
-
-        return $self->nodes->add($node);
-    }
+    my $type = shift or return $self->nodes->add( PNI::Node->new );
 
     my $node_class = "PNI::Node::$type";
     my $node_path  = "$node_class.pm";
@@ -63,41 +61,39 @@ sub del_comment {
 }
 
 sub del_edge {
+    my $self = shift;
+    my $edge = shift or return;
 
-    #    my $self = shift;
-    #    my $edge = shift or return;
-    #
-    #    $edge->source->del_edge($edge);
-    #    $edge->target->del_edge;
-    #
-    #    $self->edges->del($edge);
+    $edge->source->edges->del($edge);
+    $edge->target->edge(undef);
+
+    $self->edges->del($edge);
 }
 
 sub del_node {
+    my $self = shift;
+    my $node = shift or return;
 
-    #    my $self = shift;
-    #    my $node = shift or return;
-    #
-    #    $self->del_edge($_) for $node->input_edges;
-    #    $self->del_edge($_) for $node->output_edges;
-    #
-    #    $self->nodes->del($node);
+    $self->del_edge($_) for $node->get_ins_edges;
+    $self->del_edge($_) for $node->get_outs_edges;
+
+    $self->nodes->del($node);
 }
 
 sub del_scenario {
+    my $self = shift;
+    my $scenario = shift or return;
 
-    #    my $self = shift;
-    #    my $scenario = shift or return;
-    #
-    #    # Clean up all items contained in the scenario.
-    #
-    #    # Deleting a node deletes also the edges connected to it.
-    #    $scenario->del_node($_) for $scenario->get_nodes;
-    #
-    #    # Deleting a scenario deletes also the nodes contained in it.
-    #    $scenario->del_scenario($_) for $scenario->get_scenarios;
-    #
-    #    $self->scenarios->del($scenario);
+    # Clean up all items contained in the scenario.
+
+    $scenario->del_comment($_) for $scenario->comments->list;
+
+    # Deleting a node deletes also the edges connected to it.
+    $scenario->del_node($_) for $scenario->nodes->list;
+
+    $scenario->del_scenario($_) for $scenario->scenarios->list;
+
+    $self->scenarios->del($scenario);
 }
 
 sub task {
@@ -159,20 +155,21 @@ PNI::Scenario - is a set of nodes connected by edges
 
 =head1 SYNOPSIS
 
-    use PNI;
-
-    my $scenario = PNI::root->add_scenario;
-
-    my $sub_sccenario = $scenario->add_scenario;
-
-
     # You can call the constructor to get a scenario ...
-
     use PNI::Scenario;
     $standalone_scenario = PNI::Scenario->new;
 
     # ... but it will not belong to PNI hierarchy tree,
     # so its task method will not be called.
+
+    # You can start adding a scenario to the PNI root.
+    use PNI;
+    my $scen1 = PNI::root->add_scenario;
+    my $scen2 = $scenario->add_scenario;
+
+    my $foo = $scen2->add_node('Foo');
+    my $bar = $scen2->add_node('Bar');
+    $scen2->add_edge( $foo => $bar, 'out' => 'in' );
 
 =head1 ATTRIBUTES
 

@@ -47,7 +47,7 @@ sub loop {
     }
 }
 
-sub node { $root->new_node( type => shift, @_ ) }
+sub node { $root->new_node( @_ ) }
 
 sub node_list { $find->nodes }
 

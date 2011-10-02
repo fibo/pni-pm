@@ -18,7 +18,6 @@ has path => (
 
         return $path;
       }
-
 );
 
 sub read {
@@ -29,13 +28,11 @@ sub read {
     my $text = <$fh>;
     $self->content( decode_json($text) );
     close $fh;
-
 }
 
 sub write {
     my $self = shift;
 
-    my $path = $self->path;
     open my $fh, '>', $self->path;
     print $fh encode_json( $self->content );
     close $fh;

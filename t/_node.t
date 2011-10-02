@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 18;
+use Test::More tests => 19;
 use PNI;
 use PNI::Node;
 
@@ -35,11 +35,11 @@ is $in->box->center->y,   $in_y + $dy,   'in center y';
 is $out->box->center->x,  $out_x + $dx,  'out center x';
 is $out->box->center->y,  $out_y + $dy,  'out center y';
 
-my $root = PNI::root;
+my $scen = PNI::root;
 
-my $node1 = $root->new_node;
-my $node2 = $root->new_node;
-my $node3 = $root->new_node;
+my $node1 = $scen->new_node;
+my $node2 = $scen->new_node;
+my $node3 = $scen->new_node;
 
 my $node1_out = $node1->new_out('out');
 my $node2_in  = $node2->new_in('in');
@@ -47,6 +47,16 @@ my $node2_out = $node2->new_out('out');
 my $node3_in1 = $node3->new_in('in1');
 my $node3_in2 = $node3->new_in('in2');
 
-my $edge1 = $root->new_edge( source => $node1_out, target => $node2_in );
-is_deeply \( $node2->get_ins_edges ), \($edge1), 'node1_out -> node2_in';
+my $edge1 = $scen->new_edge( source => $node1_out, target => $node2_in );
+my $edge2 = $scen->new_edge( source => $node1_out, target => $node3_in1 );
+my $edge3 = $scen->new_edge( source => $node2_out, target => $node3_in2 );
+
+my @outs_edges1 = sort $node1->get_outs_edges;
+my @outs_edges2 = sort $edge1, $edge2;
+is_deeply \@outs_edges1, \@outs_edges2, 'get_outs_edges';
+
+my @ins_edges1 = sort $node3->get_ins_edges;
+my @ins_edges2 = sort $edge2, $edge3;
+is_deeply \@ins_edges1, \@ins_edges2, 'get_ins_edges';
+
 

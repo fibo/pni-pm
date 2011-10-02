@@ -56,7 +56,7 @@ sub get_out {
 }
 
 sub get_outs_edges {
-    grep { defined } map { $_->edges } shift->outs->list;
+    map { $_->edges->list } shift->outs->list;
 }
 
 sub parents {
