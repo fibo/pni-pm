@@ -3,7 +3,8 @@ use Mo;
 extends 'PNI::Elem';
 
 has box  => ( default => sub { PNI::Rectangle->new } );
-has data => ( default => sub { undef } );
+has data => ( default => sub { } );
+has node => ( default => sub { } );
 
 sub translate { shift->box->translate(@_) }
 
@@ -16,9 +17,11 @@ PNI::Slot - is a basic unit of data
 
 =head1 ATTRIBUTES
 
+=head2 box
+
 =head2 data
 
-=head2 box
+=head2 node
 
 =head1 METHODS
 

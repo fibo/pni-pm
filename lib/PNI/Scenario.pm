@@ -121,7 +121,7 @@ sub task {
         }
 
         # Retrieve slot data coming from input edges.
-        $_->task for ( $node->input_edges );
+        $_->task for ( $node->get_ins_edges );
 
         # Ok, now it's time to run node task.
         eval { $node->task };
@@ -141,7 +141,7 @@ sub task {
     #}
 
     # Finally, run all sub scenarios tasks.
-    $_->task for ( $self->get_scenarios );
+    $_->task for ( $self->scenarios->list );
 
     return 1;
 }

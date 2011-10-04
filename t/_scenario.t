@@ -53,7 +53,6 @@ is $scen->edges->list, 0, 'del_node cleans edges';
 # my $content = {roba presa da un .pni file}
 # $scen->new_scenario($content);
 # per ora faccio solo
-$scen->new_scenario;
 
 # Create another edge, then delete it.
 my $edge2 = $scen->new_edge( source => $source1, target => $target2 );
@@ -61,19 +60,32 @@ $scen->del_edge($edge2);
 ok !$source1->is_connected, 'del_edge cleans source';
 ok !$target2->is_connected, 'del_edge cleans target';
 
-# Add some test nodes, which output is twice of input,
-# see below package PNI::Node::Test
-my $n1 = $scen->new_node('Test');
-my $n2 = $scen->new_node('Test');
-my $n3 = $scen->new_node('Test');
-my $n4 = $scen->new_node('Test');
+# Add some test nodes, which output is twice of input
+use lib 't';
+my $n1 = $scen->new_node('Twice');
+my $n2 = $scen->new_node('Twice');
+my $n3 = $scen->new_node('Twice');
+my $n4 = $scen->new_node('Twice');
 
-$n1->get_in('in')->data(1);
-$scen->new_edge( $n1 => $n2, 'out' => 'in' );
-$scen->new_edge( $n2 => $n3, 'out' => 'in' );
-$scen->new_edge( $n3 => $n4, 'out' => 'in' );
-#$scen->task;
-is $n4->get_out('out')->data, 8, 'task';
+my $i1 = $n1->get_in('in');
+my $o1 = $n1->get_out('out');
+my $i2 = $n2->get_in('in');
+my $o2 = $n2->get_out('out');
+my $i3 = $n3->get_in('in');
+my $o3 = $n3->get_out('out');
+my $i4 = $n4->get_in('in');
+my $o4 = $n4->get_out('out');
+
+my $num = rand(100);
+$i1->data($num);
+
+$scen->new_edge( source => $o1, target => $i2 );
+$scen->new_edge( source => $o2, target => $i3 );
+$scen->new_edge( source => $o3, target => $i4 );
+
+$scen->task;
+
+is $o4->data, 16 * $num, 'task';
 
 # Delete sub scenario.
 $scenario->del_scenario($scen);
@@ -82,19 +94,4 @@ is $scen->comments->list,      0, 'del_scenario cleans comments';
 is $scen->edges->list,         0, 'del_scenario cleans edges';
 is $scen->nodes->list,         0, 'del_scenario cleans nodes';
 is $scen->scenarios->list,     0, 'del_scenario cleans scenarios';
-
-package PNI::Node::Test;
-use Mo;
-extends 'PNI::Node';
-
-sub BUILD {
-    my $self = shift;
-    my $in   = $self->new_in('in')->data(0);
-    $self->new_out('out')->data(0);
-}
-
-sub task {
-    my $self = shift;
-    $self->get_out('out')->data( $self->get_in('in')->data * 2 );
-}
 
