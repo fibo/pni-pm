@@ -1,8 +1,8 @@
 package PNI::Set;
-use Mo;
+use Mo qw'default';
 extends 'PNI::Elem';
 
-has elem => ( default => sub { {} } );
+has elem => ( default => sub { +{} } );
 has min  => ( default => sub { 0 } );
 has max  => ( default => sub { 0 } );
 

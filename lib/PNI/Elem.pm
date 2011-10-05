@@ -1,5 +1,5 @@
 package PNI::Elem;
-use Mo;
+use Mo qw'default';
 use Scalar::Util;
 
 has id => ( default => sub { Scalar::Util::refaddr(shift) } );
