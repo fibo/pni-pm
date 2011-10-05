@@ -4,8 +4,8 @@ extends 'PNI::Elem';
 use PNI::Line;
 
 has line   => ( default => sub { PNI::Line->new } );
-has source => ( default => sub { } );
-has target => ( default => sub { } );
+has source => ( );
+has target => ( );
 
 sub BUILD {
 my $self = shift;
