@@ -1,5 +1,5 @@
 package PNI::Node::PNI::Scenario;
-use Mo;
+use PNI::Mo;
 extends 'PNI::Node';
 
 sub BUILD {

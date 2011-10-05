@@ -1,5 +1,5 @@
 package PNI::Point;
-use Mo;
+use PNI::Mo;
 
 has x => ( default => sub { 0 } );
 has y => ( default => sub { 0 } );

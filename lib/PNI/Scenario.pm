@@ -1,5 +1,5 @@
 package PNI::Scenario;
-use Mo;
+use PNI::Mo;
 extends 'PNI::Node';
 use PNI::Edge;
 use PNI::File;

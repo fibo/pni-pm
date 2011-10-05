@@ -1,5 +1,5 @@
 package PNI::Set;
-use Mo qw'default';
+use PNI::Mo;
 extends 'PNI::Elem';
 
 has elem => ( default => sub { +{} } );

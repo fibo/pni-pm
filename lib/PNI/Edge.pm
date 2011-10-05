@@ -1,5 +1,5 @@
 package PNI::Edge;
-use Mo;
+use PNI::Mo;
 extends 'PNI::Elem';
 use PNI::Line;
 

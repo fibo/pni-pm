@@ -1,5 +1,5 @@
 package PNI::Rectangle;
-use Mo;
+use PNI::Mo;
 use PNI::Point;
 
 has center => ( default => sub { PNI::Point->new } );

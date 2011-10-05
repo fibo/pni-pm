@@ -1,5 +1,5 @@
 package PNI::Finder;
-use Mo;
+use PNI::Mo;
 use File::Basename;
 use File::Find;
 use Module::Pluggable

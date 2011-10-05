@@ -1,5 +1,5 @@
 package PNI::Node::PNI::Root;
-use Mo;
+use PNI::Mo;
 extends 'PNI::Node';
 use PNI;
 

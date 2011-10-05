@@ -1,5 +1,5 @@
 package PNI::File;
-use Mo;
+use PNI::Mo;
 use File::Spec;
 use File::Temp;
 use JSON;

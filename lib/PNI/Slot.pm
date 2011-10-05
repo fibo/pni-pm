@@ -1,5 +1,5 @@
 package PNI::Slot;
-use Mo;
+use PNI::Mo;
 extends 'PNI::Elem';
 
 has box  => ( default => sub { PNI::Rectangle->new } );

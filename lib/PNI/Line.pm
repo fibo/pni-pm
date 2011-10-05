@@ -1,5 +1,5 @@
 package PNI::Line;
-use Mo;
+use PNI::Mo;
 use PNI::Line;
 
 has start => ( default => sub { PNI::Point->new } );

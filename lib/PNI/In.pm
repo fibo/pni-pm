@@ -1,5 +1,5 @@
 package PNI::In;
-use Mo;
+use PNI::Mo;
 extends 'PNI::Slot';
 use PNI::Edge;
 

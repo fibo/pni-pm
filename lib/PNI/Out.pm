@@ -1,5 +1,5 @@
 package PNI::Out;
-use Mo;
+use PNI::Mo;
 extends 'PNI::Slot';
 use PNI::Set;
 
