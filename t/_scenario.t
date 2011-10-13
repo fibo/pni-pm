@@ -22,8 +22,8 @@ my $node2 = $scen->new_node;
 is $scen->nodes->list, 2, 'nodes list';
 
 # Connect nodes with an edge.
-my $source1 = $node1->new_out('out');
-my $target1 = $node2->new_in('in');
+my $source1 = $node1->out;
+my $target1 = $node2->in;
 
 my $edge = $scen->new_edge( source => $source1, target => $target1 );
 isa_ok $edge , 'PNI::Edge', 'new_edge';
@@ -40,8 +40,8 @@ ok !exists $scen->comments->{ $comment1->id }, 'del_comment';
 # Create another node to have a chain like this:
 # node1 --> node2 --> node3
 my $node3   = $scen->new_node;
-my $source2 = $node2->new_out('out');
-my $target2 = $node3->new_in('in');
+my $source2 = $node2->out;
+my $target2 = $node3->in;
 $scen->new_edge( source => $source2, target => $target2 );
 
 # Delete node2: this should also delete its edges.
@@ -67,14 +67,14 @@ my $n2 = $scen->new_node('Twice');
 my $n3 = $scen->new_node('Twice');
 my $n4 = $scen->new_node('Twice');
 
-my $i1 = $n1->get_in('in');
-my $o1 = $n1->get_out('out');
-my $i2 = $n2->get_in('in');
-my $o2 = $n2->get_out('out');
-my $i3 = $n3->get_in('in');
-my $o3 = $n3->get_out('out');
-my $i4 = $n4->get_in('in');
-my $o4 = $n4->get_out('out');
+my $i1 = $n1->in;
+my $o1 = $n1->out;
+my $i2 = $n2->in;
+my $o2 = $n2->out;
+my $i3 = $n3->in;
+my $o3 = $n3->out;
+my $i4 = $n4->in;
+my $o4 = $n4->out;
 
 my $num = rand(100);
 $i1->data($num);

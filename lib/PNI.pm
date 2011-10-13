@@ -29,8 +29,8 @@ sub edge {
     my $source_out_name = shift;
     my $target_in_name  = shift;
 
-    my $source_out = $source_node->get_out($source_out_name);
-    my $target_in  = $target_node->get_in($target_in_name);
+    my $source_out = $source_node->out($source_out_name);
+    my $target_in  = $target_node->in($target_in_name);
 
     return $root->new_edge(
         source => $source_out,

@@ -11,7 +11,7 @@ isa_ok $in, 'PNI::In';
 
 is $in->is_connected, 0, 'at creation, it is not connected';
 
-my $out = $node->new_out('out');
+my $out = $node->out;
 my $edge = PNI::Edge->new( source => $out, target => $in );
 is $in->is_connected, 1, 'is_connected';
 

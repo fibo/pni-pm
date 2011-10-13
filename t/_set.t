@@ -36,3 +36,4 @@ is $set->list, 3, 'max=0 is infinity';
 
 is $set->add($elem4), $elem4, 'add returns its argument';
 is $set->del($elem4), $elem4, 'del returns its argument';
+

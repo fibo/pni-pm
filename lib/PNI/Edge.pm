@@ -3,14 +3,14 @@ use PNI::Mo;
 extends 'PNI::Elem';
 use PNI::Line;
 
-has line   => ( default => sub { PNI::Line->new } );
-has source => ( );
-has target => ( );
+has line => ( default => sub { PNI::Line->new } );
+has source => ();
+has target => ();
 
 sub BUILD {
-my $self = shift;
-$self->source->edges->add($self);
-$self->target->edge($self);
+    my $self = shift;
+    $self->source->edges->add($self);
+    $self->target->edge($self);
 }
 
 sub task {

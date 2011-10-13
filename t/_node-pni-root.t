@@ -6,7 +6,7 @@ use Test::More tests => 2;
 
 my $node = PNI::Node::PNI::Root->new;
 
-my $object = $node->get_out('object');
+my $object = $node->out('object');
 
 isa_ok $object,'PNI::Out';
 

@@ -12,13 +12,13 @@ is $node->get_outs_edges, 0,           'default get_outs_edges';
 is $node->type,           'PNI::Node', 'default type';
 is $node->parents,        0,           'default parents';
 
-ok my $in = $node->new_in('in'), 'new_in';
+ok my $in = $node->in, 'in constructor';
 isa_ok $in, 'PNI::In';
-is $in, $node->get_in('in'), 'get_in';
+is $in, $node->in, 'in accessor';
 
-ok my $out = $node->new_out('out'), 'new_out';
+ok my $out = $node->out, 'out constructor';
 isa_ok $out, 'PNI::Out';
-is $out, $node->get_out('out'), 'get_out';
+is $out, $node->out, 'out accessor';
 
 my $node_x = $node->box->center->x;
 my $node_y = $node->box->center->y;
@@ -41,11 +41,11 @@ my $node1 = $scen->new_node;
 my $node2 = $scen->new_node;
 my $node3 = $scen->new_node;
 
-my $node1_out = $node1->new_out('out');
-my $node2_in  = $node2->new_in('in');
-my $node2_out = $node2->new_out('out');
-my $node3_in1 = $node3->new_in('in1');
-my $node3_in2 = $node3->new_in('in2');
+my $node1_out = $node1->out;
+my $node2_in  = $node2->in;
+my $node2_out = $node2->out;
+my $node3_in1 = $node3->in('in1');
+my $node3_in2 = $node3->in('in2');
 
 my $edge1 = $scen->new_edge( source => $node1_out, target => $node2_in );
 my $edge2 = $scen->new_edge( source => $node1_out, target => $node3_in1 );

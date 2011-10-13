@@ -11,48 +11,34 @@ has ins  => ( default => sub { PNI::Set->new } );
 has outs => ( default => sub { PNI::Set->new } );
 has type => ( default => sub { __PACKAGE__ } );
 
-sub new_in {
-    my $self = shift;
-    my $id   = shift;
-
-    my $in = PNI::In->new(
-        node => $self,
-        id   => $id,
-        @_
-    );
-
-    return $self->ins->add($in);
-}
-
-sub new_out {
-    my $self = shift;
-    my $id   = shift;
-
-    my $out = PNI::Out->new(
-        node => $self,
-        id   => $id,
-        @_
-    );
-
-    return $self->outs->add($out);
-}
-
-sub get_in {
-    my $self = shift;
-    my $in_id = shift or return;
-
-    return $self->ins->elem->{$in_id};
-}
-
 sub get_ins_edges {
     grep { defined } map { $_->edge } shift->ins->list;
 }
 
-sub get_out {
+sub in {
     my $self = shift;
-    my $out_id = shift or return;
+    my $id = shift || 'in';
 
-    return $self->outs->elem->{$out_id};
+    return $self->ins->elem->{$id}
+      || $self->ins->add(
+        PNI::In->new(
+            node => $self,
+            id   => $id,
+        )
+      );
+}
+
+sub out {
+    my $self = shift;
+    my $id = shift || 'out';
+
+    return $self->outs->elem->{$id}
+      || $self->outs->add(
+        PNI::Out->new(
+            node => $self,
+            id   => $id,
+        )
+      );
 }
 
 sub get_outs_edges {
@@ -98,8 +84,8 @@ PNI::Node - is a basic unit of code
     my $empty_node = PNI::Node->new;
 
     # Decorate node.
-    my $in = $empty_node->new_in('in');
-    my $out = $empty_node->new_out('out');
+    my $in = $empty_node->in('lead');
+    my $out = $empty_node->out('gold');
 
     $node->task;
 
@@ -118,17 +104,13 @@ PNI::Node - is a basic unit of code
 
 =head2 get_outs_edges
 
-=head2 get_in
+=head2 in
 
-=head2 get_out
-
-=head2 new_in
-
-=head2 new_out
+=head2 out
 
 =head2 parents
 
-Returns the list of nodes which outputs are connected to node inputs.
+Returns the list of nodes which outputs are connected to the node inputs.
 
 =head2 task
 
