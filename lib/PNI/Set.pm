@@ -24,6 +24,8 @@ sub del {
     delete $self->elem->{ $elem->id };
 }
 
+sub ids { keys %{ shift->elem } }
+
 sub list { values %{ shift->elem } }
 
 1
@@ -65,6 +67,8 @@ it would be the empty set.
 =head2 add
 
 =head2 del
+
+=head2 ids
 
 =head2 list
 

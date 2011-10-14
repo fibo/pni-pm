@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 11;
+use Test::More tests => 13;
 use PNI::Elem;
 use PNI::Set;
 
@@ -33,6 +33,14 @@ $set->add($elem1);
 $set->add($elem2);
 $set->add($elem3);
 is $set->list, 3, 'max=0 is infinity';
+
+my @list1 = sort ( $elem1, $elem2, $elem3 );
+my @list2 = sort $set->list;
+is_deeply \@list1, \@list2, 'list';
+
+my @ids1 = sort ( $elem1->id, $elem2->id, $elem3->id );
+my @ids2 = sort $set->ids;
+is_deeply \@ids1, \@ids2, 'ids';
 
 is $set->add($elem4), $elem4, 'add returns its argument';
 is $set->del($elem4), $elem4, 'del returns its argument';
