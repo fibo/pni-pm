@@ -1,14 +1,11 @@
 use strict;
 use warnings;
-use Test::More tests=>2;
+use Test::More tests => 2;
 use PNI::Finder;
 
-my $find  = PNI::Finder->new;
+my $find = PNI::Finder->new;
 
-TODO :{
-    local $TODO = 'implement find .pni files';
-ok $find->files;
-}
+ok $find->files, 'find files';
 
-ok $find->nodes;
+ok $find->nodes, 'find nodes';
 

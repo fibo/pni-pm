@@ -2,12 +2,14 @@ package PNI::Finder;
 use PNI::Mo;
 use File::Basename;
 use File::Find;
+use File::Spec;
 use Module::Pluggable
   search_path => 'PNI::Node',
   require     => 1,
   inner       => 0;
 
 my $PNI_dir = File::Basename::dirname(__FILE__);
+my $PNI_Scenario_dir = File::Spec->catfile($PNI_dir,'Scenario');
 
 # return @nodes : PNI::Node
 sub nodes {
@@ -29,7 +31,7 @@ sub files {
             },
             no_chdir => 1,
         },
-        $PNI_dir
+        $PNI_Scenario_dir
     );
 
     return @pni_files;
@@ -46,6 +48,7 @@ PNI::Finder - searches for available nodes
 
     my $find = PNI::Finder->instance;
     my @node_list = $find->nodes;
+    my @pni_files = $find->files;
 
 =head1 METHODS
 

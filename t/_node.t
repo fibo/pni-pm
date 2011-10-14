@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 19;
+use Test::More tests => 21;
 use PNI;
 use PNI::Node;
 
@@ -13,10 +13,12 @@ is $node->type,           'PNI::Node', 'default type';
 is $node->parents,        0,           'default parents';
 
 ok my $in = $node->in, 'in constructor';
+is $in->id, 'in', 'default in id';
 isa_ok $in, 'PNI::In';
 is $in, $node->in, 'in accessor';
 
 ok my $out = $node->out, 'out constructor';
+is $out->id, 'out', 'default out id';
 isa_ok $out, 'PNI::Out';
 is $out, $node->out, 'out accessor';
 
@@ -58,5 +60,4 @@ is_deeply \@outs_edges1, \@outs_edges2, 'get_outs_edges';
 my @ins_edges1 = sort $node3->get_ins_edges;
 my @ins_edges2 = sort $edge2, $edge3;
 is_deeply \@ins_edges1, \@ins_edges2, 'get_ins_edges';
-
 
