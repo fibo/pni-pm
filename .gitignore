@@ -1,0 +1,10 @@
+.*
+!.gitignore
+*~
+blib
+Makefile*
+!Makefile.PL
+*META.*
+MANIFEST*
+!MANIFEST.SKIP
+pm_to_blib
