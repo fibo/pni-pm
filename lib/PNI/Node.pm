@@ -87,8 +87,14 @@ PNI::Node - is a basic unit of code
     my $in = $empty_node->in('lead');
     my $out = $empty_node->out('gold');
 
+    # Fill input data.
+    $in->data('1Kg');
+
+    # Produce something.
     $node->task;
 
+    # Get output data.
+    my $gold = $out->data;
 
 =head1 ATTRIBUTES
 
@@ -106,7 +112,35 @@ PNI::Node - is a basic unit of code
 
 =head2 in
 
+Creates an input by the given name if such input does not exists.
+
+    $node->in('input_name');
+    
+Returns a L<PNI::In> object.
+
+    my $in = $node->in('input_name');
+
+Default input name is 'in', so you are really lazy you can do
+
+    $node->in->data(1)
+
+    say $node->in->data;
+
 =head2 out
+
+Creates an output by the given name if such output does not exists.
+
+    $node->out('output_name');
+    
+Returns a L<PNI::Out> object.
+
+    my $out = $node->out('output_name');
+
+Default output name is 'out', so you are really lazy you can do
+
+    $node->out->data(1)
+
+    say $node->out->data;
 
 =head2 parents
 
