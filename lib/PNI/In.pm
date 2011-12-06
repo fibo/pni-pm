@@ -3,7 +3,7 @@ use PNI::Mo;
 extends 'PNI::Slot';
 use PNI::Edge;
 
-has edge => ( defualt => sub { } );
+has edge => ();
 
 sub is_connected { defined( shift->edge ) ? 1 : 0 }
 

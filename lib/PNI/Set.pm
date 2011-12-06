@@ -74,5 +74,7 @@ it would be the empty set.
 
     my @elems = $set->list;
 
+    my $num_elems = scalar( $set->list );
+
 =cut
 

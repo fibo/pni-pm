@@ -20,6 +20,9 @@ sub in {
     my $self = shift;
     my $id = shift || 'in';
 
+    # If id is a number, prefix it with 'in'.
+    $id =~ /^\d*$/ and $id = 'in' . $id;
+
     return $self->ins->elem->{$id}
       || $self->ins->add(
         PNI::In->new(
@@ -32,6 +35,9 @@ sub in {
 sub out {
     my $self = shift;
     my $id = shift || 'out';
+
+    # If id is a number, prefix it with 'out'.
+    $id =~ /^\d*$/ and $id = 'out' . $id;
 
     return $self->outs->elem->{$id}
       || $self->outs->add(
@@ -127,6 +133,11 @@ Default input name is 'in', so you are really lazy you can do
 
     say $node->in->data;
 
+If you pass number x as input_name, it will be replaced by C<inx>.
+
+    $node->in(1);
+    $node->in('in1'); # ditto
+
 =head2 label
 
 =head2 out
@@ -144,6 +155,11 @@ Default output name is 'out', so you are really lazy you can do
     $node->out->data(1)
 
     say $node->out->data;
+
+If you pass number x as output_name, it will be replaced by C<outx>.
+
+    $node->out(1);
+    $node->out('out1'); # ditto
 
 =head2 parents
 

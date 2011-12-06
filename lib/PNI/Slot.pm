@@ -3,9 +3,9 @@ use PNI::Mo;
 use Scalar::Util;
 extends 'PNI::Elem';
 
-has box  => ( default => sub { PNI::Rectangle->new } );
-has data => ( default => sub { } );
-has node => ( default => sub { } );
+has box => ( default => sub { PNI::Rectangle->new } );
+has data => ();
+has node => ();
 
 sub is_array { shift->type eq 'ARRAY' ? 1 : 0 }
 

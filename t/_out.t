@@ -15,4 +15,3 @@ my $in = $node->in;
 my $edge = PNI::Edge->new( source => $out, target => $in );
 is $out->is_connected, 1, 'is_connected';
 
-

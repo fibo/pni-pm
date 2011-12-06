@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 22;
+use Test::More tests => 26;
 use PNI;
 use PNI::Node;
 
@@ -22,6 +22,14 @@ ok my $out = $node->out, 'out constructor';
 is $out->id, 'out', 'default out id';
 isa_ok $out, 'PNI::Out';
 is $out, $node->out, 'out accessor';
+
+my $in1 = $node->in(1);
+isa_ok $in1, 'PNI::In', 'in(number)';
+is $in1->id, 'in1', 'in1';
+
+my $out2 = $node->out(2);
+isa_ok $out2, 'PNI::Out', 'out(number)';
+is $out2->id, 'out2', 'out2';
 
 my $node_x = $node->box->center->x;
 my $node_y = $node->box->center->y;
