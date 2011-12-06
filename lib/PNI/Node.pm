@@ -6,10 +6,11 @@ use PNI::Out;
 use PNI::Rectangle;
 use PNI::Set;
 
-has box  => ( default => sub { PNI::Rectangle->new } );
-has ins  => ( default => sub { PNI::Set->new } );
-has outs => ( default => sub { PNI::Set->new } );
-has type => ( default => sub { __PACKAGE__ } );
+has box   => ( default => sub { PNI::Rectangle->new } );
+has ins   => ( default => sub { PNI::Set->new } );
+has label => ( default => sub { '' } );
+has outs  => ( default => sub { PNI::Set->new } );
+has type  => ( default => sub { __PACKAGE__ } );
 
 sub get_ins_edges {
     grep { defined } map { $_->edge } shift->ins->list;
@@ -126,6 +127,8 @@ Default input name is 'in', so you are really lazy you can do
 
     say $node->in->data;
 
+=head2 label
+
 =head2 out
 
 Creates an output by the given name if such output does not exists.
@@ -149,6 +152,8 @@ Returns the list of nodes which outputs are connected to the node inputs.
 =head2 task
 
 =head2 translate
+
+=head2 type
 
 =cut
 
