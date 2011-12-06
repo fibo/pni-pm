@@ -6,6 +6,7 @@ use PNI::Out;
 use PNI::Rectangle;
 use PNI::Set;
 
+has _on => (default=>sub{1});
 has box   => ( default => sub { PNI::Rectangle->new } );
 has ins   => ( default => sub { PNI::Set->new } );
 has label => ( default => sub { '' } );
@@ -31,6 +32,14 @@ sub in {
         )
       );
 }
+
+sub is_on{shift->_on}
+
+sub is_off{!shift->_on}
+
+sub off{shift->_on(0)}
+
+sub on{ shift->_on(1)}
 
 sub out {
     my $self = shift;
@@ -137,6 +146,23 @@ If you pass number x as input_name, it will be replaced by C<inx>.
 
     $node->in(1);
     $node->in('in1'); # ditto
+
+=head2 is_off
+
+
+=head2 is_off
+
+=head2 off
+
+Turn off a node if something is wrong.
+
+    sub task {
+        my $self=shift;
+        # if "in" is not defined, return and turn off the node.
+        $self->in->is_defined or return $self->off;
+    }
+
+=head2 on
 
 =head2 label
 

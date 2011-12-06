@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 26;
+use Test::More tests => 27;
 use PNI;
 use PNI::Node;
 
@@ -12,6 +12,7 @@ is $node->get_outs_edges, 0,           'default get_outs_edges';
 is $node->label,          '',          'default label';
 is $node->type,           'PNI::Node', 'default type';
 is $node->parents,        0,           'default parents';
+ok $node->is_on,          'node is_on by default';
 
 ok my $in = $node->in, 'in constructor';
 is $in->id, 'in', 'default in id';
