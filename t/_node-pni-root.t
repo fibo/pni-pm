@@ -8,7 +8,7 @@ my $node = PNI::Node::PNI::Root->new;
 
 my $object = $node->out('object');
 
-isa_ok $object,'PNI::Out';
+isa_ok $object, 'PNI::Out';
 
-is $object->data, PNI::root;
+is $object->data, PNI::root, 'root data';
 

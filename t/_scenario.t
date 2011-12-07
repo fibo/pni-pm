@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use PNI::Scenario;
-use Test::More tests => 23;
+use Test::More tests => 28;
 
 my $scenario = PNI::Scenario->new;
 isa_ok $scenario, 'PNI::Scenario';
@@ -60,7 +60,9 @@ $scen->del_edge($edge2);
 ok !$source1->is_connected, 'del_edge cleans source';
 ok !$target2->is_connected, 'del_edge cleans target';
 
-# Add some test nodes, which output is twice of input
+# Use a test node, which output is twice of input.
+#
+# its path is t/PNI/Node/Twice.pm
 use lib 't';
 my $n1 = $scen->new_node('Twice');
 my $n2 = $scen->new_node('Twice');
@@ -86,6 +88,21 @@ $scen->new_edge( source => $o3, target => $i4 );
 $scen->task;
 
 is $o4->data, 16 * $num, 'task';
+
+# Again, starting with 1.
+$i1->data(1);
+
+# Turning off n3 ...
+$n3->off;
+
+$scen->task;
+
+# ... n4 should be off
+ok !$n4->is_on, 'n4 is off cause n3 is off';
+is $o1->data, 2, 'o1';
+is $o2->data, 4, 'o2';
+is $o3->data, 8 * $num,  'o3 has the same data';
+is $o4->data, 16 * $num, 'o4 has the same data';
 
 # Delete sub scenario.
 $scenario->del_scenario($scen);

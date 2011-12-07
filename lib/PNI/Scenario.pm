@@ -110,24 +110,31 @@ sub task {
         # Discard nodes that run their task yet.
         next if $has_run_task_of{$node};
 
-        my $node_can_run_task = 1;
-
-        # Nodes with no parents will skip this for loop.
-        # so their task will run before their children
+        # Nodes with no parents will skip this for loop,
+        # so their task will run before their children.
         for my $parent_node ( $node->parents ) {
+            $node->off if $parent_node->is_off;
 
             # Wait until all parent nodes run.
             next RUN_TASKS if not exists $has_run_task_of{$parent_node};
         }
 
-        # Retrieve slot data coming from input edges.
-        $_->task for ( $node->get_ins_edges );
+        # If node is on it will run its task.
+        if ( $node->is_on ) {
 
-        # Ok, now it's time to run node task.
-        eval { $node->task };
+            # Retrieve slot data coming from input edges.
+            $_->task for ( $node->get_ins_edges );
 
-        # Remember that node has run its task.
-        $has_run_task_of{$node} = 1;
+            # Ok, now it's time to run node task.
+            eval { $node->task };
+
+            # Remember that node has run its task.
+            $has_run_task_of{$node} = 1;
+        }
+
+        # Else node is off, so it looses the chance to run it.
+        else { $has_run_task_of{$node} = -1; }
+
     }
 
     # Check if all tasks run.

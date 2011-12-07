@@ -20,7 +20,7 @@ is_deeply $file->content, $content, 'read content';
 # If path is not provided, defaults to a temporary file with empty content.
 my $empty_content = { edges => {}, nodes => {} };
 my $file2 = PNI::File->new;
-ok $file2->path;
+ok $file2->path, 'temporary path';
 
 is_deeply $file2->content, $empty_content, 'default empty content';
 
