@@ -50,9 +50,9 @@ is $out->box->center->y,  $out_y + $dy,  'out center y';
 
 my $scen = PNI::root;
 
-my $node1 = $scen->new_node;
-my $node2 = $scen->new_node;
-my $node3 = $scen->new_node;
+my $node1 = $scen->add_node;
+my $node2 = $scen->add_node;
+my $node3 = $scen->add_node;
 
 my $node1_out = $node1->out;
 my $node2_in  = $node2->in;
@@ -60,9 +60,9 @@ my $node2_out = $node2->out;
 my $node3_in1 = $node3->in('in1');
 my $node3_in2 = $node3->in('in2');
 
-my $edge1 = $scen->new_edge( source => $node1_out, target => $node2_in );
-my $edge2 = $scen->new_edge( source => $node1_out, target => $node3_in1 );
-my $edge3 = $scen->new_edge( source => $node2_out, target => $node3_in2 );
+my $edge1 = $scen->add_edge( source => $node1_out, target => $node2_in );
+my $edge2 = $scen->add_edge( source => $node1_out, target => $node3_in1 );
+my $edge3 = $scen->add_edge( source => $node2_out, target => $node3_in2 );
 
 my @outs_edges1 = sort $node1->get_outs_edges;
 my @outs_edges2 = sort $edge1, $edge2;

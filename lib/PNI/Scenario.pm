@@ -14,19 +14,19 @@ has scenarios => ( default => sub { PNI::Set->new } );
 
 has file => ( default => sub { PNI::File->new } );
 
-sub new_comment {
+sub add_comment {
     my $self    = shift;
     my $comment = PNI::Comment->new(@_);
     return $self->comments->add($comment);
 }
 
-sub new_edge {
+sub add_edge {
     my $self = shift;
     my $edge = PNI::Edge->new(@_);
     return $self->edges->add($edge);
 }
 
-sub new_node {
+sub add_node {
     my $self = shift;
 
     # If type is not provided return a dummy node.
@@ -48,7 +48,7 @@ sub new_node {
     return $self->nodes->add($node);
 }
 
-sub new_scenario {
+sub add_scenario {
     my $self     = shift;
     my $scenario = PNI::Scenario->new(@_);
     return $self->scenarios->add($scenario);
@@ -190,13 +190,13 @@ PNI::Scenario - is a set of nodes connected by edges
 
 =head1 METHODS
 
-=head2 new_comment
+=head2 add_comment
 
-=head2 new_edge
+=head2 add_edge
 
-=head2 new_node
+=head2 add_node
 
-=head2 new_scenario
+=head2 add_scenario
 
 =head2 del_comment
 

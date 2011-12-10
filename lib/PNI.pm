@@ -5,6 +5,7 @@ use warnings;
 
 our $VERSION = '0.21.0';
 
+use AnyEvent;
 use Exporter 'import';
 use PNI::Edge;
 use PNI::Finder;
@@ -32,13 +33,22 @@ sub edge {
     my $source_out = $source_node->out($source_out_name);
     my $target_in  = $target_node->in($target_in_name);
 
-    return $root->new_edge(
+    return $root->add_edge(
         source => $source_out,
         target => $target_in
     );
 }
 
 sub files { $find->files }
+
+sub foo {
+my $self=shift;
+my $t = AnyEvent->timer(
+after => 1,
+interval => 1,
+sub { PNI::task(); }
+);
+}
 
 sub loop {
     while (1) {
@@ -47,7 +57,7 @@ sub loop {
     }
 }
 
-sub node { $root->new_node( @_ ) }
+sub node { $root->add_node( @_ ) }
 
 sub node_list { $find->nodes }
 

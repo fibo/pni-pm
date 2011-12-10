@@ -12,26 +12,26 @@ is $scenario->edges->list,     0, 'default edges';
 is $scenario->scenarios->list, 0, 'default scenarios';
 
 # Add a sub scenario.
-my $scen = $scenario->new_scenario;
-isa_ok $scen, 'PNI::Scenario', 'new_scenario';
+my $scen = $scenario->add_scenario;
+isa_ok $scen, 'PNI::Scenario', 'add_scenario';
 
 # Add two nodes.
-my $node1 = $scen->new_node;
-isa_ok $node1, 'PNI::Node', 'new_node';
-my $node2 = $scen->new_node;
+my $node1 = $scen->add_node;
+isa_ok $node1, 'PNI::Node', 'add_node';
+my $node2 = $scen->add_node;
 is $scen->nodes->list, 2, 'nodes list';
 
 # Connect nodes with an edge.
 my $source1 = $node1->out;
 my $target1 = $node2->in;
 
-my $edge = $scen->new_edge( source => $source1, target => $target1 );
-isa_ok $edge , 'PNI::Edge', 'new_edge';
+my $edge = $scen->add_edge( source => $source1, target => $target1 );
+isa_ok $edge , 'PNI::Edge', 'add_edge';
 is $scen->edges->list, 1, 'edges list';
 
-my $comment1 = $scen->new_comment;
-isa_ok $comment1, 'PNI::Comment', 'new_comment';
-my $comment2 = $scen->new_comment;
+my $comment1 = $scen->add_comment;
+isa_ok $comment1, 'PNI::Comment', 'add_comment';
+my $comment2 = $scen->add_comment;
 is $scen->comments->list, 2, 'comments list';
 
 $scen->del_comment($comment1);
@@ -39,10 +39,10 @@ ok !exists $scen->comments->{ $comment1->id }, 'del_comment';
 
 # Create another node to have a chain like this:
 # node1 --> node2 --> node3
-my $node3   = $scen->new_node;
+my $node3   = $scen->add_node;
 my $source2 = $node2->out;
 my $target2 = $node3->in;
-$scen->new_edge( source => $source2, target => $target2 );
+$scen->add_edge( source => $source2, target => $target2 );
 
 # Delete node2: this should also delete its edges.
 $scen->del_node($node2);
@@ -51,11 +51,11 @@ is $scen->edges->list, 0, 'del_node cleans edges';
 
 # TODO
 # my $content = {roba presa da un .pni file}
-# $scen->new_scenario($content);
+# $scen->add_scenario($content);
 # per ora faccio solo
 
 # Create another edge, then delete it.
-my $edge2 = $scen->new_edge( source => $source1, target => $target2 );
+my $edge2 = $scen->add_edge( source => $source1, target => $target2 );
 $scen->del_edge($edge2);
 ok !$source1->is_connected, 'del_edge cleans source';
 ok !$target2->is_connected, 'del_edge cleans target';
@@ -64,10 +64,10 @@ ok !$target2->is_connected, 'del_edge cleans target';
 #
 # its path is t/PNI/Node/Twice.pm
 use lib 't';
-my $n1 = $scen->new_node('Twice');
-my $n2 = $scen->new_node('Twice');
-my $n3 = $scen->new_node('Twice');
-my $n4 = $scen->new_node('Twice');
+my $n1 = $scen->add_node('Twice');
+my $n2 = $scen->add_node('Twice');
+my $n3 = $scen->add_node('Twice');
+my $n4 = $scen->add_node('Twice');
 
 my $i1 = $n1->in;
 my $o1 = $n1->out;
@@ -81,9 +81,9 @@ my $o4 = $n4->out;
 my $num = rand(100);
 $i1->data($num);
 
-$scen->new_edge( source => $o1, target => $i2 );
-$scen->new_edge( source => $o2, target => $i3 );
-$scen->new_edge( source => $o3, target => $i4 );
+$scen->add_edge( source => $o1, target => $i2 );
+$scen->add_edge( source => $o2, target => $i3 );
+$scen->add_edge( source => $o3, target => $i4 );
 
 $scen->task;
 
