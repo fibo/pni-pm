@@ -3,7 +3,7 @@ package PNI;
 use strict;
 use warnings;
 
-our $VERSION = '0.21.0';
+our $VERSION = '0.21.1';
 
 use AnyEvent;
 use Exporter 'import';
