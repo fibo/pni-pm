@@ -82,26 +82,14 @@ PNI::Node - is a basic unit of code
 
 =head1 SYNOPSIS
 
+    # Create a node in a scenario.
     use PNI;
+    my $scenario = PNI::scen;
+    my $node = $scenario->add_node( type => 'Foo::Bar' );
 
-    my $node = PNI::node 'Foo::Bar';
-
-
-    # Or use a scenario.
-
-    my $scenario = PNI::root->new_scenario;
-    my $node = $scenario->new_node( type => 'Foo::Bar' );
-
-
-    # Or do it yourself (:
-
-    use PNI::Node;
-
-    my $empty_node = PNI::Node->new;
-
-    # Decorate node.
-    my $in = $empty_node->in('lead');
-    my $out = $empty_node->out('gold');
+    # Decorate node, add an input and an output.
+    my $in = $node->in('lead');
+    my $out = $node->out('gold');
 
     # Fill input data.
     $in->data('1Kg');
@@ -145,13 +133,15 @@ Default input name is 'in', so you are really lazy you can do
 If you pass number x as input_name, it will be replaced by C<inx>.
 
     $node->in(1);
-    $node->in('in1'); # ditto
+    $node->in('in1'); # idem
 
 =head2 is_on
 
     $node->task if $node->is_on;
 
 =head2 off
+
+    $node->off;
 
 Turn off a node if something is wrong.
 
@@ -168,26 +158,27 @@ Turn off a node if something is wrong.
 
 =head2 out
 
-Creates an output by the given name if such output does not exists.
-
     $node->out('output_name');
-    
-Returns a L<PNI::Out> object.
+
+Creates an output by the given name if such output does not exists.
 
     my $out = $node->out('output_name');
 
-Default output name is 'out', so you are really lazy you can do
+Returns a L<PNI::Out> object.
 
-    $node->out->data(1)
-
+    $node->out->data(1);
     say $node->out->data;
 
-If you pass number x as output_name, it will be replaced by C<outx>.
+Default output name is 'out', so you can be lazy.
 
     $node->out(1);
     $node->out('out1'); # ditto
 
+If you pass digit C<x> as output_name, it will be replaced by C<outx>.
+
 =head2 parents
+
+    my @parents = $node->parents;
 
 Returns the list of nodes which outputs are connected to the node inputs.
 

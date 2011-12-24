@@ -63,6 +63,8 @@ sub node_list { $find->nodes }
 
 sub root { $root }
 
+sub scen { $root->add_scenario }
+
 sub task { $root->task }
 
 1
@@ -144,15 +146,13 @@ Returns a list of all .pni files in PNI.pm install dir and subdirs.
 
 =head2 node
 
-Creates a node by its PNI type, that is the name of a package under the
-PNI::Node namespace, and adds it to the root scenario. If you write
-
+    # Load PNI::Node::Foo::Bar node. 
     my $node = PNI::node 'Foo::Bar';
 
-PNI loads and inits PNI::Node::Foo::Bar node. 
+Creates a node by its PNI type, that is the name of a package under the
+PNI::Node namespace, and adds it to the root scenario.
 
-If no PNI type is passed, and you just write
-
+    # No PNI type returns an empty node.
     my $node = PNI::node;
     
 PNI creates an empty node.
@@ -164,13 +164,6 @@ PNI creates an empty node.
 Returns a list of available PNI nodes.
 
 This method delegates to L<PNI::Finder> C<nodes> method.
-
-=head2 task
-
-    PNI::task;
-
-Calls the task method for every loaded node.
-This method delegates to the root scenario task method.
 
 =head2 loop
 
@@ -184,11 +177,22 @@ Starts the PNI main loop. It keeps calling C<task> as fast as it can.
 
 Returns the root PNI::Scenario.
 
+=head2 scen
+
+    my $scen = PNI::scen;
+
+=head2 task
+
+    PNI::task;
+
+Calls the task method for every loaded node.
+This method delegates to the root scenario task method.
+
 =head1 SEE ALSO
 
 L<PNI::Core>
 
-L<PNI::GUI::Tk>
+L<PNI::GUI>
 
 L<PNI blog|http://perl-node-interface.blogspot.com>
 
