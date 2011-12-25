@@ -42,12 +42,12 @@ sub edge {
 sub files { $find->files }
 
 sub foo {
-my $self=shift;
-my $t = AnyEvent->timer(
-after => 1,
-interval => 1,
-sub { PNI::task(); }
-);
+    my $self = shift;
+    my $t    = AnyEvent->timer(
+        after    => 1,
+        interval => 1,
+        sub { PNI::task(); }
+    );
 }
 
 sub loop {
@@ -57,7 +57,7 @@ sub loop {
     }
 }
 
-sub node { $root->add_node( @_ ) }
+sub node { $root->add_node(@_) }
 
 sub node_list { $find->nodes }
 
