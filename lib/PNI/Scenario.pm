@@ -1,6 +1,7 @@
 package PNI::Scenario;
 use PNI::Mo;
 extends 'PNI::Node';
+
 use PNI::Edge;
 use PNI::File;
 use PNI::Node;
@@ -101,6 +102,10 @@ sub task {
     # Here we go, this is one of the most important PNI subs.
     my $self = shift;
 
+    # Do nothing it scenario is off.
+    return if $self->is_off;
+
+    # Let remember if a node run its task.
     my %has_run_task_of;
 
   RUN_TASKS:
@@ -125,14 +130,17 @@ sub task {
             # Retrieve slot data coming from input edges.
             $_->task for ( $node->get_ins_edges );
 
-            # Ok, now it's time to run node task.
-            eval { $node->task };
+            # Ok, now it's time to run node task:
+            eval { $node->task }
 
-            # Remember that node has run its task.
+              # if task sub return undef, turn off the node.
+              or $node->off;
+
+            # Remember that this node has run its task.
             $has_run_task_of{$node} = 1;
         }
 
-        # Else node is off, so it looses the chance to run it.
+        # Else node is off, so it looses the chance to run its task.
         else { $has_run_task_of{$node} = -1; }
 
     }

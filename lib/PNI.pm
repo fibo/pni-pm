@@ -14,7 +14,6 @@ use PNI::Scenario;
 use Time::HiRes;
 
 # Smiling is better (:
-# use PNI ':-D'; # exports edge, node and task
 our @EXPORT_OK = qw( edge node task );
 our %EXPORT_TAGS = ( '-D' => \@EXPORT_OK );
 
@@ -90,39 +89,26 @@ To install PNI module plus a basic set of PNI nodes, do:
     use PNI ':-D'; # imports node, edge and task
 
     my $node = node 'Perlfunc::Print';
-    $node->get_input('list')->set_data('Hello World !');
-    $node->get_input('do_print')->set_data(1);
+    $node->in('list')->data('Hello World !');
+    $node->in('do_print')->data(1);
 
     task; # prints Hello World !
 
 =head1 DESCRIPTION
 
-Hi all! I'm an italian mathematician. 
-I really like Perl philosophy as Larry jokes a lot even if 
-he is one of the masters of hacking.
+Hi all! I'm an italian mathematician.  I really like Perl philosophy as Larry jokes a lot even if he is one of the masters of hacking.
 
 PNI stands for Perl Node Interface.
 
-It is my main project, my contribution to the great Perl community. 
-Node programming is really interesting since makes possible to realize a program
-even if you have no idea about programming. 
+It is my main project, my contribution to the great Perl community. Node programming is really interesting since makes possible to realize a program even if you have no idea about programming. 
 
-Think about genetic researchers, for example. They need to focus on protein 
-chains, not on what a package is. Maybe they can do an extra effort and say the
-world "variable" or "string" or even "regular expression" and that makes them 
-proud, but they don't care about inheritance.
+Think about genetic researchers, for example. They need to focus on protein chains, not on what a package is. Maybe they can do an extra effort and say the world "variable" or "string" or even "regular expression" and that makes them proud, but they don't care about inheritance.
 
-They want things working and they need Perl ... 
+They want things working and they need Perl ... but if you say Strawberry they think about yogurt, not about Windows.
 
-but if you say Strawberry they think about yogurt, not about Windows.
+There are a lot of node programming languages (VVVV, Puredata, Max/Msp) but normally they target artists and interaction designers. I saw a lot of vjs and musicians do really complex programs with those software, and they never wrote a line of code.
 
-There are a lot of node programming languages (VVVV, Puredata, Max/Msp) but
-normally they target artists and interaction designers. I saw a lot of vjs and
-musicians do really complex programs with those software, and they never wrote 
-a line of code.
-
-This is my effort to provide a node interface that brings Perl power 
-to people who don't know the Perl language.
+This is my effort to provide a node interface that brings Perl power to people who don't know the Perl language.
 
 Blah blah blah. ( this was the h2xs command :-)
 
@@ -133,8 +119,8 @@ Blah blah blah. ( this was the h2xs command :-)
     my $source_node = PNI::node 'Some::Node';
     my $target_node = PNI::node 'Another::Node';
 
-    my $edge = PNI::edge $source_node    => $target_node , 
-               'source_output_name' => 'target_input_name';
+    my $edge = PNI::edge $source_node         => $target_node , 
+                         'source_output_name' => 'target_input_name';
 
 Connects an output of a node to an input of another node.
 

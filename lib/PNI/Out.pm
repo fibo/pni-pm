@@ -12,7 +12,7 @@ __END__
 
 =head1 NAME
 
-PNI::Out - node output
+PNI::Out - is a node output
 
 =head1 ATTRIBUTES
 

@@ -12,7 +12,7 @@ __END__
 
 =head1 NAME
 
-PNI::In - node input
+PNI::In - is a node input
 
 =head1 ATTRIBUTES
 
