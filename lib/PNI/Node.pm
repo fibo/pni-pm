@@ -7,6 +7,7 @@ use PNI::Rectangle;
 use PNI::Set;
 
 has _on   => ( default => sub { 1 } );
+
 has box   => ( default => sub { PNI::Rectangle->new } );
 has ins   => ( default => sub { PNI::Set->new } );
 has label => ( default => sub { '' } );

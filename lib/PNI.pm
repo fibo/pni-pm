@@ -3,9 +3,8 @@ package PNI;
 use strict;
 use warnings;
 
-our $VERSION = '0.21.1';
+our $VERSION = '0.22.0';
 
-use AnyEvent;
 use Exporter 'import';
 use PNI::Edge;
 use PNI::Finder;
@@ -39,15 +38,6 @@ sub edge {
 }
 
 sub files { $find->files }
-
-sub foo {
-    my $self = shift;
-    my $t    = AnyEvent->timer(
-        after    => 1,
-        interval => 1,
-        sub { PNI::task(); }
-    );
-}
 
 sub loop {
     while (1) {
