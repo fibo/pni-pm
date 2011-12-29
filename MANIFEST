@@ -42,4 +42,5 @@ t/_set.t
 t/_slot.t
 t/all_pod_files_ok.t
 t/first_file.pni
+t/PNI/Node/Error.pm
 t/PNI/Node/Twice.pm

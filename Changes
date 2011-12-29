@@ -1,5 +1,8 @@
 Revision history for Perl Node Interface.
 
+0.22.x  2012-01-xx
+    - added PNI::scen
+
 0.21.1 2011-12-22
     - Moooved to Mo, and to github (:
 
