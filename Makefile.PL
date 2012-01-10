@@ -11,7 +11,7 @@ WriteMakefile
     File::Find        => 0,
     File::Temp        => 0,
     File::Spec        => 0,
-    JSON              => 0,
+    JSON::PP          => 0,
     Module::Pluggable => 0,
     Scalar::Util      => 0,
     Test::More        => 0,
