@@ -2,7 +2,7 @@ package PNI::File;
 use PNI::Mo;
 use File::Spec;
 use File::Temp;
-use JSON;
+use JSON::PP;
 
 my $suffix = '.pni';
 
