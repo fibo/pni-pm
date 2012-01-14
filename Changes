@@ -1,7 +1,8 @@
 Revision history for Perl Node Interface.
 
-0.22.x  2012-01-xx
+0.22.1  2012-01-14
     - added PNI::scen
+    - switched to dep on JSON::PP, now it is core module ;D
 
 0.21.1 2011-12-22
     - Moooved to Mo, and to github (:
