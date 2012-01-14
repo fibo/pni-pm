@@ -9,6 +9,7 @@ use PNI::Set;
 has _on   => ( default => sub { 1 } );
 
 has box   => ( default => sub { PNI::Rectangle->new } );
+has father => ( default => { 0 } );
 has ins   => ( default => sub { PNI::Set->new } );
 has label => ( default => sub { '' } );
 has outs  => ( default => sub { PNI::Set->new } );
@@ -104,6 +105,12 @@ PNI::Node - is a basic unit of code
 =head1 ATTRIBUTES
 
 =head2 box
+
+=head2 father
+
+    $node->father;
+    
+Returns C<father> scenario.
 
 =head2 ins
 
