@@ -3,7 +3,7 @@ package PNI;
 use strict;
 use warnings;
 
-our $VERSION = '0.22.0';
+our $VERSION = '0.22.1';
 
 use Exporter 'import';
 use PNI::Edge;
@@ -178,7 +178,7 @@ G. Casati , E<lt>fibo@cpan.orgE<gt>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (C) 2009-2011, Gianluca Casati
+Copyright (C) 2009-2012, Gianluca Casati
 
 This program is free software, you can redistribute it and/or modify it
 under the same terms of the Artistic License version 2.0.
