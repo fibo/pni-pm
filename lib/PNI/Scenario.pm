@@ -39,7 +39,7 @@ sub add_node {
 
     eval { require $node_path };
 
-    my $node = $node_class->new(@_);
+    my $node = $node_class->new(father=>$self,@_);
 
     # Set input data, if any
     #while ( my ( $slot_name, $slot_data ) = each %{ $arg->{inputs} or {} } ) {
