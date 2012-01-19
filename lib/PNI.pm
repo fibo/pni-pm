@@ -172,6 +172,8 @@ L<PNI::GUI>
 
 L<PNI blog|http://perl-node-interface.blogspot.com>
 
+L<PNI repository|http://github.com/fibo/pni-pm>
+
 =head1 AUTHOR
 
 G. Casati , E<lt>fibo@cpan.orgE<gt>
