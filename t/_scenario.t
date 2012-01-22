@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use PNI::Scenario;
-use Test::More tests => 31;
+use Test::More tests => 32;
 
 my $scenario = PNI::Scenario->new;
 isa_ok $scenario, 'PNI::Scenario';
@@ -21,7 +21,7 @@ isa_ok $node1, 'PNI::Node', 'add_node';
 my $node2 = $scen->add_node;
 is $scen->nodes->list, 2, 'nodes list';
 
-#Check father.
+# Check father.
 is $node1->father, $scen, 'father';
 
 # Connect nodes with an edge.
@@ -51,11 +51,6 @@ $scen->add_edge( source => $source2, target => $target2 );
 $scen->del_node($node2);
 is $scen->nodes->list, 2, 'del_node';
 is $scen->edges->list, 0, 'del_node cleans edges';
-
-# TODO
-my $content = {roba presa da un .pni file}
-$scen->add_scenario($content);
-
 
 # Create another edge, then delete it.
 my $edge2 = $scen->add_edge( source => $source1, target => $target2 );
@@ -121,3 +116,9 @@ ok $error->is_on, 'error node is on by default';
 $scen->task;
 ok $error->is_off, 'after its task run, error node is off';
 
+# Create a fake root.
+my $root = PNI::Scenario->new(id=>'root');
+my $n21 = PNI::Scenario->add_node;
+my $n21_id = $n21->id;
+ok $n21_id =~ m!^/root/node\d*!,'node id is a PNI path';
+is $PNI::elem{$n21_id},$n21,'

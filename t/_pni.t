@@ -1,7 +1,9 @@
 use strict;
 use warnings;
 use PNI ':-D';
-use Test::More tests => 3;
+use Test::More tests => 4;
+
+is PNI::root->id,'/','root id';
 
 my $node1 = node;
 isa_ok $node1 , 'PNI::Node';
