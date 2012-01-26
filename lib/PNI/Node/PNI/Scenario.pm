@@ -2,11 +2,14 @@ package PNI::Node::PNI::Scenario;
 use PNI::Mo;
 extends 'PNI::Node';
 
+use PNI;
+
 sub BUILD {
     my $self = shift;
     $self->in('object');
     $self->out('comments');
     $self->out('edges');
+    $self->out('father')->data(PNI::root);
     $self->out('nodes');
     $self->out('scenarios');
 }

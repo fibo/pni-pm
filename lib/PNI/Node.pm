@@ -6,14 +6,14 @@ use PNI::Out;
 use PNI::Rectangle;
 use PNI::Set;
 
-has _on   => ( default => sub { 1 } );
+has _on => ( default => sub { 1 } );
 
-has box   => ( default => sub { PNI::Rectangle->new } );
-has father => ( default => { 0 } );
-has ins   => ( default => sub { PNI::Set->new } );
-has label => ( default => sub { '' } );
-has outs  => ( default => sub { PNI::Set->new } );
-has type  => ( default => sub { __PACKAGE__ } );
+has box    => ( default => sub { PNI::Rectangle->new } );
+has father => ( default => sub { 0 } );
+has ins    => ( default => sub { PNI::Set->new } );
+has label  => ( default => sub { '' } );
+has outs   => ( default => sub { PNI::Set->new } );
+has type   => ( default => sub { __PACKAGE__ } );
 
 sub get_ins_edges {
     grep { defined } map { $_->edge } shift->ins->list;

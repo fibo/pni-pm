@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use PNI::Scenario;
-use Test::More tests => 32;
+use Test::More tests => 31;
 
 my $scenario = PNI::Scenario->new;
 isa_ok $scenario, 'PNI::Scenario';
@@ -110,15 +110,9 @@ is $scen->edges->list,         0, 'del_scenario cleans edges';
 is $scen->nodes->list,         0, 'del_scenario cleans nodes';
 is $scen->scenarios->list,     0, 'del_scenario cleans scenarios';
 
-# A node which sub task returns undef
+# A node which sub task returns undef.
 my $error = $scen->add_node('Error');
 ok $error->is_on, 'error node is on by default';
 $scen->task;
 ok $error->is_off, 'after its task run, error node is off';
 
-# Create a fake root.
-my $root = PNI::Scenario->new(id=>'root');
-my $n21 = PNI::Scenario->add_node;
-my $n21_id = $n21->id;
-ok $n21_id =~ m!^/root/node\d*!,'node id is a PNI path';
-is $PNI::elem{$n21_id},$n21,'

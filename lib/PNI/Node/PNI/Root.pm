@@ -1,6 +1,7 @@
 package PNI::Node::PNI::Root;
 use PNI::Mo;
 extends 'PNI::Node';
+
 use PNI;
 
 sub BUILD {
