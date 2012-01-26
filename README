@@ -14,7 +14,7 @@ To install this module type the following:
 
 To install PNI module plus a basic set of PNI nodes, do:
     
-    cpan PNI::Core
+    $ cpan PNI::Core
 
 INFO
 
@@ -22,7 +22,7 @@ Point your browser to http://perl-node-interface.blogspot.com .
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2009-2011, Gianluca Casati
+Copyright (C) 2009-2012, Gianluca Casati
 
 This program is free software, you can redistribute it and/or modify it
 under the same terms of the Artistic License version 2.0 .
