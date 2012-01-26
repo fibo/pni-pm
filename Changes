@@ -4,6 +4,7 @@ Revision history for Perl Node Interface.
     - there will be only one distro! ;^) merged with PNI::Node::Perlvar,
       so now Perlvar nodes Basetime, Osname, Perl_version, Process_id
       are included.
+    - basic structure waiting for PNI::GUI
 
 0.22.1  2012-01-14
     - added PNI::scen

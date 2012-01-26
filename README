@@ -12,15 +12,11 @@ To install this module type the following:
     make test
     make install
 
-To install PNI module plus a basic set of PNI nodes, do:
-    
-    $ cpan PNI::Core
-
 INFO
 
 Point your browser to http://perl-node-interface.blogspot.com .
 
-COPYRIGHT AND LICENCE
+LICENCE AND COPYRIGHT
 
 Copyright (C) 2009-2012, Gianluca Casati
 

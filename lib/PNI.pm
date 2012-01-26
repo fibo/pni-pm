@@ -160,10 +160,6 @@ This method delegates to the root scenario task method.
 
 =head1 SEE ALSO
 
-L<PNI::Core>
-
-L<PNI::GUI>
-
 L<PNI blog|http://perl-node-interface.blogspot.com>
 
 L<PNI repository|http://github.com/fibo/pni-pm>
