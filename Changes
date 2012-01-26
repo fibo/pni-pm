@@ -1,5 +1,10 @@
 Revision history for Perl Node Interface.
 
+0.23    2012-01-26
+    - there will be only one distro! ;^) merged with PNI::Node::Perlvar,
+      so now Perlvar nodes Basetime, Osname, Perl_version, Process_id
+      are included.
+
 0.22.1  2012-01-14
     - added PNI::scen
     - switched to dep on JSON::PP, now it is core module ;D

@@ -3,7 +3,7 @@ package PNI;
 use strict;
 use warnings;
 
-our $VERSION = '0.22.1';
+our $VERSION = '0.23';
 
 use Exporter 'import';
 use PNI::Edge;
@@ -65,14 +65,8 @@ PNI - Perl Node Interface
 
 =head1 ATTENTION
 
-This module was created to be used internally by a GUI, anyway you are free to
-use the scripting api if it does make sense.
-
-=head1 INSTALLATION
-
-To install PNI module plus a basic set of PNI nodes, do:
-    
-    cpan PNI::Core
+The Perl Node Interface was created to be used via browser,
+anyway you are free to use the scripting api if it does make sense.
 
 =head1 SYNOPSIS
 
