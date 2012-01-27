@@ -1,0 +1,15 @@
+#!/usr/bin/env perl
+use Mojo::Base -strict;
+
+use File::Basename 'dirname';
+use File::Spec;
+use Mojolicious::Commands;
+
+# Make it work if it is not installed.
+use lib join '/', File::Spec->splitdir(dirname(__FILE__)), '..', 'lib';
+
+$ENV{MOJO_APP} = 'PNI::GUI';
+# TODO: $ENV{MOJO_MODE} |= production, document it as PNI ENV
+
+Mojolicious::Commands->start;
+

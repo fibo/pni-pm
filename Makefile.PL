@@ -13,6 +13,7 @@ WriteMakefile
     File::Spec        => 0,
     JSON::PP          => 0,
     Module::Pluggable => 0,
+    Mojolicious       => 0,
     Scalar::Util      => 0,
     Test::More        => 0,
     Time::HiRes       => 0,
