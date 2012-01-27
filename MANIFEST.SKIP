@@ -1,14 +1,6 @@
 
-\.ico$
-\.bat$
-\.tt2$
-\.json$
 \.swp$
 \.gz$
-\.exe$
-\.dia$
-\.autosave$
-^Roadmap$
 ^MANIFEST\.SKIP$
 
 # 
