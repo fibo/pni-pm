@@ -4,6 +4,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile
   ABSTRACT_FROM => 'lib/PNI.pm',
   AUTHOR        => 'G. Casati <fibo@cpan.org>',
+  EXE_FILES     => ['bin/pni'],
   NAME          => 'PNI',
   PREREQ_PM     => {
     Carp              => 0,
