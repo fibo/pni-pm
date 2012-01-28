@@ -1,5 +1,10 @@
 Revision history for Perl Node Interface.
 
+0.24    2012-02-xx
+    - merged with PNI::Node::Perlop and PNI::Node::Perlfunc so now a lot of
+      nodes are included. This will be a great advantage since people will
+      install and the core node with one *natural* command, i.e. cpan PNI.
+
 0.23    2012-01-26
     - there will be only one distro! ;^) merged with PNI::Node::Perlvar,
       so now Perlvar nodes Basetime, Osname, Perl_version, Process_id
