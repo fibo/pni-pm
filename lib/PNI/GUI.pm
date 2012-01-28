@@ -23,5 +23,11 @@ __END__
 
 PNI::GUI - is a cool webapp
 
+=head1 DESCRIPTION
+
+It is a webapp implemented with L<Mojolicious> that let you use the Perl Node Interface.
+Talking with MVC terms, code outside the PNI::GUI namespace builds the Model.
+Perl code inside PNI::GUI belongs to the Controller, everything else (HTML/CSS/JavaScript) is part of the View. 
+
 =cut
 
