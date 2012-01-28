@@ -9,7 +9,7 @@ if ( not $ENV{TEST_AUTHOR} ) {
     plan( skip_all => $msg );
 }
 
-for my $node_class ( PNI::node_list() ) {
+for my $node_type ( PNI::node_list() ) {
 
     # Naming convention for test of PNI::Node::Foo::Bar is _node-foo-bar.t,
     #
@@ -18,12 +18,11 @@ for my $node_class ( PNI::node_list() ) {
     #     PNI::Node::Perlop::And         --> _node-perlop-and.t
     #     PNI::Node::Perlvar::Process_id --> _node-perlvar-process_id.t
 
-    my $node_test = $node_class;
-    $node_test =~ s/^PNI:://;
+    my $node_test = $node_type;
     $node_test =~ s/::/-/g;
     $node_test = lc "_node-$node_test.t";
     my $test_path = File::Spec->catfile( 't', $node_test );
-    ok -e $test_path, "$node_class has a test";
+    ok -e $test_path, "$node_type has a test";
 }
 
 done_testing
