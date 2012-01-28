@@ -1,5 +1,8 @@
 Revision history for Perl Node Interface.
 
+0.24.1  2012-01-28
+    - fixed test _file.t failing in 0.23
+
 0.24    2012-01-28
     - merged with PNI::Node::Perlop and PNI::Node::Perlfunc so now a lot of
       nodes are included. This will be a great advantage since people will

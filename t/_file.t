@@ -1,6 +1,6 @@
 use strict;
 use File::Spec;
-use JSON;
+use JSON::PP;
 use PNI::File;
 use Test::More tests => 4;
 

@@ -1,6 +1,7 @@
 
 \.swp$
 \.gz$
+^log
 ^MANIFEST\.SKIP$
 
 # 
