@@ -16,8 +16,8 @@ sub task {
     my $out  = $self->out;
 
     $in->is_hash or return $self->off;
-
-    my @keys = keys( $in->data );
+    my $hash_ref = $in->data;
+    my @keys     = keys( %{$hash_ref} );
 
     $out->data( \@keys );
 }

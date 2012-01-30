@@ -3,7 +3,7 @@ package PNI;
 use strict;
 use warnings;
 
-our $VERSION = '0.24.1';
+our $VERSION = '0.24.2';
 
 use Exporter 'import';
 use PNI::Edge;
