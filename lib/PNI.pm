@@ -3,7 +3,12 @@ package PNI;
 use strict;
 use warnings;
 
-our $VERSION = '0.25.0';
+# As recommended in permodstyle's "Version numbering" section
+# considering version x.yy stable, a new release will be versioned
+# as x.yy_zz so it will not be listed by CPAN.pm as the last.
+# After test results will be ok, it can be officially released as x.(yy+1)
+$VERSION = '0.25';
+$VERSION = eval $VERSION;
 
 use Exporter 'import';
 use PNI::Edge;

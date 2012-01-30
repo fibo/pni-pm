@@ -1,9 +1,10 @@
 Revision history for Perl Node Interface.
 
-0.25.0  2012-01-30
+0.25  2012-01-30
     - fixed PNI::Node::Perlfunc Keys and Values failing in 0.24.1
     - can' t version it as 0.24.2 cause there is a problem with indexing:
       I will try to use the perlmodestyle way for next releases
+    - added versioning policy as in perlmodstyle
 
 0.24.1  2012-01-28
     - fixed test _file.t failing in 0.23
