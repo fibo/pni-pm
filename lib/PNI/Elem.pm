@@ -9,7 +9,7 @@ __END__
 
 =head1 NAME
 
-PNI::Item - is a base class
+PNI::Elem - is a base class
 
 =head1 ATTRIBUTES
 
