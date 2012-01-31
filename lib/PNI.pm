@@ -6,8 +6,8 @@ use warnings;
 # As recommended in permodstyle's "Version numbering" section
 # considering version x.yy stable, a new release will be versioned
 # as x.yy_zz so it will not be listed by CPAN.pm as the last.
-# After test results will be ok, it can be officially released as x.(yy+1)
-$VERSION = '0.25';
+# After test results will be ok, it can be officially released x.(yy+1) version.
+our $VERSION = '0.26';
 $VERSION = eval $VERSION;
 
 use Exporter 'import';
