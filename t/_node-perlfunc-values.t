@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use Test::More tests => 5;
 
-use PNI::Node::Perlfunc::values;
+use PNI::Node::Perlfunc::Values;
 
 my $values = PNI::Node::Perlfunc::Values->new;
 
