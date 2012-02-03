@@ -9,3 +9,4 @@ MANIFEST.*
 !MANIFEST.SKIP
 pm_to_blib
 log
+_prove
