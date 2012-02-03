@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<HTML>
+  <HEAD>
+    <TITLE><%= title %></TITLE>
+    <!-- Import style sheets.  -->
+    <SCRIPT src="reset.css" type="text/css" charset="utf-8"></SCRIPT>
+    <!-- Load external JavaScript libs.  -->
+    <SCRIPT src="raphael-min.js" type="text/javascript" charset="utf-8"></SCRIPT>
+    <!-- Load internal JavaScript libs.  -->
+    <SCRIPT src="pni.js" type="text/javascript" charset="utf-8"></SCRIPT>
+  </HEAD>
+  <BODY>
+    <DIV id="root"></DIV>
+    <!-- 
+    Finally, initialize JavaScript stuff.
+    This should be the last JavaScript before the end of BODY tag.
+    -->
+    <SCRIPT src="onload.js" type="text/javascript" charset="utf-8"></SCRIPT>
+  </BODY>
+</HTML>
