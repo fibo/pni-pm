@@ -1,4 +1,5 @@
 
+\.proverc$
 \.swp$
 \.gz$
 ^log
