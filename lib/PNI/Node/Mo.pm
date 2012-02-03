@@ -1,4 +1,5 @@
-package PNI::Node::Mo;
+package    # Avoid PAUSE indexing.
+  PNI::Node::Mo;
 # use Mo qw'build default import';
 #   The following line of code was produced from the previous line by
 #   Mo::Inline version 0.27
