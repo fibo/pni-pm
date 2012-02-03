@@ -10,7 +10,7 @@
     <SCRIPT src="pni.js" type="text/javascript" charset="utf-8"></SCRIPT>
   </HEAD>
   <BODY>
-    <DIV id="root"></DIV>
+    <DIV id="paper"></DIV>
     <!-- 
     Finally, initialize JavaScript stuff.
     This should be the last JavaScript before the end of BODY tag.
