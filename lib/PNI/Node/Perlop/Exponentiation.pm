@@ -1,4 +1,5 @@
-package PNI::Node::Perlop::Exponentiation;
+package    # Avoid PAUSE indexing.
+  PNI::Node::Perlop::Exponentiation;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 
@@ -18,7 +19,7 @@ sub task {
 
     $in1->is_number and $in2->is_number or return;
 
-    $self->out->data( $in1->data ** $in2->data );
+    $self->out->data( $in1->data**$in2->data );
 }
 
 1

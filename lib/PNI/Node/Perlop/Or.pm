@@ -1,4 +1,5 @@
-package PNI::Node::Perlop::Or;
+package    # Avoid PAUSE indexing.
+  PNI::Node::Perlop::Or;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 

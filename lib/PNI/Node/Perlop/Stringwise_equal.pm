@@ -1,4 +1,5 @@
-package PNI::Node::Perlop::Stringwise_equal;
+package    # Avoid PAUSE indexing.
+  PNI::Node::Perlop::Stringwise_equal;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 

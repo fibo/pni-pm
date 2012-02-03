@@ -1,4 +1,5 @@
-package PNI::Node::Perlop::Numerically_not_equal;
+package    # Avoid PAUSE indexing.
+  PNI::Node::Perlop::Numerically_not_equal;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 
