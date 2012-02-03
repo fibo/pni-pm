@@ -14,6 +14,7 @@ sub startup {
     $self->static->root( $self->home->rel_dir('public') );
     $self->renderer->root( $self->home->rel_dir('templates') );
 
+    $r->get('/')->to(cb=>sub{shift->render('MainWindow')});
 }
 
 1
