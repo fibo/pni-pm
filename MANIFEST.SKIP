@@ -4,7 +4,7 @@
 \.gz$
 ^log
 ^MANIFEST\.SKIP$
-
+^_prove$
 # 
 # Follows original MANIFEST.SKIP
 ###########################################
