@@ -7,10 +7,14 @@ lib/PNI/Elem.pm
 lib/PNI/File.pm
 lib/PNI/Finder.pm
 lib/PNI/GUI.pm
+lib/PNI/GUI/public/jquery-1.7.1.min.js
+lib/PNI/GUI/public/onload.js
 lib/PNI/GUI/public/pni.ico
+lib/PNI/GUI/public/pni.js
+lib/PNI/GUI/public/reset.css
+lib/PNI/GUI/templates/MainWindow.html.ep
 lib/PNI/GUI/templates/not_found.html.ep
 lib/PNI/In.pm
-lib/PNI/Line.pm
 lib/PNI/Mo.pm
 lib/PNI/Node.pm
 lib/PNI/Node/Mo.pm
@@ -50,8 +54,6 @@ lib/PNI/Node/Perlvar/Process_id.pm
 lib/PNI/Node/PNI/Root.pm
 lib/PNI/Node/PNI/Scenario.pm
 lib/PNI/Out.pm
-lib/PNI/Point.pm
-lib/PNI/Rectangle.pm
 lib/PNI/Scenario.pm
 lib/PNI/Scenario/welcome.pni
 lib/PNI/Set.pm
@@ -66,7 +68,6 @@ t/_elem.t
 t/_file.t
 t/_finder.t
 t/_in.t
-t/_line.t
 t/_node-perlfunc-cos.t
 t/_node-perlfunc-exp.t
 t/_node-perlfunc-int.t
@@ -105,13 +106,12 @@ t/_node-process_id.t
 t/_node.t
 t/_out.t
 t/_pni.t
-t/_point.t
-t/_rectangle.t
 t/_scenario.t
 t/_set.t
 t/_slot.t
 t/all_pod_files_ok.t
 t/every_node_has_a_test.t
 t/first_file.pni
+t/no_PAUSE_indexing.t
 t/PNI/Node/Error.pm
 t/PNI/Node/Twice.pm

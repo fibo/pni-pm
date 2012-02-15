@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 28;
+use Test::More tests => 22;
 use PNI;
 use PNI::Node;
 
@@ -32,21 +32,6 @@ is $in1->id, 'in1', 'in1';
 my $out2 = $node->out(2);
 isa_ok $out2, 'PNI::Out', 'out(number)';
 is $out2->id, 'out2', 'out2';
-
-my $node_x = $node->box->center->x;
-my $node_y = $node->box->center->y;
-my $in_x   = $in->box->center->x;
-my $in_y   = $in->box->center->y;
-my $out_x  = $out->box->center->x;
-my $out_y  = $out->box->center->y;
-my ( $dx, $dy ) = ( 100, 150 );
-$node->translate( $dx, $dy );
-is $node->box->center->x, $node_x + $dx, 'box center x';
-is $node->box->center->y, $node_y + $dy, 'box center y';
-is $in->box->center->x,   $in_x + $dx,   'in center x';
-is $in->box->center->y,   $in_y + $dy,   'in center y';
-is $out->box->center->x,  $out_x + $dx,  'out center x';
-is $out->box->center->y,  $out_y + $dy,  'out center y';
 
 my $scen = PNI::root;
 

@@ -3,12 +3,10 @@ use PNI::Mo;
 extends 'PNI::Elem';
 use PNI::In;
 use PNI::Out;
-use PNI::Rectangle;
 use PNI::Set;
 
 has _on => ( default => sub { 1 } );
 
-has box    => ( default => sub { PNI::Rectangle->new } );
 has father => ( default => sub { 0 } );
 has ins    => ( default => sub { PNI::Set->new } );
 has label  => ( default => sub { '' } );
@@ -104,11 +102,9 @@ PNI::Node - is a basic unit of code
 
 =head1 ATTRIBUTES
 
-=head2 box
-
 =head2 father
 
-    $node->father;
+    my $scenario = $node->father;
     
 Returns C<father> scenario.
 
@@ -193,7 +189,7 @@ Returns the list of nodes which outputs are connected to the node inputs.
 
 =head2 task
 
-=head2 translate
+    $node->task;
 
 =cut
 

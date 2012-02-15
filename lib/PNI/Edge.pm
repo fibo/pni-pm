@@ -1,9 +1,7 @@
 package PNI::Edge;
 use PNI::Mo;
 extends 'PNI::Elem';
-use PNI::Line;
 
-has line => ( default => sub { PNI::Line->new } );
 has source => ();
 has target => ();
 
@@ -36,17 +34,19 @@ PNI::Edge - is used to connect
 
 =head1 ATTRIBUTES
 
-=head2 line
-
 =head2 source
 
+    my $out = $edge->source;
+
 =head2 target
+
+    my $in = $edge->target;
 
 =head1 METHODS
 
 =head2 task
 
-    $edge->task
+    $edge->task;
 
 If edge is connected, pass data from target to source.
 
