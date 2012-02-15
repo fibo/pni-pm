@@ -13,13 +13,7 @@ PNI::Comment
 
 =head1 ATTRIBUTES
 
-=head2 box
-
 =head2 content
-
-=head1 METHODS
-
-=head1 translate
 
 =cut
 
