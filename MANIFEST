@@ -47,7 +47,6 @@ lib/PNI/Node/Perlop/Stringwise_equal.pm
 lib/PNI/Node/Perlop/Stringwise_not_equal.pm
 lib/PNI/Node/Perlop/Subtraction.pm
 lib/PNI/Node/Perlvar/Basetime.pm
-lib/PNI/Node/Perlvar/Mo.pm
 lib/PNI/Node/Perlvar/Osname.pm
 lib/PNI/Node/Perlvar/Perl_version.pm
 lib/PNI/Node/Perlvar/Process_id.pm
