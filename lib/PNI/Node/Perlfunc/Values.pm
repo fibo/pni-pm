@@ -1,4 +1,5 @@
-package PNI::Node::Perlfunc::Values;
+package    # Avoid PAUSE indexing.
+  PNI::Node::Perlfunc::Values;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 

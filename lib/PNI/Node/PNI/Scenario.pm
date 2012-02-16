@@ -1,5 +1,6 @@
-package PNI::Node::PNI::Scenario;
-use PNI::Mo;
+package    # Avoid PAUSE indexing.
+  PNI::Node::PNI::Scenario;
+use PNI::Node::Mo;
 extends 'PNI::Node';
 
 use PNI;

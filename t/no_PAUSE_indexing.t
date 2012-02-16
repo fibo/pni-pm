@@ -11,6 +11,7 @@ if ( not $ENV{TEST_AUTHOR} ) {
 
 my @no_indexed;
 
+# Find all PNI nodes.
 find(
     {
         wanted => sub {
@@ -23,6 +24,7 @@ find(
     File::Spec->catfile(qw(lib PNI Node))
 );
 
+# Find all Mo.pm files.
 find(
     {
         wanted => sub {
@@ -34,14 +36,11 @@ find(
     File::Spec->catfile(qw(lib))
 );
 
-TODO: {
-    local $TODO = "unindex all nodes";
-    for (@no_indexed) {
-        open( my $fh, '<', $_ ) or die "Unable to open $_\n";
-        my @rows = <$fh>;
-        ok $rows[0] =~ /^package\s*\#/,"$_ avoids PAUSE indexing";
-        close $fh;
-    }
+for (@no_indexed) {
+    open( my $fh, '<', $_ ) or die "Unable to open $_\n";
+    my @rows = <$fh>;
+    ok $rows[0] =~ /^package\s*\#/, "$_ avoids PAUSE indexing";
+    close $fh;
 }
 
 done_testing

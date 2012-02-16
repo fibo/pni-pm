@@ -1,4 +1,5 @@
-package PNI::Node::Perlfunc::Lc;
+package    # Avoid PAUSE indexing.
+  PNI::Node::Perlfunc::Lc;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 
@@ -21,5 +22,4 @@ sub task {
 }
 
 1
-
 

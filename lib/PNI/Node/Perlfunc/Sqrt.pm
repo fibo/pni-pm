@@ -1,4 +1,5 @@
-package PNI::Node::Perlfunc::Sqrt;
+package    # Avoid PAUSE indexing.
+  PNI::Node::Perlfunc::Sqrt;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 

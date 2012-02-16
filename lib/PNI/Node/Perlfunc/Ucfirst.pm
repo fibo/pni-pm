@@ -1,4 +1,5 @@
-package PNI::Node::Perlfunc::Ucfirst;
+package    # Avoid PAUSE indexing.
+  PNI::Node::Perlfunc::Ucfirst;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 
