@@ -165,6 +165,8 @@ L<PNI blog|http://perl-node-interface.blogspot.com>
 
 L<PNI repository|http://github.com/fibo/pni-pm>
 
+L<PNI Class Diagram|http://goo.gl/MQ89f>
+
 =head1 AUTHOR
 
 G. Casati , E<lt>fibo@cpan.orgE<gt>
