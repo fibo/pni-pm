@@ -1,25 +1,27 @@
-PNI
-===
+
+=pod
 
 PNI stands for Perl Node Interface.
 
-INSTALLATION
+=head1 Installation
 
-To install this module type the following:
+To install this distro type the following:
 
     perl Makefile.PL
     make
     make test
     make install
 
-INFO
+=head2 Info
 
-Point your browser to http://perl-node-interface.blogspot.com .
+Point your browser to L<PNI blog|http://perl-node-interface.blogspot.com>.
 
-LICENCE AND COPYRIGHT
+=head2 Licence and Copyright
 
 Copyright (C) 2009-2012, Gianluca Casati
 
 This program is free software, you can redistribute it and/or modify it
 under the same terms of the Artistic License version 2.0 .
+
+=cut
 
