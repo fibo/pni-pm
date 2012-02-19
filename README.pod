@@ -12,11 +12,11 @@ To install this distro type the following:
     make test
     make install
 
-=head2 Info
+=head1 Info
 
 Point your browser to L<PNI blog|http://perl-node-interface.blogspot.com>.
 
-=head2 Licence and Copyright
+=head1 Licence and Copyright
 
 Copyright (C) 2009-2012, Gianluca Casati
 
