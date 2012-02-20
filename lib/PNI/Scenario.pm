@@ -5,21 +5,13 @@ extends 'PNI::Node';
 use PNI::Edge;
 use PNI::File;
 use PNI::Node;
-use PNI::Comment;
 use PNI::Set;
 
-has comments  => ( default => sub { PNI::Set->new } );
 has edges     => ( default => sub { PNI::Set->new } );
 has nodes     => ( default => sub { PNI::Set->new } );
 has scenarios => ( default => sub { PNI::Set->new } );
 
 has file => ( default => sub { PNI::File->new } );
-
-sub add_comment {
-    my $self    = shift;
-    my $comment = PNI::Comment->new(@_);
-    return $self->comments->add($comment);
-}
 
 sub add_edge {
     my $self = shift;
@@ -64,12 +56,6 @@ sub add_scenario {
     return $self->scenarios->add($scenario);
 }
 
-sub del_comment {
-    my $self    = shift;
-    my $comment = shift;
-    $self->comments->del($comment);
-}
-
 sub del_edge {
     my $self = shift;
     my $edge = shift or return;
@@ -95,8 +81,6 @@ sub del_scenario {
     my $scenario = shift or return;
 
     # Clean up all items contained in the scenario.
-
-    $scenario->del_comment($_) for $scenario->comments->list;
 
     # Deleting a node deletes also the edges connected to it.
     $scenario->del_node($_) for $scenario->nodes->list;
@@ -197,8 +181,6 @@ PNI::Scenario - is a set of nodes connected by edges
 
 =head1 ATTRIBUTES
 
-=head2 comments
-
 =head2 edges
 
 =head2 nodes
@@ -207,15 +189,11 @@ PNI::Scenario - is a set of nodes connected by edges
 
 =head1 METHODS
 
-=head2 add_comment
-
 =head2 add_edge
 
 =head2 add_node
 
 =head2 add_scenario
-
-=head2 del_comment
 
 =head2 del_edge
 

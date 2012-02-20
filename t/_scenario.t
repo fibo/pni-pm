@@ -1,12 +1,11 @@
 use strict;
 use warnings;
 use PNI::Scenario;
-use Test::More tests => 31;
+use Test::More tests => 26;
 
 my $scenario = PNI::Scenario->new;
 isa_ok $scenario, 'PNI::Scenario';
 
-is $scenario->comments->list,  0, 'default comments';
 is $scenario->nodes->list,     0, 'default nodes';
 is $scenario->edges->list,     0, 'default edges';
 is $scenario->scenarios->list, 0, 'default scenarios';
@@ -31,14 +30,6 @@ my $target1 = $node2->in;
 my $edge = $scen->add_edge( source => $source1, target => $target1 );
 isa_ok $edge , 'PNI::Edge', 'add_edge';
 is $scen->edges->list, 1, 'edges list';
-
-my $comment1 = $scen->add_comment;
-isa_ok $comment1, 'PNI::Comment', 'add_comment';
-my $comment2 = $scen->add_comment;
-is $scen->comments->list, 2, 'comments list';
-
-$scen->del_comment($comment1);
-ok !exists $scen->comments->{ $comment1->id }, 'del_comment';
 
 # Create another node to have a chain like this:
 # node1 --> node2 --> node3
@@ -105,7 +96,6 @@ is $o4->data, 16 * $num, 'o4 has the same data';
 # Delete sub scenario.
 $scenario->del_scenario($scen);
 is $scenario->scenarios->list, 0, 'del_scenario';
-is $scen->comments->list,      0, 'del_scenario cleans comments';
 is $scen->edges->list,         0, 'del_scenario cleans edges';
 is $scen->nodes->list,         0, 'del_scenario cleans nodes';
 is $scen->scenarios->list,     0, 'del_scenario cleans scenarios';
