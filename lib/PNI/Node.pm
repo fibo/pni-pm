@@ -13,6 +13,10 @@ has label  => ( default => sub { '' } );
 has outs   => ( default => sub { PNI::Set->new } );
 has type   => ( default => sub { __PACKAGE__ } );
 
+sub get_outs_edges {
+    map { $_->edges->list } shift->outs->list;
+}
+
 sub get_ins_edges {
     grep { defined } map { $_->edge } shift->ins->list;
 }
@@ -57,14 +61,11 @@ sub out {
       );
 }
 
-sub get_outs_edges {
-    map { $_->edges->list } shift->outs->list;
-}
-
 sub parents {
     map { $_->node } map { $_->source } shift->get_ins_edges;
 }
 
+# This method is abstract.
 sub task { 1 }
 
 sub translate {
@@ -110,7 +111,13 @@ Returns C<father> scenario.
 
 =head2 ins
 
+Holds a L<PNI::Set> of <PNI::In>.
+
+=head2 label
+
 =head2 outs
+
+Holds a L<PNI::Set> of <PNI::Out>.
 
 =head2 type
 
@@ -118,7 +125,11 @@ Returns C<father> scenario.
 
 =head2 get_ins_edges
 
+Returns a list of all L<PNI::Edge> connected to node C<ins>.
+
 =head2 get_outs_edges
+
+Returns a list of all L<PNI::Edge> connected to node C<outs>.
 
 =head2 in
 
@@ -159,8 +170,6 @@ Turn off a node if something is wrong.
 
 =head2 on
 
-=head2 label
-
 =head2 out
 
     $node->out('output_name');
@@ -185,11 +194,14 @@ If you pass digit C<x> as output_name, it will be replaced by C<outx>.
 
     my @parents = $node->parents;
 
-Returns the list of nodes which outputs are connected to the node inputs.
+Returns the list of nodes which C<outs> are connected to this node C<ins>.
 
 =head2 task
 
     $node->task;
+
+This is an abstract method that must be implemented by every class that extends L<PNI::Node>.
+It is the chunk of code that the node implements.
 
 =cut
 
