@@ -15,7 +15,14 @@ PNI::Elem - is a base class
 
 =head2 id
 
+    $elem->id;
+
+Used by L<PNI::Set> to identify the element.
+Defaults to internal memory address of the object reference.
+
 =head1 METHODS
+
+This class has no method.
 
 =cut
 

@@ -37,21 +37,21 @@ PNI::Set - is a set of elements
 
 =head1 SYNOPSIS
 
-  my $set = PNI::Set->new;
+    my $set = PNI::Set->new;
 
-  my $elem1 = PNI::Elem->new;
-  $set->add($elem1);
+    my $elem1 = PNI::Elem->new;
+    $set->add($elem1);
 
-  my $elem2 = PNI::Elem->new;
-  $set->add($elem2);
+    my $elem2 = PNI::Elem->new;
+    $set->add($elem2);
 
-  $set->list;    # ($elem1,$elem2)
+    $set->list;    # ($elem1,$elem2)
 
 =head1 ATTRIBUTES
 
 =head2 elem
 
-Hash of elements.
+Hash of elements contained in this L<PNI::Set>.
 
 =head2 min
 
@@ -66,9 +66,21 @@ it would be the empty set.
 
 =head2 add
 
+    $set->add($elem);
+
+Add a L<PNI::Elem> to this L<PNI::Set>.
+
 =head2 del
 
+    $set->del($elem);
+
+Remove a L<PNI::Elem> from this L<PNI::Set>.
+
 =head2 ids
+
+    my @ids = $set->ids;
+
+Return a list containing every C<id> of this set elements.
 
 =head2 list
 
