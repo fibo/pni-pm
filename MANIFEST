@@ -1,7 +1,6 @@
 bin/pni
 Changes
 lib/PNI.pm
-lib/PNI/Comment.pm
 lib/PNI/Edge.pm
 lib/PNI/Elem.pm
 lib/PNI/File.pm
@@ -50,6 +49,7 @@ lib/PNI/Node/Perlvar/Basetime.pm
 lib/PNI/Node/Perlvar/Osname.pm
 lib/PNI/Node/Perlvar/Perl_version.pm
 lib/PNI/Node/Perlvar/Process_id.pm
+lib/PNI/Node/PNI/Comment.pm
 lib/PNI/Node/PNI/Root.pm
 lib/PNI/Node/PNI/Scenario.pm
 lib/PNI/Out.pm
@@ -59,9 +59,8 @@ lib/PNI/Set.pm
 lib/PNI/Slot.pm
 Makefile.PL
 MANIFEST			This list of files
-README
+README.pod
 t/__use_ok.t
-t/_comment.t
 t/_edge.t
 t/_elem.t
 t/_file.t
@@ -99,6 +98,7 @@ t/_node-perlvar-basetime.t
 t/_node-perlvar-osname.t
 t/_node-perlvar-perl_version.t
 t/_node-perlvar-process_id.t
+t/_node-pni-comment.t
 t/_node-pni-root.t
 t/_node-pni-scenario.t
 t/_node-process_id.t
