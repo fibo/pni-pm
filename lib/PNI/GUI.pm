@@ -2,19 +2,19 @@ package PNI::GUI;
 use Mojo::Base 'Mojolicious';
 
 use File::Basename 'dirname';
-use File::Spec;
+use File::Spec::Functions 'catdir';
 
 sub startup {
     my $self = shift;
-    my $r    = $self->routes;
 
-    # TODO: $self->secret( $ENV{PNIGUI_SECRET} ); and document env var as well as MOJO_MODE
+# TODO: $self->secret( $ENV{PNIGUI_SECRET} ); and document env var as well as MOJO_MODE
 
-    $self->home->parse( File::Spec->catdir( dirname(__FILE__), 'GUI' ) );
-    $self->static->root( $self->home->rel_dir('public') );
-    $self->renderer->root( $self->home->rel_dir('templates') );
+    $self->home->parse( catdir( dirname(__FILE__), 'GUI' ) );
+    $self->static->paths->[0]   = $self->home->rel_dir('public');
+    $self->renderer->paths->[0] = $self->home->rel_dir('templates');
 
-    $r->get('/')->to(cb=>sub{shift->render('MainWindow')});
+    my $r = $self->routes;
+    $r->get('/')->to( cb => sub { shift->render('MainWindow') } );
 }
 
 1
