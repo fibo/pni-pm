@@ -5,7 +5,7 @@ WriteMakefile
   ABSTRACT_FROM => 'lib/PNI.pm',
   AUTHOR        => 'G. Casati <fibo@cpan.org>',
   EXE_FILES     => ['bin/pni'],
-  NAME          => 'PNI',
+  NAME          => 'Perl-Node-Interface',
   PREREQ_PM     => {
     Carp                  => 0,
     Exporter              => 0,
