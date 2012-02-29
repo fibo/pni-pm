@@ -3,7 +3,6 @@ use PNI::Mo;
 use Scalar::Util;
 extends 'PNI::Elem';
 
-has box => ( default => sub { PNI::Rectangle->new } );
 has data => ();
 has node => ();
 
@@ -27,8 +26,6 @@ sub is_string {
 
 sub is_undef { shift->type eq 'UNDEF' ? 1 : 0 }
 
-sub translate { shift->box->translate(@_) }
-
 sub type {
     my $data = shift->data;
     defined $data or return 'UNDEF';
@@ -43,8 +40,6 @@ __END__
 PNI::Slot - is a basic unit of data
 
 =head1 ATTRIBUTES
-
-=head2 box
 
 =head2 data
 
