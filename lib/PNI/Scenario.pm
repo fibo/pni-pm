@@ -7,6 +7,8 @@ use PNI::File;
 use PNI::Node;
 use PNI::Set;
 
+require UNIVERSAL::require;
+
 has edges     => ( default => sub { PNI::Set->new } );
 has nodes     => ( default => sub { PNI::Set->new } );
 has scenarios => ( default => sub { PNI::Set->new } );
@@ -28,10 +30,13 @@ sub add_node {
     if ($type) {
 
         my $node_class = "PNI::Node::$type";
-        my $node_path  = "$node_class.pm";
-        $node_path =~ s/::/\//g;
 
-        eval { require $node_path };
+        # Code to require a node, before using UNIVERSAL::required looked like this.
+        #        my $node_path  = "$node_class.pm";
+        #        $node_path =~ s/::/\//g;
+        #        eval { require $node_path };
+
+        $node_class->require or return;
 
         $node = $node_class->new( father => $self );
     }
