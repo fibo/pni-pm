@@ -24,18 +24,6 @@ find(
     File::Spec->catfile(qw(lib PNI Node))
 );
 
-# Find all Mo.pm files.
-find(
-    {
-        wanted => sub {
-            return unless $_ eq 'Mo.pm';
-            push @no_indexed, $File::Find::name;
-        },
-        chdir => 0
-    },
-    File::Spec->catfile(qw(lib))
-);
-
 for (@no_indexed) {
     open( my $fh, '<', $_ ) or die "Unable to open $_\n";
     my @rows = <$fh>;
