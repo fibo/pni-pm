@@ -1,5 +1,9 @@
 Revision history for Perl Node Interface.
 
+0.29  2012-03-xx
+    - pod for PNI::Mo and PNI::Node::Mo
+    - first draggable node for PNI::GUI
+
 0.28  2012-02-28
     - PNI::Comment now is a node
     - updated deprecated paths method in PNI::GUI
