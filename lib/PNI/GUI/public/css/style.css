@@ -1,0 +1,13 @@
+body {
+  font: normal normal 90% sans-serif;
+}
+canvas {
+  border: 1px solid black;
+  z-index: 2;
+  position: absolute;
+  background: rgba(245,245,245,0.8);
+}
+#block1 {
+  z-index: 1;
+  border: 1px solid black;
+}

@@ -3,17 +3,21 @@
   <HEAD>
     <TITLE><%= title %></TITLE>
     <!-- Import style sheets.  -->
-    <SCRIPT src="reset.css" type="text/css" charset="utf-8"></SCRIPT>
+    <LINK rel="stylesheet" href="css/reset.css" type="text/css" />
+    <LINK rel="stylesheet" href="css/style.css" type="text/css" />
+    <LINK rel="stylesheet" href="css/black-tie/jquery-ui-1.8.18.custom.css" type="text/css" />
+    <!-- Load external JavaScript libs.  -->
+    <SCRIPT src="js/jquery-1.7.1.min.js" type="text/javascript" ></SCRIPT>
+    <SCRIPT src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript" ></SCRIPT>
+    <!-- Load internal JavaScript libs.  -->
+    <SCRIPT src="js/pni.js" type="text/javascript" charset="utf-8"></SCRIPT>
+    <!-- Resource onload.js should be last JavaScript loaded.  -->
+    <SCRIPT src="js/onload.js" type="text/javascript" charset="utf-8"></SCRIPT>
   </HEAD>
   <BODY>
 
+    <DIV id="block1">Welcome to PNI!</DIV>
     <CANVAS id="pniview" width="600" height="300">The PNI view</CANVAS>
 
-    <!-- Load external JavaScript libs.  -->
-    <SCRIPT src="jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></SCRIPT>
-    <!-- Load internal JavaScript libs.  -->
-    <SCRIPT src="pni.js" type="text/javascript" charset="utf-8"></SCRIPT>
-    <!-- onload.js should be last JavaScript loaded.  -->
-    <SCRIPT src="onload.js" type="text/javascript" charset="utf-8"></SCRIPT>
   </BODY>
 </HTML>
