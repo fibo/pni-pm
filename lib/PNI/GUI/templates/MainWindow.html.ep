@@ -15,9 +15,10 @@
     <SCRIPT src="js/onload.js" type="text/javascript" charset="utf-8"></SCRIPT>
   </HEAD>
   <BODY>
-
-    <DIV id="block1">Welcome to PNI!</DIV>
-    <CANVAS id="pniview" width="600" height="300">The PNI view</CANVAS>
-
+    <DIV id="container"></DIV>
+	<!-- 
+	<DIV id="comment" class="ui-widget-content"><P>Welcome to PNI!</P></DIV>
+    <CANVAS id="pniview" width="100%" height="100%">The PNI view</CANVAS>
+    -->
   </BODY>
 </HTML>
