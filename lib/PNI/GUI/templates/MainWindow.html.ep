@@ -10,15 +10,10 @@
     <SCRIPT src="js/jquery-1.7.1.min.js" type="text/javascript" ></SCRIPT>
     <SCRIPT src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript" ></SCRIPT>
     <!-- Load internal JavaScript libs.  -->
-    <SCRIPT src="js/pni.js" type="text/javascript" charset="utf-8"></SCRIPT>
+    <SCRIPT src="js/pni.js" type="text/javascript" ></SCRIPT>
     <!-- Resource onload.js should be last JavaScript loaded.  -->
-    <SCRIPT src="js/onload.js" type="text/javascript" charset="utf-8"></SCRIPT>
+    <SCRIPT src="js/onload.js" type="text/javascript" ></SCRIPT>
   </HEAD>
   <BODY>
-    <DIV id="container"></DIV>
-	<!-- 
-	<DIV id="comment" class="ui-widget-content"><P>Welcome to PNI!</P></DIV>
-    <CANVAS id="pniview" width="100%" height="100%">The PNI view</CANVAS>
-    -->
   </BODY>
 </HTML>

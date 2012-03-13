@@ -66,7 +66,7 @@ __END__
 
 =head1 NAME
 
-PNI - Perl Node Interface
+PNI - stands for Perl Node Interface
 
 =head1 ATTENTION
 

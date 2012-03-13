@@ -4,6 +4,8 @@ use Mojo::Base 'Mojolicious';
 use File::Basename 'dirname';
 use File::Spec::Functions 'catdir';
 
+use PNI;
+
 sub startup {
     my $self = shift;
 
@@ -15,6 +17,19 @@ sub startup {
 
     my $r = $self->routes;
     $r->get('/')->to( cb => sub { shift->render('MainWindow') } );
+    $r->get('/node_list')->to(
+        cb => sub {
+            my @node_list = PNI->node_list;
+            shift->render_json( [ PNI->node_list ] );
+        }
+    );
+    $r->get('/add_node')->to(
+        cb => sub {
+            my $self=shift;
+            my $node = PNI::node $self->req->param('type');
+            $self->render_json( {label=>$node->label,id=>$node->id} );
+        }
+    );
 }
 
 1

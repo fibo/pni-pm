@@ -3,6 +3,7 @@ Revision history for Perl Node Interface.
 0.29  2012-03-xx
     - pod for PNI::Mo and PNI::Node::Mo
     - added jquery-ui
+    - added few File::Spec nodes
 
 0.28  2012-02-28
     - PNI::Comment now is a node
