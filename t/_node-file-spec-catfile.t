@@ -14,6 +14,7 @@ my @directories = qw( foo bar );
 my $filename    = 'quz';
 $node->in('directories')->data( \@directories );
 $node->in('filename')->data($filename);
-$hode->task : my $path = File::Spec->catfile( @directories, $filename );
+$node->task;
+my $path = File::Spec->catfile( @directories, $filename );
 is $node->out('path')->data, $path, 'path';
 

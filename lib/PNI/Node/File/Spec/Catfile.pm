@@ -17,8 +17,10 @@ sub task {
     my $directories = $self->in('directories');
     my $filename    = $self->in('filename');
 
-    $filename->is_scalar or return $node->off;
-    $directories->is_array or $directories->is_scalar or return $node_off;
+    $filename->is_scalar
+      or return $self->off;
+    $directories->is_array or $directories->is_scalar
+      or return $self->off;
     $self->out('path')
       ->data( File::Spec->catfile( @{ $directories->data }, $filename->data ) );
 }
