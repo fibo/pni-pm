@@ -27,7 +27,7 @@ sub startup {
         cb => sub {
             my $self=shift;
             my $node = PNI::node $self->req->param('type');
-            $self->render_json( {label=>$node->label,id=>$node->id} );
+            $self->render_json( $node->to_hash );
         }
     );
 }

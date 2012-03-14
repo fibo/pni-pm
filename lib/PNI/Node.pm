@@ -68,10 +68,22 @@ sub parents {
 # This method is abstract.
 sub task { 1 }
 
-sub translate {
+# TODO this method is EXPERIMENTAL, needs tests and code cleaning.
+sub to_hash {
     my $self = shift;
-    $_->translate(@_) for ( $self->box, $self->ins->list, $self->outs->list );
-    return 1;
+
+    my @ins_list;
+    for my $in ( $self->ins->list ) {
+        push @ins_list, $in->id;
+    }
+
+    return {
+        id    => $self->id,
+        label => $self->label,
+        type  => $self->type,
+        ins   => \@ins_list,
+        outs  => 0,
+    };
 }
 
 1
@@ -202,6 +214,10 @@ Returns the list of nodes which C<outs> are connected to this node C<ins>.
 
 This is an abstract method that must be implemented by every class that extends L<PNI::Node>.
 It is the chunk of code that the node implements.
+
+=head2 to_hash
+
+    my $node_hashref = $node->to_hash;
 
 =cut
 
