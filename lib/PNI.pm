@@ -167,6 +167,8 @@ L<PNI repository|http://github.com/fibo/pni-pm>
 
 L<PNI Class Diagram|http://goo.gl/MQ89f>
 
+L<PNI node coverage|http://goo.gl/hfAoU>
+
 =head1 AUTHOR
 
 G. Casati , E<lt>fibo@cpan.orgE<gt>
