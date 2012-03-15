@@ -1,19 +1,26 @@
-body {
-  font: normal normal 90% sans-serif;
-}
 #container {
   height: 100%;
   position: absolute;
   width: 100%;
 }
+/*
 canvas {
   background: rgba(127,127,127,0.1);
   border: 1px solid black;
   position: absolute;
   z-index: 0;
 }
+*/
+.scenario {
+  border: 1px solid black;
+}
 .node {
   border: 1px solid black;
-  position: absolute;
-  z-index: 1;
+}
+.slots {
+  background: black;
+}
+.label {
+  background: gray;
+  text-align:center;
 }

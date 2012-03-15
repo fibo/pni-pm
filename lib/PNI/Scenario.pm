@@ -188,9 +188,21 @@ PNI::Scenario - is a set of nodes connected by edges
 
 =head2 edges
 
+    my @edges = $self->edges->list;
+
+A L<PNI::Set> containing <PNI::Edge>s.
+
 =head2 nodes
 
+    my @nodes = $self->nodes->list;
+
+A L<PNI::Set> containing <PNI::Node>s.
+
 =head2 scenarios
+
+    my @scenarios = $self->scenarios->list;
+
+A L<PNI::Set> containing <PNI::Scenario>s.
 
 =head1 METHODS
 
