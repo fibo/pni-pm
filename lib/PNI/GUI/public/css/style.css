@@ -3,24 +3,16 @@
   position: absolute;
   width: 100%;
 }
-/*
-canvas {
-  background: rgba(127,127,127,0.1);
-  border: 1px solid black;
-  position: absolute;
-  z-index: 0;
-}
-*/
-.scenario {
+.scenario-container {
   border: 1px solid black;
 }
-.node {
+.node-container {
   border: 1px solid black;
 }
-.slots {
-  background: black;
-}
-.label {
+.node-slots-container {
   background: gray;
+}
+.node-label-container {
+  background: white;
   text-align:center;
 }
