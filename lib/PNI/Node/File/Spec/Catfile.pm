@@ -1,4 +1,5 @@
-package PNI::Node::File::Spec::Catfile;
+package    # Avoid PAUSE indexing.
+  PNI::Node::File::Spec::Catfile;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 
@@ -19,7 +20,8 @@ sub task {
 
     $filename->is_scalar
       or return $self->off;
-    $directories->is_array or $directories->is_scalar
+    $directories->is_array
+      or $directories->is_scalar
       or return $self->off;
     $self->out('path')
       ->data( File::Spec->catfile( @{ $directories->data }, $filename->data ) );

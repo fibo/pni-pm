@@ -1,4 +1,5 @@
-package PNI::Node::File::Spec::Devnull;
+package    # Avoid PAUSE indexing.
+PNI::Node::File::Spec::Devnull;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 
