@@ -7,20 +7,22 @@ no warnings;my$M=__PACKAGE__.::;*{$M.Object::new}=sub{bless{@_[1..$#_]},$_[0]};*
 
 =head1 NAME
 
-PNI::Mo - Mo for PNI
+PNI::Mo - is a Mo wrapper for PNI
 
 =head1 SYNOPSIS
 
     package PNI::Module;
     use PNI::Mo;
 
-    has pippo => ( default => sub{0} )
+    has pippo => ( default => sub { 0 } );
 
 =head1 DESCRIPTION
 
 PNI::Mo is a wrapper of L<Mo> for L<PNI>.
 
-=head2 SEE ALSO
+=head1 SEE ALSO
+
+L<Mo>
 
 L<Mo Moo Moose not really stuttering|http://perl-node-interface.blogspot.com/2011/09/mo-moo-moose-not-really-stuttering.html>
 

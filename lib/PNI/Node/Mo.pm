@@ -7,7 +7,7 @@ no warnings;my$M=__PACKAGE__.::;*{$M.Object::new}=sub{bless{@_[1..$#_]},$_[0]};*
 
 =head1 NAME
 
-PNI::Node::Mo - Mo for PNI nodes
+PNI::Node::Mo - is a Mo wrapper for PNI nodes
 
 =head1 SYNOPSIS
 
@@ -16,24 +16,25 @@ PNI::Node::Mo - Mo for PNI nodes
     extends 'PNI::Node';
 
     sub BUILD {
-        my $node = shift;
-        $node->in('lead');
-        $node->out('gold');
+        my $self = shift;
+        $self->in('lead');
+        $self->out('gold');
     }
 
     sub task {
-        my $node = shift;
-        ... # turn lead into gold
+        my $self = shift;
+        ...    # turn lead into gold
     }
 
 =head1 DESCRIPTION
 
 PNI::Node::Mo is a wrapper of L<Mo> used to build L<PNI> nodes.
 
-=head2 SEE ALSO
+=head1 SEE ALSO
+
+L<Mo>
 
 L<Mo Moo Moose not really stuttering|http://perl-node-interface.blogspot.com/2011/09/mo-moo-moose-not-really-stuttering.html>
 
 =cut
-
 
