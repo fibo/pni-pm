@@ -1,6 +1,6 @@
 package    # Avoid PAUSE indexing.
   PNI::Node::PNI::Root;
-use PNI::Mo;
+use PNI::Node::Mo;
 extends 'PNI::Node';
 
 use PNI;
