@@ -1,18 +1,11 @@
 #container {
-  height: 100%;
   position: absolute;
+  height: 100%;
   width: 100%;
 }
-.scenario-container {
+#scenario-canvas {
   border: 1px solid black;
-}
-.node-container {
-  border: 1px solid black;
-}
-.node-slots-container {
   background: gray;
-}
-.node-label-container {
-  background: white;
-  text-align:center;
+  height: 100%;
+  width: 100%;
 }

@@ -1,19 +1,45 @@
 <!DOCTYPE HTML>
 <HTML>
-  <HEAD>
-    <TITLE><%= title %></TITLE>
-    <!-- Import style sheets.  -->
-    <LINK rel="stylesheet" href="css/reset.css" type="text/css" />
-    <LINK rel="stylesheet" href="css/style.css" type="text/css" />
-    <LINK rel="stylesheet" href="css/black-tie/jquery-ui-1.8.18.custom.css" type="text/css" />
-    <!-- Load external JavaScript libs.  -->
-    <SCRIPT src="js/jquery-1.7.1.min.js" type="text/javascript" ></SCRIPT>
-    <SCRIPT src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript" ></SCRIPT>
-    <!-- Load internal JavaScript libs.  -->
-    <SCRIPT src="js/pni.js" type="text/javascript" ></SCRIPT>
-    <!-- Resource onload.js should be last JavaScript loaded.  -->
-    <SCRIPT src="js/onload.js" type="text/javascript" ></SCRIPT>
-  </HEAD>
-  <BODY>
-  </BODY>
+ <HEAD>
+  <TITLE><%= title %></TITLE>
+  <!-- Import style sheets.  -->
+   <LINK rel="stylesheet" href="css/reset.css" type="text/css" />
+   <LINK rel="stylesheet" href="css/style.css" type="text/css" />
+   <LINK rel="stylesheet" href="css/black-tie/jquery-ui-1.8.18.custom.css" type="text/css" />
+  <!-- Load external JavaScript libs.  -->
+   <SCRIPT src="js/jquery-1.7.1.min.js" type="text/javascript" ></SCRIPT>
+   <SCRIPT src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript" ></SCRIPT>
+  <!-- Load internal JavaScript libs.  -->
+   <SCRIPT src="js/pni.js" type="text/javascript" ></SCRIPT>
+  <!-- Resource onload.js should be last JavaScript loaded.  -->
+   <SCRIPT src="js/onload.js" type="text/javascript" ></SCRIPT>
+ </HEAD>
+ <BODY>
+  <DIV id="container">
+   <DIV id="tabs">
+    <UL>
+     <LI> <A href="#dashboard-tab">Dashboard</A> </LI>
+     <LI> <A href="#scenario-tab">Scenario</A> </LI>
+    </UL>
+    <DIV id="dashboard-tab">
+     <P>Welcome to Perl Node Interface!</P>
+     <P>Still work in progress :P</P>
+     <UL>
+      <LI> <A href="http://search.cpan.org/~fibo/PNI/">PNI on CPAN</A> </LI>
+      <LI> <A href="http://perl-node-interface.blogspot.com">PNI blog</A> </LI>
+      <LI> <A href="https://github.com/fibo/pni-pm">PNI repo</A> </LI>
+      <LI>
+       <DIV class="ui-widget">
+        <LABEL for="node-list">Available nodes: </LABEL>
+        <INPUT id="node-list">
+       </DIV>
+      </LI>
+    </UL>
+    </DIV> <!-- dashboard-tab -->
+    <DIV id="scenario-tab">
+     <CANVAS id="scenario-canvas">Opss ... your browser does not support canvas :(</CANVAS>
+    </DIV> <!-- scenario-canvas -->
+   </DIV> <!-- tabs -->
+  </DIV> <!-- container -->
+ </BODY>
 </HTML>
