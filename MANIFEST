@@ -1,4 +1,5 @@
 bin/pni
+bin/pni.pod
 Changes
 lib/PNI.pm
 lib/PNI/Edge.pm
