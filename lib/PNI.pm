@@ -7,7 +7,7 @@ use warnings;
 # considering version x.yy stable, a new release will be versioned
 # as x.yy_zz so it will not be listed by CPAN.pm as the last.
 # After test results will be ok, it can be officially released x.(yy+1) version.
-our $VERSION = '0.29';
+our $VERSION = '0.29_01';
 $VERSION = eval $VERSION;
 
 use Exporter 'import';
@@ -52,6 +52,8 @@ sub loop {
 }
 
 sub node { $root->add_node(@_) }
+
+sub node_info { $find->node_info }
 
 sub node_list { $find->nodes }
 
@@ -127,6 +129,14 @@ PNI::Node namespace, and adds it to the root scenario.
     my $node = PNI::node;
     
 PNI creates an empty node.
+
+=head2 node_info
+
+    my @nodes = PNI::node_info;
+
+Returns a info of available PNI nodes.
+
+This method delegates to L<PNI::Finder> C<meta_nodes> method.
 
 =head2 node_list
 
