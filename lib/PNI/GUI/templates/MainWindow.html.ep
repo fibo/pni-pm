@@ -40,8 +40,8 @@ suscipit faucibus urna.
    </DIV> <!-- accordion -->
    <DIV id="tabs">
     <UL>
-     <LI> <A href="#dashboard-tab">Dashboard</A> </LI>
      <LI> <A href="#scenario-tab">Scenario</A> </LI>
+	 <!-- TODO metti la dashboard per prima --><LI> <A href="#dashboard-tab">Dashboard</A> </LI>
     </UL>
     <DIV id="dashboard-tab">
      <P>Welcome to Perl Node Interface!</P>
@@ -50,17 +50,16 @@ suscipit faucibus urna.
       <LI> <A href="http://search.cpan.org/~fibo/PNI/">PNI on CPAN</A> </LI>
       <LI> <A href="http://perl-node-interface.blogspot.com">PNI blog</A> </LI>
       <LI> <A href="https://github.com/fibo/pni-pm">PNI repo</A> </LI>
-      <LI>
-       <DIV class="ui-widget">
-        <LABEL for="node-list">Available nodes: </LABEL>
-        <INPUT id="node-list">
-       </DIV>
-      </LI>
     </UL>
     </DIV> <!-- dashboard-tab -->
     <DIV id="scenario-tab">
+     <DIV id="scenario-container">
      <CANVAS id="scenario-canvas">Opss ... your browser does not support canvas :(</CANVAS>
-    </DIV> <!-- scenario-canvas -->
+     <DIV id="node-selector-container" class="ui-widget">
+      <INPUT id="node-selector-input">
+     </DIV> <!-- node-selector-container -->
+     </DIV> <!-- scenario-container -->
+    </DIV> <!-- scenario-tab -->
    </DIV> <!-- tabs -->
   </DIV> <!-- container -->
  </BODY>
