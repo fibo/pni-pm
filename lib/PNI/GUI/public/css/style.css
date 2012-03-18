@@ -4,13 +4,22 @@
   width: 100%;
 }
 #accordion {
-  position: absolute;
+  position: fixed;
+  float: left;
   height: 100%;
   width: 20%;
 }
+#tabs {
+  position: relative;
+  float: right;
+  height: 100%;
+  width: 80%;
+}
 #scenario-canvas {
+  position: relative;
+  float: right;
   border: 1px solid black;
   background: gray;
   height: 100%;
-  width: 80%;
+  width: 100%;
 }
