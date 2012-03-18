@@ -91,7 +91,7 @@ It is my main project, my contribution to the great Perl community. Node program
 
 Think about genetic researchers, for example. They need to focus on protein chains, not on what a package is. Maybe they can do an extra effort and say the world "variable" or "string" or even "regular expression" and that makes them proud, but they don't care about inheritance.
 
-They want things working and they need Perl ... but if you say Strawberry they think about yogurt, not about Windows.
+They want things working and they need Perl ... but if you say L<Strawberry|http://strawberryperl.com/> they think about yogurt, not about Windows.
 
 There are a lot of node programming languages (L<VVVV|http://vvvv.org/>, L<Puredata|http://puredata.info/>, L<Max/Msp|http://cycling74.com/>) but normally they target artists and interaction designers. I saw a lot of vjs and musicians do really complex programs with those software, and they never wrote a line of code.
 
