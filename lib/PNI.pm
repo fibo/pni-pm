@@ -125,10 +125,10 @@ Returns a list of all .pni files in PNI.pm install dir and subdirs.
 Creates a node by its PNI type, that is the name of a package under the
 PNI::Node namespace, and adds it to the root scenario.
 
-    # No PNI type returns an empty node.
-    my $node = PNI::node;
-    
-PNI creates an empty node.
+
+    my $empty_node = PNI::node;
+
+If no type is provided, PNI creates an empty node.
 
 =head2 node_info
 
@@ -161,6 +161,8 @@ Returns the root PNI::Scenario.
 =head2 scen
 
     my $scen = PNI::scen;
+
+Creates a brand new sub scenario of the root scenario.
 
 =head2 task
 
