@@ -31,14 +31,14 @@ sub add_node {
 
         my $node_class = "PNI::Node::$type";
 
-        # Code to require a node, before using UNIVERSAL::required looked like this.
-        #        my $node_path  = "$node_class.pm";
-        #        $node_path =~ s/::/\//g;
-        #        eval { require $node_path };
+    # Code to require a node, before using UNIVERSAL::required looked like this.
+    #        my $node_path  = "$node_class.pm";
+    #        $node_path =~ s/::/\//g;
+    #        eval { require $node_path };
 
         $node_class->require or return;
 
-        $node = $node_class->new( father => $self );
+        $node = $node_class->new( father => $self, type => $type );
     }
     else {
 
