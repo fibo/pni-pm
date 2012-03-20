@@ -14,7 +14,7 @@ To install this distro type the following:
 
 =head1 Info
 
-Point your browser to L<PNI blog|http://perl-node-interface.blogspot.com>.
+Point your browser to http://perl-node-interface.blogspot.com
 
 =head1 Licence and Copyright
 
