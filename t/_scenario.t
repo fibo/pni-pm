@@ -17,7 +17,7 @@ isa_ok $scen, 'PNI::Scenario', 'add_scenario';
 # Add two nodes.
 my $node1 = $scen->add_node;
 isa_ok $node1, 'PNI::Node', 'add_node';
-is $node1->type,'Empty','type of empty node';
+is $node1->type, 'EMPTY', 'type of empty node';
 my $node2 = $scen->add_node;
 is $scen->nodes->list, 2, 'nodes list';
 
@@ -59,7 +59,7 @@ my $n2 = $scen->add_node('Twice');
 my $n3 = $scen->add_node('Twice');
 my $n4 = $scen->add_node('Twice');
 
-is $n1->type,'Twice','node type';
+is $n1->type, 'Twice', 'node type';
 
 my $i1 = $n1->in;
 my $o1 = $n1->out;
