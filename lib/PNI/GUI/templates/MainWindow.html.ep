@@ -55,10 +55,10 @@ suscipit faucibus urna.
     </DIV> <!-- dashboard-tab -->
     <DIV id="scenario-tab">
      <DIV id="scenario-container">
-     <CANVAS id="scenario-canvas">Opss ... your browser does not support canvas :(</CANVAS>
-     <DIV id="node-selector-container" class="ui-widget">
-      <INPUT id="node-selector-input">
-     </DIV> <!-- node-selector-container -->
+      <!-- Canvas created by Kinect.js here -->
+      <DIV id="node-selector-container" class="ui-widget">
+       <INPUT id="node-selector-input">
+      </DIV> <!-- node-selector-container -->
      </DIV> <!-- scenario-container -->
     </DIV> <!-- scenario-tab -->
    </DIV> <!-- tabs -->
