@@ -9,6 +9,7 @@
   <!-- Load external JavaScript libs.  -->
    <SCRIPT src="js/jquery-1.7.1.min.js" type="text/javascript" ></SCRIPT>
    <SCRIPT src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript" ></SCRIPT>
+   <SCRIPT src="js/kinetic-v3.8.5.min.js" type="text/javascript" ></SCRIPT>
   <!-- Load internal JavaScript libs.  -->
    <SCRIPT src="js/pni.js" type="text/javascript" ></SCRIPT>
   <!-- Resource onload.js should be last JavaScript loaded.  -->
