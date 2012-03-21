@@ -1,6 +1,7 @@
 package PNI::Node;
 use PNI::Mo;
 extends 'PNI::Elem';
+
 use PNI::In;
 use PNI::Out;
 use PNI::Set;
@@ -123,11 +124,15 @@ Returns C<father> scenario.
 
 =head2 ins
 
+    my @ins = $node->ins->list;
+
 Holds a L<PNI::Set> of <PNI::In>.
 
 =head2 label
 
 =head2 outs
+
+    my @outs = $node->outs->list;
 
 Holds a L<PNI::Set> of <PNI::Out>.
 
@@ -137,9 +142,13 @@ Holds a L<PNI::Set> of <PNI::Out>.
 
 =head2 get_ins_edges
 
+    my @ins_edges = $node->get_ins_edges;
+
 Returns a list of all L<PNI::Edge> connected to node C<ins>.
 
 =head2 get_outs_edges
+
+    my @outs_edges = $node->get_outs_edges;
 
 Returns a list of all L<PNI::Edge> connected to node C<outs>.
 

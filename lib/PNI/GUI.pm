@@ -9,8 +9,6 @@ use PNI;
 sub startup {
     my $self = shift;
 
-# TODO: $self->secret( $ENV{PNIGUI_SECRET} ); and document env var as well as MOJO_MODE
-
     $self->home->parse( catdir( dirname(__FILE__), 'GUI' ) );
     $self->static->paths->[0]   = $self->home->rel_dir('public');
     $self->renderer->paths->[0] = $self->home->rel_dir('templates');

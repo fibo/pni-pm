@@ -1,7 +1,8 @@
 package PNI::Slot;
 use PNI::Mo;
-use Scalar::Util;
 extends 'PNI::Elem';
+
+use Scalar::Util;
 
 has data => ();
 has node => ();

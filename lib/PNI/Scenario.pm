@@ -173,34 +173,48 @@ PNI::Scenario - is a set of nodes connected by edges
     $standalone_scenario = PNI::Scenario->new;
 
     # ... but it will not belong to PNI hierarchy tree,
-    # so its task method will not be called.
+    # so its task method will not be called, unless you call it.
+    $standalone_scenario->task;
 
     # You can start adding a scenario to the PNI root.
     use PNI;
-    my $scen1 = PNI::root->add_scenario;
-    my $scen2 = $scenario->add_scenario;
+    my $scenario = PNI::root->add_scenario;
 
-    my $foo = $scen2->add_node('Foo');
-    my $bar = $scen2->add_node('Bar');
-    $scen2->add_edge( $foo => $bar, 'out' => 'in' );
+    # Add two nodes.
+    my $foo = $scenario->add_node('Foo');
+    my $bar = $scenario->add_node('Bar');
+
+    # Connect nodes with an edge.
+    $scenario->add_edge( $foo => $bar, 'out' => 'in' );
+
+    # Calling PNI task method will execute all the tasks once.
+    PNI::task;
+
+    # Or call PNI loop to keep it running.
+    PNI::loop;
+
+
+=head1 DESCRIPTION
+
+A scenario is a directed graph of subs called C<task>.
 
 =head1 ATTRIBUTES
 
 =head2 edges
 
-    my @edges = $self->edges->list;
+    my @edges = $scenario->edges->list;
 
 A L<PNI::Set> containing <PNI::Edge>s.
 
 =head2 nodes
 
-    my @nodes = $self->nodes->list;
+    my @nodes = $scenario->nodes->list;
 
 A L<PNI::Set> containing <PNI::Node>s.
 
 =head2 scenarios
 
-    my @scenarios = $self->scenarios->list;
+    my @scenarios = $scenario->scenarios->list;
 
 A L<PNI::Set> containing <PNI::Scenario>s.
 
@@ -212,6 +226,8 @@ A L<PNI::Set> containing <PNI::Scenario>s.
 
 =head2 add_scenario
 
+    $sub_scenario = $scenario->add_scenario;
+
 =head2 del_edge
 
 =head2 del_node
@@ -219,6 +235,11 @@ A L<PNI::Set> containing <PNI::Scenario>s.
 =head2 del_scenario
 
 =head2 task
+
+    $scen->task;
+
+Probably the most important PNI method. The task of a scenario is to trigger 
+every node (and scenario) it contains to run its own task, following the natural order.
 
 =cut
 

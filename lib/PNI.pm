@@ -53,8 +53,6 @@ sub loop {
 
 sub node { $root->add_node(@_) }
 
-sub node_info { $find->node_info }
-
 sub node_list { $find->nodes }
 
 sub root { $root }
@@ -117,6 +115,12 @@ Connects an output of a node to an input of another node.
 
 Returns a list of all .pni files in PNI.pm install dir and subdirs.
 
+=head2 loop
+
+    PNI::loop;
+
+Starts the PNI main loop. It keeps calling C<task> as fast as it can.
+
 =head2 node
 
     # Load PNI::Node::Foo::Bar node. 
@@ -130,14 +134,6 @@ PNI::Node namespace, and adds it to the root scenario.
 
 If no type is provided, PNI creates an empty node.
 
-=head2 node_info
-
-    my @nodes = PNI::node_info;
-
-Returns a info of available PNI nodes.
-
-This method delegates to L<PNI::Finder> C<meta_nodes> method.
-
 =head2 node_list
 
     my @nodes = PNI::node_list;
@@ -145,12 +141,6 @@ This method delegates to L<PNI::Finder> C<meta_nodes> method.
 Returns a list of available PNI nodes.
 
 This method delegates to L<PNI::Finder> C<nodes> method.
-
-=head2 loop
-
-    PNI::loop;
-
-Starts the PNI main loop. It keeps calling C<task> as fast as it can.
 
 =head2 root
 

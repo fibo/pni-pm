@@ -1,6 +1,7 @@
 package PNI::In;
 use PNI::Mo;
 extends 'PNI::Slot';
+
 use PNI::Edge;
 
 has edge => ();
