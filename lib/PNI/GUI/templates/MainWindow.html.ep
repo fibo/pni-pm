@@ -15,7 +15,7 @@
   <!-- Resource onload.js should be last JavaScript loaded.  -->
    <SCRIPT src="js/onload.js" type="text/javascript" ></SCRIPT>
  </HEAD>
- <BODY>
+ <BODY onmousedown="return false;">
   <DIV id="container">
    <DIV id="accordion">
 
@@ -55,10 +55,10 @@ suscipit faucibus urna.
     </DIV> <!-- dashboard-tab -->
     <DIV id="scenario-tab">
      <DIV id="scenario-container">
-      <!-- Canvas created by Kinect.js here -->
       <DIV id="node-selector-container" class="ui-widget">
        <INPUT id="node-selector-input">
       </DIV> <!-- node-selector-container -->
+      <!-- Canvas created by Kinect.js here -->
      </DIV> <!-- scenario-container -->
     </DIV> <!-- scenario-tab -->
    </DIV> <!-- tabs -->
