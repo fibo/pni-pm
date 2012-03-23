@@ -226,7 +226,7 @@ It is the chunk of code that the node implements.
 
 =head2 to_hash
 
-    my $node_hashref = $node->to_hash;
+    my $data_hashref = $node->to_hash;
 
 =cut
 

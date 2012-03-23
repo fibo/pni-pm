@@ -159,6 +159,25 @@ sub task {
     return 1;
 }
 
+# TODO this method is EXPERIMENTAL, needs tests and code cleaning.
+sub to_hash {
+    my $self = shift;
+
+    my $nodes_list = [];
+    for my $node ( $self->nodes->list ) {
+        push @{ $nodes_list },$node->to_hash;
+    }
+
+    # TODO prima dovrei prendere il SUPER to_hash
+    # ad esempio PNI::Elem to_hash mi da l' id.
+    return {
+        id    => $self->id,
+        nodes  => $nodes_list,
+        edges => 0,
+        scenarios => 0,
+    };
+}
+
 1
 __END__
 
@@ -240,6 +259,10 @@ A L<PNI::Set> containing <PNI::Scenario>s.
 
 Probably the most important PNI method. The task of a scenario is to trigger 
 every node (and scenario) it contains to run its own task, following the natural order.
+
+=head2 to_hash
+
+    my $data_hashref = $scen->to_hash;
 
 =cut
 
