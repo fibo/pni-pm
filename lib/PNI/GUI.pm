@@ -23,11 +23,13 @@ sub startup {
     );
     $r->get('/add_node')->to(
         cb => sub {
-            my $self=shift;
+            my $self = shift;
             my $node = PNI::node $self->req->param('type');
             $self->render_json( $node->to_hash );
         }
     );
+
+    $r->get('/root/to_json')->to('root#to_json');
 }
 
 1
