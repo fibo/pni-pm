@@ -29,7 +29,9 @@ sub startup {
         }
     );
 
-    $r->get('/root/to_json')->to('root#to_json');
+    $r->get('/scenario/root')->to('scenario#to_json');
+    # TODO $r->get('/scenario/:id/add_node')->to('scenario#add_node');
+
 }
 
 1
