@@ -165,15 +165,15 @@ sub to_hash {
 
     my $nodes_list = [];
     for my $node ( $self->nodes->list ) {
-        push @{ $nodes_list },$node->to_hash;
+        push @{$nodes_list}, $node->to_hash;
     }
 
     # TODO prima dovrei prendere il SUPER to_hash
     # ad esempio PNI::Elem to_hash mi da l' id.
     return {
-        id    => $self->id,
-        nodes  => $nodes_list,
-        edges => 0,
+        id        => $self->id,
+        nodes     => $nodes_list,
+        edges     => 0,
         scenarios => 0,
     };
 }

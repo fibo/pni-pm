@@ -21,7 +21,8 @@ sub startup {
             shift->render_json( [ PNI->node_list ] );
         }
     );
-    $r->get('/add_node')->to(
+
+    $r->get('/scenario/root/add_node')->to(
         cb => sub {
             my $self = shift;
             my $node = PNI::node $self->req->param('type');
