@@ -8,5 +8,5 @@ isa_ok $node, 'PNI::Node::Perlvar::Basetime';
 
 is $node->label, '$BASETIME', 'label';
 
-is $node->out->data, $^T;
+is $node->out->data, $^T, 'var';
 

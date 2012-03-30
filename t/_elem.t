@@ -5,5 +5,5 @@ use PNI::Elem;
 
 my $elem = PNI::Elem->new;
 
-ok $elem->id,'id';
+ok $elem->id, 'id';
 

@@ -12,7 +12,7 @@ has father => ( default => sub { 0 } );
 has ins    => ( default => sub { PNI::Set->new } );
 has label  => ( default => sub { '' } );
 has outs   => ( default => sub { PNI::Set->new } );
-has type   => ( default => sub { __PACKAGE__ } );
+has type   => ();
 
 sub get_outs_edges {
     map { $_->edges->list } shift->outs->list;

@@ -3,6 +3,10 @@ package    # Avoid PAUSE indexing.
 use PNI::Node::Mo;
 extends 'PNI::Node';
 
-sub BUILD { shift->out->data($$) }
+sub BUILD {
+    my $self = shift;
+    $self->label('$PROCESS_ID');
+    $self->out->data($$);
+}
 
-1
+1;

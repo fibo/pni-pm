@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use PNI::Scenario;
-use Test::More tests => 28;
+use Test::More tests => 27;
 
 my $scenario = PNI::Scenario->new;
 isa_ok $scenario, 'PNI::Scenario';
@@ -17,7 +17,6 @@ isa_ok $scen, 'PNI::Scenario', 'add_scenario';
 # Add two nodes.
 my $node1 = $scen->add_node;
 isa_ok $node1, 'PNI::Node', 'add_node';
-is $node1->type, 'EMPTY', 'type of empty node';
 my $node2 = $scen->add_node;
 is $scen->nodes->list, 2, 'nodes list';
 

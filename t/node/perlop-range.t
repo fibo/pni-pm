@@ -19,7 +19,7 @@ is $out->data, undef, 'default task';
 my ( $a, $b, @c );
 $a = 'a';
 $b = 'b';
-@c = ($a .. $b);
+@c = ( $a .. $b );
 
 $in1->data($a);
 $in2->data($b);

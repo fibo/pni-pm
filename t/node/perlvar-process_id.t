@@ -8,5 +8,5 @@ isa_ok $node, 'PNI::Node::Perlvar::Process_id';
 
 is $node->label, '$PROCESS_ID', 'label';
 
-is $node->out->data, $$;
+is $node->out->data, $$, 'var';
 

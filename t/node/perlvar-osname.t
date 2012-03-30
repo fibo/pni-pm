@@ -8,5 +8,5 @@ isa_ok $node, 'PNI::Node::Perlvar::Osname';
 
 is $node->label, '$OSNAME', 'label';
 
-is $node->out->data, $^O;
+is $node->out->data, $^O, 'var';
 

@@ -19,7 +19,6 @@ find(
     'lib'
 );
 
-
 use_ok($_)
   or BAIL_OUT(" $_ module does not compile :-(")
   for @modules;

@@ -21,5 +21,5 @@ my $a = rand(100);
 $in1->data($a);
 $in2->data($a);
 $node->task;
-ok ! $out->data, 'a!=a';
+ok !$out->data, 'a!=a';
 

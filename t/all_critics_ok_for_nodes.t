@@ -21,7 +21,7 @@ my @node_dirs;
 my @node_files;
 
 push @node_dirs, File::Spec->catfile( 'lib', 'PNI', 'Node' );
-push @node_dirs, File::Spec->catfile( 't', 'PNI', 'Node' );
+push @node_dirs, File::Spec->catfile( 't',   'PNI', 'Node' );
 
 find(
     {
