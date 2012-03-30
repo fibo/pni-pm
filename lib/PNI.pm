@@ -42,26 +42,30 @@ sub edge {
     );
 }
 
-sub files { $find->files }
+sub files { return $find->files }
 
 sub loop {
+
     while (1) {
         &task;
         Time::HiRes::usleep(1);
     }
+
+    return;
 }
 
-sub node { $root->add_node(@_) }
+sub node { return $root->add_node(@_); }
 
-sub node_list { $find->nodes }
+sub node_list { return $find->nodes; }
 
-sub root { $root }
+sub root { return $root; }
 
-sub scen { $root->add_scenario }
+sub scen { return $root->add_scenario; }
 
-sub task { $root->task }
+sub task { return $root->task; }
 
-1
+1;
+
 __END__
 
 =head1 NAME

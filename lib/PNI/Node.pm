@@ -15,11 +15,11 @@ has outs   => ( default => sub { PNI::Set->new } );
 has type   => ();
 
 sub get_outs_edges {
-    map { $_->edges->list } shift->outs->list;
+    return map { $_->edges->list } shift->outs->list;
 }
 
 sub get_ins_edges {
-    grep { defined } map { $_->edge } shift->ins->list;
+    return grep { defined } map { $_->edge } shift->ins->list;
 }
 
 sub in {
@@ -38,13 +38,13 @@ sub in {
       );
 }
 
-sub is_off { !shift->_on }
+sub is_off { return !shift->_on; }
 
-sub is_on { shift->_on }
+sub is_on { return shift->_on; }
 
-sub off { shift->_on(0) }
+sub off { return shift->_on(0); }
 
-sub on { shift->_on(1) }
+sub on { return shift->_on(1); }
 
 sub out {
     my $self = shift;
@@ -63,11 +63,11 @@ sub out {
 }
 
 sub parents {
-    map { $_->node } map { $_->source } shift->get_ins_edges;
+    return map { $_->node } map { $_->source } shift->get_ins_edges;
 }
 
 # This method is abstract.
-sub task { 1 }
+sub task { die; }
 
 # TODO this method is EXPERIMENTAL, needs tests and code cleaning.
 sub to_hash {
@@ -87,7 +87,8 @@ sub to_hash {
     };
 }
 
-1
+1;
+
 __END__
 
 =head1 NAME

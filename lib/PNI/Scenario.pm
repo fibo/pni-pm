@@ -68,7 +68,7 @@ sub del_edge {
     $edge->source->edges->del($edge);
     $edge->target->edge(undef);
 
-    $self->edges->del($edge);
+    return $self->edges->del($edge);
 }
 
 sub del_node {
@@ -78,7 +78,7 @@ sub del_node {
     $self->del_edge($_) for $node->get_ins_edges;
     $self->del_edge($_) for $node->get_outs_edges;
 
-    $self->nodes->del($node);
+    return $self->nodes->del($node);
 }
 
 sub del_scenario {
@@ -92,7 +92,7 @@ sub del_scenario {
 
     $scenario->del_scenario($_) for $scenario->scenarios->list;
 
-    $self->scenarios->del($scenario);
+    return $self->scenarios->del($scenario);
 }
 
 sub task {
@@ -156,6 +156,7 @@ sub task {
     # Finally, run all sub scenarios tasks.
     $_->task for ( $self->scenarios->list );
 
+    # TODO dovrei mettere un return piu significativo tipo return $self->ok
     return 1;
 }
 
@@ -178,7 +179,8 @@ sub to_hash {
     };
 }
 
-1
+1;
+
 __END__
 
 =head1 NAME

@@ -7,25 +7,25 @@ use Scalar::Util;
 has data => ();
 has node => ();
 
-sub is_array { shift->type eq 'ARRAY' ? 1 : 0 }
+sub is_array { return shift->type eq 'ARRAY' ? 1 : 0 }
 
-sub is_code { shift->type eq 'CODE' ? 1 : 0 }
+sub is_code { return shift->type eq 'CODE' ? 1 : 0 }
 
-sub is_defined { shift->type eq 'UNDEF' ? 0 : 1 }
+sub is_defined { return shift->type eq 'UNDEF' ? 0 : 1 }
 
-sub is_hash { shift->type eq 'HASH' ? 1 : 0 }
+sub is_hash { return shift->type eq 'HASH' ? 1 : 0 }
 
-sub is_number { Scalar::Util::looks_like_number( shift->data ) ? 1 : 0 }
+sub is_number { return Scalar::Util::looks_like_number( shift->data ) ? 1 : 0 }
 
-sub is_scalar { shift->type eq 'SCALAR' ? 1 : 0 }
+sub is_scalar { return shift->type eq 'SCALAR' ? 1 : 0 }
 
 sub is_string {
     my $self = shift;
     $self->is_scalar or return 0;
-    $self->is_number ? 0 : 1;
+    return $self->is_number ? 0 : 1;
 }
 
-sub is_undef { shift->type eq 'UNDEF' ? 1 : 0 }
+sub is_undef { return shift->type eq 'UNDEF' ? 1 : 0 }
 
 sub type {
     my $data = shift->data;
@@ -33,7 +33,8 @@ sub type {
     return ref $data || 'SCALAR';
 }
 
-1
+1;
+
 __END__
 
 =head1 NAME

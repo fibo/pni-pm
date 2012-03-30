@@ -27,7 +27,7 @@ push @model_files, File::Spec->catfile( 'lib', 'PNI', "$_.pm" ) for qw (
 );
 
 my $rcfile = File::Spec->catfile( 't', 'perlcriticrc' );
-Test::Perl::Critic->import( -profile => $rcfile, -theme => 'all + tests' );
+Test::Perl::Critic->import( -profile => $rcfile, -theme => 'all + model' );
 critic_ok($_) for @model_files;
 
 ok @model_files, 'found model files';
