@@ -1,5 +1,9 @@
 Revision history for Perl Node Interface.
 
+0.30  2012-04-xx
+    - added Perl::Critic power
+    - added Kinetic.js
+
 0.29  2012-03-17
     - pod for PNI::Mo and PNI::Node::Mo
     - added jquery-ui
