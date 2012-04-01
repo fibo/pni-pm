@@ -19,15 +19,14 @@
   <DIV id="container">
    <DIV id="accordion">
 
-<h3><a href="#">Section 1</a></h3>
-<div>
+<H3><A href="#">Scenarios</A></H3>
+<DIV>
 <p>
-Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+TODO: metti qui un albero con tutti gli scenari aperti partendo dalla root.
+Metti anche il link per aprire il corrispondente tab delle scenario scenario. 
+TODO: crea una apposita classe JavaScript ScenarioBrowser ... analogamente fai anche NodeBrowser nell' altro accordion, con il drag and drop
 </p>
-</div>
+</DIV>
 <h3><a href="#">Section 2</a></h3>
 <div>
 <p>

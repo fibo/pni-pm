@@ -78,12 +78,17 @@ sub to_hash {
         push @ins_list, $in->id;
     }
 
+    my @outs_list;
+    for my $out ( $self->outs->list ) {
+        push @outs_list, $out->id;
+    }
+
     return {
         id    => $self->id,
         label => $self->label,
         type  => $self->type,
         ins   => \@ins_list,
-        outs  => 0,
+        outs  => \@outs_list,
     };
 }
 
