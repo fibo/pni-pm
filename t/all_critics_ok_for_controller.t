@@ -17,27 +17,19 @@ if ($EVAL_ERROR) {
     plan( skip_all => $msg );
 }
 
-my @model_files;
+my @controller_files;
 
-push @model_files, File::Spec->catfile( 'lib', 'PNI.pm' );
-push @model_files, File::Spec->catfile( 'lib', 'PNI', "$_.pm" ) for qw (
-  Edge
-  Elem
-  File
-  Finder
-  In
-  Node
-  Out
+push @controller_files, File::Spec->catfile( 'lib', 'PNI', 'GUI.pm' );
+push @controller_files, File::Spec->catfile( 'lib', 'PNI', 'GUI', "$_.pm" )
+  for qw (
   Scenario
-  Set
-  Slot
 );
 
 my $rcfile = File::Spec->catfile( 't', 'perlcriticrc' );
-Test::Perl::Critic->import( -profile => $rcfile, -theme => 'all + model' );
-critic_ok($_) for @model_files;
+Test::Perl::Critic->import( -profile => $rcfile, -theme => 'all + controller' );
+critic_ok($_) for @controller_files;
 
-ok @model_files, 'found model files';
+ok @controller_files, 'found controller files';
 
 done_testing;
 
