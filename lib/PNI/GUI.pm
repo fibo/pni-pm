@@ -22,20 +22,15 @@ sub startup {
         }
     );
 
-    $r->get('/scenario/root/add_node')->to(
-        cb => sub {
-            my $self = shift;
-            my $node = PNI::node $self->req->param('type');
-            $self->render_json( $node->to_hash );
-        }
-    );
-
+    $r->get('/scenario/root/add_node')->to('scenario#add_node');
     $r->get('/scenario/root')->to('scenario#to_json');
+
     # TODO $r->get('/scenario/:id/add_node')->to('scenario#add_node');
 
 }
 
-1
+1;
+
 __END__
 
 =head1 NAME

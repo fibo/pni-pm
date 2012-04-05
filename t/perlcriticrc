@@ -188,12 +188,12 @@ add_themes = model
 # 5 TestingAndDebugging::RequireUseStrict [bugs core pbp]
 [TestingAndDebugging::RequireUseStrict]
 add_themes = all
-equivalent_modules = PNI::Mo PNI::Node::Mo
+equivalent_modules = PNI::Mo PNI::Node::Mo Mojo::Base
 
 # 4 TestingAndDebugging::RequireUseWarnings [bugs core pbp]
 [TestingAndDebugging::RequireUseWarnings]
 add_themes = all
-equivalent_modules = PNI::Mo PNI::Node::Mo
+equivalent_modules = PNI::Mo PNI::Node::Mo Mojo::Base
 
 # 4 ValuesAndExpressions::ProhibitCommaSeparatedStatements [bugs core pbp]
 # 3 ValuesAndExpressions::ProhibitComplexVersion [core maintenance]
