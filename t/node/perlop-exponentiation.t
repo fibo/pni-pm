@@ -7,7 +7,7 @@ use PNI::Node::Perlop::Exponentiation;
 my $node = PNI::Node::Perlop::Exponentiation->new;
 
 isa_ok $node, 'PNI::Node::Perlop::Exponentiation';
-is $node->label, '', 'label';
+is $node->label, 'exp', 'label';
 
 my $in1 = $node->in(1);
 my $in2 = $node->in(2);
