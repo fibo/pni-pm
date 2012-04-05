@@ -10,9 +10,17 @@ has _on => ( default => sub { 1 } );
 
 has father => ( default => sub { 0 } );
 has ins    => ( default => sub { PNI::Set->new } );
-has label  => ( default => sub { '' } );
+has label  => ();
 has outs   => ( default => sub { PNI::Set->new } );
 has type   => ();
+
+# TODO documenta  aggiungi test per x e y: anche se sono attributi grafici devo metterli nel model
+#       per fare in modo che in futuro un' altra persona che sta editando la patch possa
+#       vedere i cambiamenti, cioe che sia collaborativa, questo perchè il controller potrebbe interrogare
+#       un' istanza di PNI su un' altra macchina ... AD OGNI MODO RISULTA PIU FACILE COSI (mi sembra anche piu logico ... cosa diranno
+#       i puristi dei pattern ? :)
+has x => ();
+has y => ();
 
 sub get_outs_edges {
     return map { $_->edges->list } shift->outs->list;
@@ -89,6 +97,8 @@ sub to_hash {
         type  => $self->type,
         ins   => \@ins_list,
         outs  => \@outs_list,
+        x     => $self->x,
+        y     => $self->y,
     };
 }
 

@@ -171,7 +171,7 @@ L<PNI blog|http://perl-node-interface.blogspot.com>
 
 L<PNI repository|http://github.com/fibo/pni-pm>
 
-L<PNI Class Diagram|http://goo.gl/MQ89f>
+L<PNI class diagram|http://goo.gl/MQ89f>
 
 L<PNI node coverage|http://goo.gl/hfAoU>
 

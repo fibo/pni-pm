@@ -12,7 +12,7 @@ sub add {
         scalar( $self->list ) < $self->max or return;
     }
     my $elem = shift or return;
-    $self->elem->{ $elem->id } = $elem;
+    return $self->elem->{ $elem->id } = $elem;
 }
 
 sub del {
@@ -21,14 +21,15 @@ sub del {
         scalar( $self->list ) > $self->min or return;
     }
     my $elem = shift or return;
-    delete $self->elem->{ $elem->id };
+    return delete $self->elem->{ $elem->id };
 }
 
-sub ids { keys %{ shift->elem } }
+sub ids { return keys %{ shift->elem } }
 
-sub list { values %{ shift->elem } }
+sub list { return values %{ shift->elem } }
 
-1
+1;
+
 __END__
 
 =head1 NAME
