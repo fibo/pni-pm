@@ -6,9 +6,10 @@ use PNI::Edge;
 
 has edge => ();
 
-sub is_connected { defined( shift->edge ) ? 1 : 0 }
+sub is_connected { return defined( shift->edge ) ? 1 : 0 }
 
-1
+1;
+
 __END__
 
 =head1 NAME
@@ -18,6 +19,11 @@ PNI::In - is a node input
 =head1 ATTRIBUTES
 
 =head2 edge
+
+    my $edge = $in->edge;
+
+Return the input slot's edge. Remember that a L<PNI::In> can 
+hold only one edge.
 
 =head1 METHODS
 

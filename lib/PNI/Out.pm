@@ -5,9 +5,10 @@ use PNI::Set;
 
 has edges => ( default => sub { PNI::Set->new } );
 
-sub is_connected { shift->edges->list ? 1 : 0 }
+sub is_connected { return shift->edges->list ? 1 : 0 }
 
-1
+1;
+
 __END__
 
 =head1 NAME

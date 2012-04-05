@@ -11,7 +11,7 @@ isa_ok $node, 'PNI::Node::Scalar::Util::Blessed';
 is $node->label, 'blessed', 'label';
 
 my $str = 'Foo';
-$node->in->data($scalar);
+$node->in->data($str);
 $node->task;
 is $node->out->data, undef, 'blessed $str';
 

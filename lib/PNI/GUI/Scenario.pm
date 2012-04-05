@@ -6,6 +6,7 @@ use PNI;
 my $scen = {};    # TODO my $scen = PNI::Set->new;
 
 $scen->{'root'} = PNI::root;
+$scen->{'root'}->add_node( 'PNI::Scenario', x => 100, y => 100 );
 
 sub add_node {
     my $self = shift;

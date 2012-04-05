@@ -83,9 +83,10 @@ add_themes = model
 # 2 Documentation::RequirePodLinksIncludeText [core maintenance]
 
 # 2 Documentation::RequirePodSections [core maintenance pbp]
-[Documentation::RequirePodSections]
+[-Documentation::RequirePodSections]
 add_themes = model
-lib_sections = NAME | SYNOPSIS | DESCRIPTION
+lib_sections = NAME | SYNOPSIS
+#lib_sections = NAME | SYNOPSIS | DESCRIPTION
 
 # 3 ErrorHandling::RequireCarping [core maintenance pbp]
 # 3 ErrorHandling::RequireCheckingReturnValueOfEval [bugs core]

@@ -7,8 +7,11 @@ has target => ();
 
 sub BUILD {
     my $self = shift;
+
     $self->source->edges->add($self);
     $self->target->edge($self);
+
+    return;
 }
 
 sub task {
@@ -20,7 +23,8 @@ sub task {
     return 1;
 }
 
-1
+1;
+
 __END__
 
 =head1 NAME

@@ -10,7 +10,7 @@ use Module::Pluggable
   inner       => 0;
 
 my $PNI_dir = File::Basename::dirname(__FILE__);
-my $PNI_Scenario_dir = File::Spec->catfile($PNI_dir,'Scenario');
+my $PNI_Scenario_dir = File::Spec->catfile( $PNI_dir, 'Scenario' );
 
 sub nodes {
     my @nodes = grep { $_->isa('PNI::Node') } shift->plugins;
@@ -37,7 +37,8 @@ sub files {
     return @pni_files;
 }
 
-1
+1;
+
 __END__
 
 =head1 NAME
