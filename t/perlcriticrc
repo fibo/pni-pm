@@ -8,10 +8,12 @@ color-severity-highest = bold red underline
 color-severity-high = bold magenta
 color-severity-medium = blue
 
-
 # 5 Bangs::ProhibitBitwiseOperators [bugs core]
 # 2 Bangs::ProhibitCommentedOutCode [bangs maintenance]
+
 # 2 Bangs::ProhibitFlagComments [bangs maintenance]
+[Bangs::ProhibitFlagComments]
+add_themes = all
 
 # 2 Bangs::ProhibitNoPlan [bangs tests]
 [Bangs::ProhibitNoPlan]
