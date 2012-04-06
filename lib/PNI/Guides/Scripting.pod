@@ -1,0 +1,11 @@
+
+=head1 NAME
+
+PNI::Guides::Scripting
+
+=head1 OVERVIEW
+
+This document contains ... nothing by now :)
+
+=cut
+

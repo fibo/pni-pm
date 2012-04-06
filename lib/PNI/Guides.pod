@@ -1,0 +1,17 @@
+
+=head1 NAME
+
+PNI::Guides - Perl Node Interface guide
+
+=head1 GUIDES
+
+=over 2
+
+=item L<PNI::Guides::Scripting>
+
+The Perl Node Interface was created as a node programming ide via browser ...
+
+of course you are free to use the scripting api.
+
+=cut
+
