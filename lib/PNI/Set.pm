@@ -2,9 +2,12 @@ package PNI::Set;
 use PNI::Mo;
 extends 'PNI::Elem';
 
+# TODO: change to this ... has elem => ( default => sub { return {}; } );
 has elem => ( default => sub { +{} } );
-has min  => ( default => sub { 0 } );
-has max  => ( default => sub { 0 } );
+has min  => ( default => sub { return 0; } );
+
+# TODO perlcritic should complain
+has max => ( default => sub { 0 } );
 
 sub add {
     my $self = shift;
@@ -14,6 +17,8 @@ sub add {
     my $elem = shift or return;
     return $self->elem->{ $elem->id } = $elem;
 }
+
+# TODO consider to add ... sub cardinality { return scalar( shift->list ); }
 
 sub del {
     my $self = shift;
@@ -27,6 +32,8 @@ sub del {
 sub ids { return keys %{ shift->elem } }
 
 sub list { return values %{ shift->elem } }
+
+# TODO ma devo mettere Return the element oppure Returns con la s ?
 
 1;
 
@@ -48,11 +55,18 @@ PNI::Set - is a set of elements
 
     $set->list;    # ($elem1,$elem2)
 
+    my $elem1_id = $elem1->id;
+    $set->elem->{$elem1_id};     # $elem1
+
 =head1 ATTRIBUTES
 
 =head2 elem
 
+    my $elem_hashref = $set->elem;
+
 Hash of elements contained in this L<PNI::Set>.
+
+    my $elem_foo = $set->elem->{'foo_id'};
 
 =head2 min
 
@@ -81,13 +95,13 @@ Remove a L<PNI::Elem> from this L<PNI::Set>.
 
     my @ids = $set->ids;
 
-Return a list containing every C<id> of this set elements.
+Return a list containing every C<id> of the elements cointained in the set.
 
 =head2 list
 
     my @elems = $set->list;
 
-    my $num_elems = scalar( $set->list );
+Return a list containing every C<element> of the set.
 
 =cut
 

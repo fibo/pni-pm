@@ -8,6 +8,27 @@ my $scen = {};    # TODO my $scen = PNI::Set->new;
 $scen->{'root'} = PNI::root;
 $scen->{'root'}->add_node( 'PNI::Scenario', x => 100, y => 100 );
 
+sub add_edge {
+    my $self = shift;
+
+    my $source_node_id = $self->req->param('sourceNodeId');
+    my $target_node_id = $self->req->param('targetNodeId');
+
+    my $source_out_id = $self->req->param('sourceOutId');
+    my $target_in_id = $self->req->param('targetInId');
+
+    my $source_node = $scen->{'root'}->elem->{$source_node_id};
+    my $target_node = $scen->{'root'}->elem->{$target_node_id};
+
+    # TODO per ora che faccio solo la root va bene cosi
+    my $edge = PNI::edge $source_node => $target_node, $source_out_id => $target_in_id;
+
+    #TODO: prova my $edge = $scen->{$id}->add_edge($self->req->param);
+    # MA NON SI PUO FARE SE MODEL E VIEW HANNO case DIVERSI (uno camel e l' altro no)
+
+    $self->render_json( $edge->to_hash );
+}
+
 sub add_node {
     my $self = shift;
 
@@ -20,6 +41,7 @@ sub add_node {
     my $node = $scen->{$id}->add_node( $type, x => $x, y => $y );
 
     #TODO: prova my $node = $scen->{$id}->add_node($self->req->param);
+    # MA NON SI PUO FARE SE MODEL E VIEW HANNO case DIVERSI (uno camel e l' altro no)
 
     $self->render_json( $node->to_hash );
 }

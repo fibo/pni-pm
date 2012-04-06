@@ -22,6 +22,7 @@ sub startup {
         }
     );
 
+    $r->get('/scenario/root/add_edge')->to('scenario#add_edge');
     $r->get('/scenario/root/add_node')->to('scenario#add_node');
     $r->get('/scenario/root')->to('scenario#to_json');
 

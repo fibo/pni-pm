@@ -17,6 +17,7 @@ has file => ( default => sub { PNI::File->new } );
 
 sub add_edge {
     my $self = shift;
+
     my $edge = PNI::Edge->new(@_);
     return $self->edges->add($edge);
 }
@@ -52,13 +53,15 @@ sub add_node {
 }
 
 sub add_scenario {
-    my $self     = shift;
+    my $self = shift;
+
     my $scenario = PNI::Scenario->new(@_);
     return $self->scenarios->add($scenario);
 }
 
 sub del_edge {
     my $self = shift;
+
     my $edge = shift or return;
 
     $edge->source->edges->del($edge);
@@ -69,6 +72,7 @@ sub del_edge {
 
 sub del_node {
     my $self = shift;
+
     my $node = shift or return;
 
     $self->del_edge($_) for $node->get_ins_edges;
@@ -79,6 +83,7 @@ sub del_node {
 
 sub del_scenario {
     my $self = shift;
+
     my $scenario = shift or return;
 
     # Clean up all items contained in the scenario.
