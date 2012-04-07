@@ -22,4 +22,5 @@ sub task {
     $out->data( sqrt( $in->data ) );
 }
 
-1
+1;
+

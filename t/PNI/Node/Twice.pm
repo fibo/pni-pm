@@ -13,4 +13,5 @@ sub task {
     $self->out->data( $self->in->data * 2 );
 }
 
-1
+1;
+

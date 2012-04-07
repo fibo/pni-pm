@@ -8,5 +8,5 @@ sub BUILD {
     $self->in('content');
 }
 
-1
+1;
 

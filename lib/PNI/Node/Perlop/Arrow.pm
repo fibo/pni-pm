@@ -7,27 +7,28 @@ sub BUILD {
     my $self = shift;
     $self->label('->');
 
-    $self->in('left');
-    $self->in('right');
+    $self->in('left_side');
+    $self->in('right_side');
     $self->out;
 }
 
 sub task {
     my $self = shift;
 
-    my $left  = $self->in('left');
-    my $right = $self->in('right');
+    my $left_side  = $self->in('left_side');
+    my $right_side = $self->in('right_side');
 
-    $left->is_defined and $right->is_defined or return;
+    $left_side->is_defined and $right_side->is_defined or return;
 
-    my $left_data  = $left->data;
-    my $right_data = $right->data;
+    my $left_side_data  = $left_side->data;
+    my $right_side_data = $right_side->data;
 
     my $result;
 
-    $result = eval { $left_data->$right_data };
+    $result = eval { $left_side_data->$right_side_data };
 
     $self->out->data($result);
 }
 
-1
+1;
+

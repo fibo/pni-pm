@@ -32,4 +32,5 @@ sub task {
       ->data( File::Spec->catfile( @{ $directories->data }, $filename->data ) );
 }
 
-1
+1;
+

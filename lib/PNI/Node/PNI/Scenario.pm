@@ -27,4 +27,5 @@ sub task {
     $self->out('scenarios')->data( $object->scenarios );
 }
 
-1
+1;
+

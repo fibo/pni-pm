@@ -9,9 +9,9 @@ my $node = PNI::Node::Perlop::Arrow->new;
 isa_ok $node, 'PNI::Node::Perlop::Arrow';
 is $node->label, '->', 'label';
 
-my $left  = $node->in('left');
-my $right = $node->in('right');
-my $out   = $node->out;
+my $left_side  = $node->in('left_side');
+my $right_side = $node->in('right_side');
+my $out        = $node->out;
 
 $node->task;
 is $out->data, undef, 'default task';
@@ -19,8 +19,8 @@ is $out->data, undef, 'default task';
 # See package Foo below.
 my $foo = Foo->new;
 
-$left->data($foo);
-$right->data('bar');
+$left_side->data($foo);
+$right_side->data('bar');
 
 $node->task;
 

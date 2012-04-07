@@ -21,4 +21,5 @@ sub task {
     $self->out->data( !$in1->data );
 }
 
-1
+1;
+

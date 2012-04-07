@@ -13,4 +13,5 @@ sub BUILD {
     $out->data($tmpdir);
 }
 
-1
+1;
+

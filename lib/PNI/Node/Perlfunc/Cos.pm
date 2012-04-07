@@ -21,4 +21,5 @@ sub task {
     $out->data( cos( $in->data ) );
 }
 
-1
+1;
+

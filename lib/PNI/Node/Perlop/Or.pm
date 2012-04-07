@@ -23,4 +23,5 @@ sub task {
     $self->out->data( $in1->data or $in2->data );
 }
 
-1
+1;
+

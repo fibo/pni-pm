@@ -20,5 +20,5 @@ sub task {
       or return $self->off;
 }
 
-1
+1;
 

@@ -1,3 +1,8 @@
+#
+# Perl::Critic configuration file for Perl Node Interface.
+#
+# There are four themes: all, controller, nodes, model
+#
 
 force = 1
 only = 1
@@ -12,7 +17,8 @@ color-severity-medium = blue
 # 2 Bangs::ProhibitCommentedOutCode [bangs maintenance]
 
 # 2 Bangs::ProhibitFlagComments [bangs maintenance]
-[Bangs::ProhibitFlagComments]
+# TODO turn it on !
+[-Bangs::ProhibitFlagComments]
 add_themes = all
 
 # 2 Bangs::ProhibitNoPlan [bangs tests]
@@ -26,6 +32,7 @@ add_themes = model
 # 4 Bangs::ProhibitRefProtoOrProto [bangs complexity]
 # 4 Bangs::ProhibitUselessRegexModifiers [bangs bugs]
 # 3 Bangs::ProhibitVagueNames [bangs readability]
+
 # 2 BuiltinFunctions::ProhibitBooleanGrep [core pbp performance]
 # 3 BuiltinFunctions::ProhibitComplexMappings [complexity core maintenance pbp]
 # 3 BuiltinFunctions::ProhibitLvalueSubstr [core maintenance pbp]
@@ -63,6 +70,7 @@ add_themes = all
 add_themes = all
 
 # 1 CodeLayout::RequireTrailingCommas [core cosmetic pbp]
+
 # 2 ControlStructures::ProhibitCStyleForLoops [core maintenance pbp]
 # 3 ControlStructures::ProhibitCascadingIfElse [complexity core maintenance pbp]
 # 3 ControlStructures::ProhibitDeepNests [complexity core maintenance]
@@ -76,7 +84,7 @@ add_themes = all
 
 # 1 Documentation::RequirePackageMatchesPodName [core cosmetic]
 [Documentation::RequirePackageMatchesPodName]
-add_themes = model
+add_themes = model, controller
 
 # 1 Documentation::RequirePodAtEnd [core cosmetic pbp]
 [Documentation::RequirePodAtEnd]
@@ -88,10 +96,11 @@ add_themes = model
 [-Documentation::RequirePodSections]
 add_themes = model
 lib_sections = NAME | SYNOPSIS
-#lib_sections = NAME | SYNOPSIS | DESCRIPTION
+# TODO lib_sections = NAME | SYNOPSIS | DESCRIPTION
 
 # 3 ErrorHandling::RequireCarping [core maintenance pbp]
 # 3 ErrorHandling::RequireCheckingReturnValueOfEval [bugs core]
+
 # 3 InputOutput::ProhibitBacktickOperators [core maintenance]
 # 5 InputOutput::ProhibitBarewordFileHandles [bugs core pbp]
 # 4 InputOutput::ProhibitExplicitStdin [core maintenance pbp]
@@ -106,6 +115,7 @@ lib_sections = NAME | SYNOPSIS
 # 3 InputOutput::RequireCheckedOpen [core maintenance]
 # 1 InputOutput::RequireCheckedSyscalls [core maintenance]
 # 5 InputOutput::RequireEncodingWithUTF8Layer [bugs core security]
+
 # 3 Miscellanea::ProhibitFormats [core maintenance pbp]
 # 2 Miscellanea::ProhibitTies [core maintenance pbp]
 # 3 Miscellanea::ProhibitUnrestrictedNoCritic [core maintenance]
@@ -117,7 +127,7 @@ lib_sections = NAME | SYNOPSIS
 
 # 3 Modules::ProhibitExcessMainComplexity [complexity core maintenance]
 [Modules::ProhibitExcessMainComplexity]
-add_themes = all
+add_themes = model, nodes, controller
 
 # 4 Modules::ProhibitMultiplePackages [bugs core]
 [Modules::ProhibitMultiplePackages]
@@ -127,7 +137,7 @@ add_themes = model, nodes
 
 # 4 Modules::RequireEndWithOne [bugs core pbp]
 [Modules::RequireEndWithOne]
-add_themes = model
+add_themes = model, controller, nodes
 
 # 4 Modules::RequireExplicitPackage [bugs core]
 [Modules::RequireExplicitPackage]
@@ -139,26 +149,48 @@ add_themes = model, nodes
 
 # 2 Modules::RequireNoMatchVarsWithUseEnglish [core performance]
 # 2 Modules::RequireVersionVar [core pbp readability]
+
 # 1 NamingConventions::Capitalization [core cosmetic pbp]
+[NamingConventions::Capitalization]
+add_themes = all
+
 # 3 NamingConventions::ProhibitAmbiguousNames [core maintenance pbp]
+[NamingConventions::ProhibitAmbiguousNames]
+add_themes = controller, model, nodes
+
 # 4 Objects::ProhibitIndirectSyntax [core maintenance pbp]
+[Objects::ProhibitIndirectSyntax]
+add_themes = all
+
 # 2 References::ProhibitDoubleSigils [core cosmetic pbp]
+[References::ProhibitDoubleSigils]
+add_themes = all
+
 # 3 RegularExpressions::ProhibitCaptureWithoutTest [core maintenance pbp]
 # 3 RegularExpressions::ProhibitComplexRegexes [core maintenance pbp]
 # 1 RegularExpressions::ProhibitEnumeratedClasses [core cosmetic pbp unicode]
 # 1 RegularExpressions::ProhibitEscapedMetacharacters [core cosmetic pbp]
 # 2 RegularExpressions::ProhibitFixedStringMatches [core pbp performance]
 # 1 RegularExpressions::ProhibitSingleCharAlternation [core pbp performance]
+
 # 3 RegularExpressions::ProhibitUnusedCapture [core maintenance pbp]
+[RegularExpressions::ProhibitUnusedCapture]
+add_themes = nodes
+
 # 1 RegularExpressions::ProhibitUnusualDelimiters [core cosmetic pbp]
 # 1 RegularExpressions::RequireBracesForMultiline [core cosmetic pbp]
+
 # 2 RegularExpressions::RequireDotMatchAnything [core cosmetic pbp]
+[RegularExpressions::RequireDotMatchAnything]
+add_themes = nodes
+
 # 3 RegularExpressions::RequireExtendedFormatting [core maintenance pbp]
 # 2 RegularExpressions::RequireLineBoundaryMatching [core cosmetic pbp]
 # 2 Subroutines::ProhibitAmpersandSigils [core maintenance pbp]
 
 # 4 Subroutines::ProhibitBuiltinHomonyms [bugs core pbp]
-[Subroutines::ProhibitBuiltinHomonyms]
+[-Subroutines::ProhibitBuiltinHomonyms]
+# TODO turn it on !
 add_themes = all
 
 # 3 Subroutines::ProhibitExcessComplexity [complexity core maintenance]
@@ -170,10 +202,17 @@ add_themes = all
 add_themes = all
 
 # 3 Subroutines::ProhibitManyArgs [core maintenance pbp]
+[Subroutines::ProhibitManyArgs]
+add_themes = all
+
 # 5 Subroutines::ProhibitNestedSubs [bugs core]
 # 5 Subroutines::ProhibitReturnSort [bugs core]
 # 5 Subroutines::ProhibitSubroutinePrototypes [bugs core pbp]
+
 # 3 Subroutines::ProhibitUnusedPrivateSubroutines [core maintenance]
+[Subroutines::ProhibitUnusedPrivateSubroutines]
+add_themes = all
+
 # 3 Subroutines::ProtectPrivateSubs [core maintenance]
 # 4 Subroutines::RequireArgUnpacking [core maintenance pbp]
 
@@ -182,8 +221,16 @@ add_themes = all
 add_themes = model
 
 # 5 TestingAndDebugging::ProhibitNoStrict [bugs core pbp]
+[TestingAndDebugging::ProhibitNoStrict]
+add_themes = all
+
 # 4 TestingAndDebugging::ProhibitNoWarnings [bugs core pbp]
+[TestingAndDebugging::ProhibitNoWarnings]
+add_themes = all
+
 # 4 TestingAndDebugging::ProhibitProlongedStrictureOverride [bugs core pbp]
+[TestingAndDebugging::ProhibitProlongedStrictureOverride]
+add_themes = all
 
 # 3 TestingAndDebugging::RequireTestLabels [core maintenance tests]
 [TestingAndDebugging::RequireTestLabels]
@@ -219,6 +266,7 @@ equivalent_modules = PNI::Mo PNI::Node::Mo Mojo::Base
 # 2 ValuesAndExpressions::RequireNumberSeparators [core cosmetic pbp]
 # 3 ValuesAndExpressions::RequireQuotedHeredocTerminator [core maintenance pbp]
 # 2 ValuesAndExpressions::RequireUpperCaseHeredocTerminator [core cosmetic pbp]
+
 # 4 Variables::ProhibitAugmentedAssignmentInDeclaration [bugs core]
 # 5 Variables::ProhibitConditionalDeclarations [bugs core]
 # 2 Variables::ProhibitLocalVars [core maintenance pbp]
@@ -233,3 +281,4 @@ equivalent_modules = PNI::Mo PNI::Node::Mo Mojo::Base
 # 5 Variables::RequireLexicalLoopIterators [bugs core pbp]
 # 4 Variables::RequireLocalizedPunctuationVars [bugs core pbp]
 # 4 Variables::RequireNegativeIndices [core maintenance pbp]
+

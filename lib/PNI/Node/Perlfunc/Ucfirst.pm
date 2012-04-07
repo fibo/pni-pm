@@ -21,5 +21,5 @@ sub task {
     $out->data( ucfirst( $in->data ) );
 }
 
-1
+1;
 

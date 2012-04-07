@@ -23,5 +23,5 @@ sub task {
     $out->data( \@keys );
 }
 
-1
+1;
 

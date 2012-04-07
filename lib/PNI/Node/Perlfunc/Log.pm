@@ -22,4 +22,5 @@ sub task {
     $out->data( log( $in->data ) );
 }
 
-1
+1;
+

@@ -21,5 +21,5 @@ sub task {
     $out->data( length( $in->data ) );
 }
 
-1
+1;
 

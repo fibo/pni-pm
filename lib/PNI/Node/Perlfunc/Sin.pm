@@ -21,4 +21,5 @@ sub task {
     $out->data( sin( $in->data ) );
 }
 
-1
+1;
+

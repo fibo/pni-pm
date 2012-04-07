@@ -9,4 +9,5 @@ sub BUILD {
     shift->out('object')->data( PNI::root() );
 }
 
-1
+1;
+

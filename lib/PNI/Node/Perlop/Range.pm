@@ -25,4 +25,5 @@ sub task {
     $self->out->data( \@range );
 }
 
-1
+1;
+

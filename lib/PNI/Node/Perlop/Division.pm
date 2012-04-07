@@ -25,4 +25,5 @@ sub task {
       : $self->out->data(undef);
 }
 
-1
+1;
+

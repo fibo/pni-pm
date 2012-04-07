@@ -8,5 +8,5 @@ sub BUILD {
 
 sub task { return }
 
-1
+1;
 

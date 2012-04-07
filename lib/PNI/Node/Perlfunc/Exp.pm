@@ -21,5 +21,5 @@ sub task {
     $out->data( exp( $in->data ) );
 }
 
-1
+1;
 
