@@ -1,8 +1,8 @@
 
-# needs Win32::Console --color
+-l
+-r
 # Run N test jobs in parallel
 -j9
--l
 # Trap Ctrl-C and print summary on interrupt
 --trap
 # Enable warnings
