@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use PNI ':-D';
+use PNI ':root';
 use Test::More tests => 3;
 
 my $node1 = node;

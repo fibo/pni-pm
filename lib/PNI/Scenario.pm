@@ -25,29 +25,13 @@ sub add_edge {
 sub add_node {
     my $self = shift;
 
-    my $type = shift;
-    my $node;
+    my $type = shift || 'PNI::Node';
 
-    if ($type) {
+    my $node_class = "PNI::Node::$type";
 
-        my $node_class = "PNI::Node::$type";
+    $node_class->require or return;
 
-        $node_class->require or return;
-
-     # TODO: Set input data, if any
-     #while ( my ( $slot_name, $slot_data ) = each %{ $arg->{inputs} or {} } ) {
-     #    $node->get_input($slot_name)->set_data($slot_data);
-     #}
-
-        $node = $node_class->new( father => $self, type => $type, @_ );
-
-    }
-    else {
-
-        # If type is not provided return a dummy node.
-        $node = PNI::Node->new( father => $self );
-
-    }
+    my $node = $node_class->new( father => $self, type => $type, @_ );
 
     return $self->nodes->add($node);
 }

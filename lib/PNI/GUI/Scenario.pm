@@ -1,4 +1,5 @@
-package PNI::GUI::Scenario;
+package    # Avoid PAUSE indexing.
+  PNI::GUI::Scenario;
 use Mojo::Base 'Mojolicious::Controller';
 
 use PNI;

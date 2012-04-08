@@ -27,7 +27,7 @@ use Time::HiRes;
 
 # Smiling is better (:
 our @EXPORT_OK = qw( edge node task );
-our %EXPORT_TAGS = ( '-D' => \@EXPORT_OK );
+our %EXPORT_TAGS = ( 'root' => \@EXPORT_OK );
 
 # A PNI finder.
 my $find = PNI::Finder->new;
