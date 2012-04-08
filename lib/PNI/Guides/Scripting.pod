@@ -5,7 +5,17 @@ PNI::Guides::Scripting
 
 =head1 OVERVIEW
 
-This document contains ... nothing by now :)
+This document contains ... nothing concrete by now (:
+
+=head1 HELLO WORLD
+
+    use PNI ':root';
+
+    my $node = node 'Perlfunc::Print';
+    
+    $node->in('list')->data( [ 'Hello World!', "\n" ] );
+
+    task;
 
 =cut
 
