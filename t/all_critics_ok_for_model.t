@@ -17,6 +17,14 @@ if ($EVAL_ERROR) {
     plan( skip_all => $msg );
 }
 
+# TODO usa universal require e ciclo for
+eval { require Perl::Critic::Bangs; };
+
+if ($EVAL_ERROR) {
+    my $msg = 'Perl::Critic::Bangs required to criticise code';
+    plan( skip_all => $msg );
+}
+
 my @model_files;
 
 push @model_files, File::Spec->catfile( 'lib', 'PNI.pm' );

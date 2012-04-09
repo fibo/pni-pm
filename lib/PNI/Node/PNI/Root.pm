@@ -10,7 +10,7 @@ my $root = PNI::root();
 sub BUILD {
     my $self = shift;
 
-    $self->out('object')->data( $root );
+    $self->out('object')->data($root);
     $self->out('scenarios');
 }
 

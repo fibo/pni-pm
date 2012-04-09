@@ -18,8 +18,9 @@ color-severity-medium = blue
 
 # 2 Bangs::ProhibitFlagComments [bangs maintenance]
 # TODO turn it on !
-[-Bangs::ProhibitFlagComments]
-add_themes = all
+[Bangs::ProhibitFlagComments]
+#add_themes = all
+add_themes = tests
 
 # 2 Bangs::ProhibitNoPlan [bangs tests]
 [Bangs::ProhibitNoPlan]
@@ -95,8 +96,7 @@ add_themes = model
 # 2 Documentation::RequirePodSections [core maintenance pbp]
 [-Documentation::RequirePodSections]
 add_themes = model
-lib_sections = NAME | SYNOPSIS
-# TODO lib_sections = NAME | SYNOPSIS | DESCRIPTION
+lib_sections = NAME | SYNOPSIS | DESCRIPTION
 
 # 3 ErrorHandling::RequireCarping [core maintenance pbp]
 # 3 ErrorHandling::RequireCheckingReturnValueOfEval [bugs core]
