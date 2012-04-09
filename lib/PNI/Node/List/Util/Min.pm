@@ -16,11 +16,10 @@ sub BUILD {
 sub task {
     my $self = shift;
 
-    $self->is_array or return $self->off;
+    $self->in->is_array or return $self->off;
 
-    $self->out->data( List::Util::min( $self->in->data ) );
+    $self->out->data( List::Util::min( @{ $self->in->data } ) );
 }
 
 1;
-
 
