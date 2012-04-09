@@ -17,6 +17,7 @@ WriteMakefile(
         'File::Temp'            => 0,
         'File::Spec::Functions' => 0,
         'JSON::PP'              => 0,
+        'List::Util'            => 0,
         'Module::Pluggable'     => 0,
         'Mojolicious'           => 0,
         'Scalar::Util'          => 0,

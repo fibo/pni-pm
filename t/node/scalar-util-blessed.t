@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use Test::More tests => 4;
 
-use File::Spec;
+use Scalar::Util;
 use PNI::Node::Scalar::Util::Blessed;
 
 my $node = PNI::Node::Scalar::Util::Blessed->new;
@@ -13,10 +13,10 @@ is $node->label, 'blessed', 'label';
 my $str = 'Foo';
 $node->in->data($str);
 $node->task;
-is $node->out->data, undef, 'blessed $str';
+is $node->out->data, Scalar::Util::blessed($str), 'blessed $str';
 
 my $obj = bless [], 'Foo';
 $node->in->data($obj);
 $node->task;
-is $node->out->data, 'Foo', 'blessed $object';
+is $node->out->data, Scalar::Util::blessed($obj), 'blessed $object';
 

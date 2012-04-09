@@ -1,6 +1,7 @@
 
 -l
--r
+# Recursively descend into directories
+--recurse
 # Run N test jobs in parallel
 -j9
 # Trap Ctrl-C and print summary on interrupt
