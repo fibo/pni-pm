@@ -5,6 +5,8 @@ extends 'PNI::Elem';
 use Scalar::Util;
 
 has data => ();
+# TODO considera di farlo privato visto che e' usato internamente,
+# quindi diventerebbe _node.
 has node => ();
 
 sub is_array { return shift->type eq 'ARRAY' ? 1 : 0; }
@@ -21,6 +23,7 @@ sub is_scalar { return shift->type eq 'SCALAR' ? 1 : 0; }
 
 sub is_string {
     my $self = shift;
+
     $self->is_scalar or return 0;
     return $self->is_number ? 0 : 1;
 }
@@ -29,6 +32,7 @@ sub is_undef { return shift->type eq 'UNDEF' ? 1 : 0; }
 
 sub type {
     my $data = shift->data;
+
     defined $data or return 'UNDEF';
     return ref $data || 'SCALAR';
 }
@@ -41,6 +45,12 @@ __END__
 
 PNI::Slot - is a basic unit of data
 
+=head1 SYNOPSIS
+
+    my $slot = PNI::Slot->new;
+
+    $slot->data('foo');
+
 =head1 ATTRIBUTES
 
 =head2 data
@@ -49,25 +59,38 @@ PNI::Slot - is a basic unit of data
 
     my $node = $slot->node;
 
+Abstract attribute used by L<PNI::In> and L<PNI::Out> to hold a reference 
+to its L<PNI::Node>.
+
 =head1 METHODS
 
 =head2 is_array
 
+    $slot->data([qw(foo bar)]);
+    $slot->is_array; # true
+
 =head2 is_code
+
+    $slot->data(sub { say 'hello'; });
+    $slot->is_code; # true
 
 =head2 is_defined
 
 =head2 is_hash
 
+    $slot->data({ foo => 'bar' });
+    $slot->is_hash; # true
+
 =head2 is_number
+
+    $slot->data(0);
+    $slot->is_number; # true
 
 =head2 is_scalar
 
 =head2 is_string
 
 =head2 is_undef
-
-=head2 translate
 
 =head2 type
 
