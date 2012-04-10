@@ -3,8 +3,11 @@
 \.swp$
 \.gz$
 ^log
+^misc
 ^MANIFEST\.SKIP$
 ^_prove$
+^.prove$
+
 # 
 # Follows original MANIFEST.SKIP
 ###########################################
