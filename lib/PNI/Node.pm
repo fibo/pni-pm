@@ -19,8 +19,9 @@ has type   => ();
 #       vedere i cambiamenti, cioe che sia collaborativa, questo perchè il controller potrebbe interrogare
 #       un' istanza di PNI su un' altra macchina ... AD OGNI MODO RISULTA PIU FACILE COSI (mi sembra anche piu logico ... cosa diranno
 #       i puristi dei pattern ? :)
-has x => ();
-has y => ();
+#
+has x => ( default => sub { 0 } );
+has y => ( default => sub { 0 } );
 
 sub get_outs_edges {
     return map { $_->edges->list } shift->outs->list;
