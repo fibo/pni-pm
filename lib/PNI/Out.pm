@@ -15,6 +15,14 @@ __END__
 
 PNI::Out - is a node output
 
+=head1 SYNOPSIS
+
+    my $node = PNI::Node->new;
+    my $out = PNI::Out->new( 
+        id => 'out',
+        node => $node, 
+    );
+
 =head1 ATTRIBUTES
 
 =head2 edges

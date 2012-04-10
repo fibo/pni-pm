@@ -16,6 +16,14 @@ __END__
 
 PNI::In - is a node input
 
+=head1 SYNOPSIS
+
+    my $node = PNI::Node->new;
+    my $in = PNI::In->new( 
+        id => 'in',
+        node => $node, 
+    );
+
 =head1 ATTRIBUTES
 
 =head2 edge
