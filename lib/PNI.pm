@@ -178,6 +178,8 @@ L<PNI::Guides>
 
 L<PNI blog|http://perl-node-interface.blogspot.com>
 
+L<PNI demo|http://pnidemo-fibo.dotcloud.com>
+
 L<PNI repository|http://github.com/fibo/pni-pm>
 
 L<PNI class diagram|http://goo.gl/MQ89f>
