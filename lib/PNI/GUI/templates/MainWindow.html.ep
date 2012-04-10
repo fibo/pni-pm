@@ -56,7 +56,7 @@ suscipit faucibus urna.
      <P>Welcome to Perl Node Interface!</P>
      <P>Still work in progress :P</P>
      <UL>
-      <LI> <A href="http://search.cpan.org/~fibo/PNI/">PNI on CPAN</A> </LI>
+      <LI> <A href="http://search.cpan.org/~fibo/Perl-Node-Interface/">PNI on CPAN</A> </LI>
       <LI> <A href="http://perl-node-interface.blogspot.com">PNI blog</A> </LI>
       <LI> <A href="https://github.com/fibo/pni-pm">PNI repo</A> </LI>
     </UL>
