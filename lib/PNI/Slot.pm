@@ -5,8 +5,6 @@ extends 'PNI::Elem';
 use Scalar::Util;
 
 has data => ();
-# TODO considera di farlo privato visto che e' usato internamente,
-# quindi diventerebbe _node.
 has node => ();
 
 sub is_array { return shift->type eq 'ARRAY' ? 1 : 0; }
@@ -17,7 +15,7 @@ sub is_defined { return defined( shift->data ); }
 
 sub is_hash { return shift->type eq 'HASH' ? 1 : 0; }
 
-sub is_number { return Scalar::Util::looks_like_number( shift->data ) ? 1 : 0 }
+sub is_number { return Scalar::Util::looks_like_number( shift->data ) ? 1 : 0; }
 
 sub is_scalar { return shift->type eq 'SCALAR' ? 1 : 0; }
 
@@ -54,6 +52,10 @@ PNI::Slot - is a basic unit of data
 =head1 ATTRIBUTES
 
 =head2 data
+
+    my $data = $slot->data;
+
+It can be a scalar or a reference.
 
 =head2 node
 
@@ -95,7 +97,7 @@ to its L<PNI::Node>.
 =head2 type
 
 Returns a string representing the slot data type, i.e. UNDEF, SCALAR or the
-return value of C<ref> function.
+return value of C<ref> function applyed to the value of the C<data> attribute..
 
 =cut
 

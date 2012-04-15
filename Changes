@@ -1,5 +1,8 @@
 Revision history for Perl Node Interface.
 
+0.31  2012-05-xx
+	- removed sub parents from PNI::Node
+
 0.30  2012-04-15
     - added Perl::Critic power
     - added Kinetic.js

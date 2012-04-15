@@ -7,6 +7,9 @@ use PNI;
 
 sub BUILD {
     my $self = shift;
+
+    $self->label('scenario');
+
     $self->in('object');
     $self->out('comments');
     $self->out('edges');

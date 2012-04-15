@@ -23,6 +23,17 @@ sub task {
     return 1;
 }
 
+# TODO this method is EXPERIMENTAL, needs tests and code cleaning.
+sub to_hash {
+    my $self = shift;
+
+    return {
+        id    => $self->id,
+        source  => $self->source,
+        target  => $self->target,
+    };
+}
+
 1;
 
 __END__

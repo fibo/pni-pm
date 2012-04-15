@@ -71,10 +71,6 @@ sub out {
       );
 }
 
-sub parents {
-    return map { $_->node } map { $_->source } shift->get_ins_edges;
-}
-
 # This method is abstract.
 sub task { die; }
 
@@ -227,12 +223,6 @@ Default output name is 'out', so you can be lazy.
     $node->out('out1'); # ditto
 
 If you pass digit C<x> as output_name, it will be replaced by C<outx>.
-
-=head2 parents
-
-    my @parents = $node->parents;
-
-Returns the list of nodes which C<outs> are connected to this node C<ins>.
 
 =head2 task
 
