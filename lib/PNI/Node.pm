@@ -8,11 +8,10 @@ use PNI::Set;
 
 has _on => ( default => sub { 1 } );
 
-has father => ( default => sub { 0 } );
-has ins    => ( default => sub { PNI::Set->new } );
-has label  => ();
-has outs   => ( default => sub { PNI::Set->new } );
-has type   => ();
+has ins => ( default => sub { PNI::Set->new } );
+has label => ();
+has outs  => ( default => sub { PNI::Set->new } );
+has type  => ();
 
 # TODO documenta  aggiungi test per x e y: anche se sono attributi grafici devo metterli nel model
 #       per fare in modo che in futuro un' altra persona che sta editando la patch possa
@@ -128,12 +127,6 @@ PNI::Node - is a basic unit of code
     my $gold = $out->data;
 
 =head1 ATTRIBUTES
-
-=head2 father
-
-    my $scenario = $node->father;
-    
-Returns C<father> scenario.
 
 =head2 ins
 

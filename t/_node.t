@@ -3,6 +3,10 @@ use warnings;
 use Test::More tests => 21;
 use PNI;
 use PNI::Node;
+use PNI::Scenario;
+
+# Use some test nodes, under t/PNI/Node path.
+use lib 't';
 
 my $node = PNI::Node->new;
 isa_ok $node, 'PNI::Node';
@@ -32,11 +36,11 @@ my $out2 = $node->out(2);
 isa_ok $out2, 'PNI::Out', 'out(number)';
 is $out2->id, 'out2', 'out2';
 
-my $scen = PNI::root;
+my $scen = PNI::Scenario->new;
 
-my $node1 = $scen->add_node;
-my $node2 = $scen->add_node;
-my $node3 = $scen->add_node;
+my $node1 = $scen->add_node('Empty');
+my $node2 = $scen->add_node('Empty');
+my $node3 = $scen->add_node('Empty');
 
 my $node1_out = $node1->out;
 my $node2_in  = $node2->in;

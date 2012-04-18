@@ -2,14 +2,16 @@ use strict;
 use warnings;
 use Test::More;
 use File::Spec;
-use PNI;
+use PNI::Finder;
 
 if ( not $ENV{TEST_AUTHOR} ) {
     my $msg = 'Author test.  Set $ENV{TEST_AUTHOR} to a true value to run.';
     plan( skip_all => $msg );
 }
 
-for my $node_type ( PNI::node_list() ) {
+my $find = PNI::Finder->new;
+
+for my $node_type ( $find->nodes ) {
 
     # Naming convention for test of PNI::Node::Foo::Bar is foo-bar.t,
     #

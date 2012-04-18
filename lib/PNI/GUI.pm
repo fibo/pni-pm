@@ -4,7 +4,8 @@ use Mojo::Base 'Mojolicious';
 use File::Basename 'dirname';
 use File::Spec::Functions 'catdir';
 
-use PNI;
+use PNI::Finder;
+my $find = PNI::Finder->new;
 
 sub startup {
     my $self = shift;
@@ -17,8 +18,8 @@ sub startup {
     $r->get('/')->to( cb => sub { shift->render('MainWindow') } );
     $r->get('/node_list')->to(
         cb => sub {
-            my @node_list = PNI->node_list;
-            shift->render_json( [ PNI->node_list ] );
+            my @node_list = $find->nodes;
+            shift->render_json( [ \@node_list ] );
         }
     );
 

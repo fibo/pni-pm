@@ -3,26 +3,18 @@ use warnings;
 use File::Find;
 use File::Spec;
 use Test::More;
-use English qw(-no_match_vars);
+require UNIVERSAL::require;
 
 if ( not $ENV{TEST_AUTHOR} ) {
     my $msg = 'Author test.  Set $ENV{TEST_AUTHOR} to a true value to run';
     plan( skip_all => $msg );
 }
 
-eval { require Test::Perl::Critic; };
+for my $module (qw( Test::Perl::Critic Perl::Critic::Bangs )) {
 
-if ($EVAL_ERROR) {
-    my $msg = 'Test::Perl::Critic required to criticise code';
-    plan( skip_all => $msg );
-}
+    my $msg = "$module required to run tests";
+    $module->require or plan( skip_all => $msg );
 
-# TODO usa universal require e ciclo for
-eval { require Perl::Critic::Bangs; };
-
-if ($EVAL_ERROR) {
-    my $msg = 'Perl::Critic::Bangs required to criticise code';
-    plan( skip_all => $msg );
 }
 
 my @node_dirs;

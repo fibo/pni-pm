@@ -25,13 +25,13 @@ sub add_edge {
 sub add_node {
     my $self = shift;
 
-    my $type = shift || 'PNI::Node';
+    my $type = shift or return;
 
     my $node_class = "PNI::Node::$type";
 
     $node_class->require or return;
 
-    my $node = $node_class->new( father => $self, type => $type, @_ );
+    my $node = $node_class->new( type => $type, @_ );
 
     return $self->nodes->add($node);
 }
@@ -178,31 +178,18 @@ PNI::Scenario - is a set of nodes connected by edges
 
 =head1 SYNOPSIS
 
-    # You can call the constructor to get a scenario ...
     use PNI::Scenario;
-    $standalone_scenario = PNI::Scenario->new;
-
-    # ... but it will not belong to PNI hierarchy tree,
-    # so its task method will not be called, unless you call it.
-    $standalone_scenario->task;
-
-    # You can start adding a scenario to the PNI root.
-    use PNI;
-    my $scenario = PNI::root->add_scenario;
+    my $scenario = PNI::Scenario->new;
 
     # Add two nodes.
     my $foo = $scenario->add_node('Foo');
     my $bar = $scenario->add_node('Bar');
 
     # Connect nodes with an edge.
-    $scenario->add_edge( $foo => $bar, 'out' => 'in' );
+    $scenario->add_edge( source => $foo->out, target => $bar->in );
 
-    # Calling PNI task method will execute all the tasks once.
-    PNI::task;
-
-    # Or call PNI loop to keep it running.
-    PNI::loop;
-
+    # Run your task.
+    $scenario->task;
 
 =head1 DESCRIPTION
 

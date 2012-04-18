@@ -6,7 +6,7 @@ use PNI::Slot;
 my $slot = PNI::Slot->new;
 isa_ok $slot, 'PNI::Slot';
 
-is $slot->data,  undef, 'default data';
+is $slot->data, undef, 'default data';
 is $slot->node, undef, 'default node';
 
 $slot->data(1);

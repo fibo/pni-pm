@@ -28,9 +28,9 @@ sub to_hash {
     my $self = shift;
 
     return {
-        id    => $self->id,
-        source  => $self->source,
-        target  => $self->target,
+        id     => $self->id,
+        source => $self->source,
+        target => $self->target,
     };
 }
 

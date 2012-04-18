@@ -6,7 +6,7 @@ sub BUILD {
     my $self = shift;
 }
 
-sub task { return }
+sub task { return; }
 
 1;
 
