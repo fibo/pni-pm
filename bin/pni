@@ -11,9 +11,11 @@ use lib join '/',
   File::Spec->updir,
   'lib';
 
+# Set app name.
 $ENV{MOJO_APP} = 'PNI::GUI';
 
 # TODO: $ENV{MOJO_MODE} |= production, document it as PNI ENV
 
-Mojolicious::Commands->start;
+my $command = Mojolicious::Commands->new( namespaces => ['PNI::Command'] );
+$command->start;
 

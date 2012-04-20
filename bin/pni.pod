@@ -3,5 +3,19 @@
 
 pni
 
+=head1 SYMOPSIS
+
+    $ pni --help
+
+=head1 DESCRIPTION
+
+It is a L<Mojo::Command> pointing to the "PNI::Command" namespace.
+
+=head1 COMMANDS
+
+=head2 daemon
+
+    $ pni daemon
+
 =cut
 
