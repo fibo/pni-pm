@@ -10,7 +10,7 @@ use Module::Pluggable
   require     => 1,
   inner       => 0;
 
-my $pni_dir          = File::Basename::dirname(__FILE__);
+my $pni_dir = File::Basename::dirname(__FILE__);
 my $pni_scenario_dir = File::Spec->catfile( $pni_dir, 'Scenario' );
 
 sub nodes {
