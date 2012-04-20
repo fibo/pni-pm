@@ -109,8 +109,8 @@ PNI::Node - is a basic unit of code
 =head1 SYNOPSIS
 
     # Create a node in a scenario.
-    use PNI;
-    my $scenario = PNI::scen;
+    use PNI::Scenario;
+    my $scen = PNI::Scenario->new;
     my $node = $scenario->add_node( type => 'Foo::Bar' );
 
     # Decorate node, add an input and an output.
