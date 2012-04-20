@@ -5,27 +5,20 @@ use File::Basename;
 use File::Find;
 use File::Spec;
 
+use Module::Pluggable
+  search_path => 'PNI::Node',
+  require     => 1,
+  inner       => 0;
+
 my $pni_dir          = File::Basename::dirname(__FILE__);
-my $pni_node_dir     = File::Spec->catfile( $pni_dir, 'Node' );
 my $pni_scenario_dir = File::Spec->catfile( $pni_dir, 'Scenario' );
 
 sub nodes {
-    my @pni_nodes;
+    my @nodes = grep { $_->isa('PNI::Node') } shift->plugins;
 
-    find(
-        {
-            wanted => sub {
-                return unless /\.pm$/;
-                my $node_path = $File::Find::name;
-                $node_path =~ s!/!::!g;
-                push @pni_nodes, $node_path;
-            },
-            no_chdir => 1,
-        },
-        $pni_node_dir
-    );
+    s/^PNI::Node::// foreach (@nodes);
 
-    return @pni_nodes;
+    return @nodes;
 }
 
 sub files {

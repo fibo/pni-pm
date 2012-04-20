@@ -10,8 +10,8 @@ This document contains ... nothing concrete by now (:
 =head1 HELLO WORLD
 
     use PNI::Scenario;
+    my $scen = PNI::Scenario->new;
 
-	my $scen = PNI::Scenario->new;
     my $node = $scen->add_node( type => 'Perlfunc::Print' );
     
     $node->in('list')->data( [ 'Hello World!', "\n" ] );
