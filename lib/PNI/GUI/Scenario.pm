@@ -60,7 +60,8 @@ sub to_json {
     # TODO aggiungi info sulla view, tipo posizioni dei nodi e altro
     # il PNI::File non deve essere del PNI::Scenario, ma del controller.
 
-    $self->render_json( $scenario->to_hash );
+    $self->render_json( $scenario->to_hash ) if defined $scenario;
+    $self->render_json( {} ); # TODO AGGIUSTA!! dovrei mettere un 404?
 }
 
 1;
