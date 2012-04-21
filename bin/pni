@@ -4,7 +4,7 @@ use Mojo::Base -strict;
 use File::Basename 'dirname';
 use File::Spec;
 
-use Mojo::Command;
+use Mojolicious::Commands;
 
 # Make it work if it is not installed.
 use lib join '/',
@@ -15,8 +15,11 @@ use lib join '/',
 # Set app name.
 $ENV{MOJO_APP} = 'PNI::GUI';
 
-# TODO: $ENV{MOJO_MODE} |= production, document it as PNI ENV
+# App mode defaults to "production".
+$ENV{MOJO_MODE} |= 'production';
 
-my $command = Mojo::Command->new( namespaces => ['PNI::Command'] );
+# Override "namespaces" to restrict command set.
+my $command = Mojolicious::Commands->new( namespaces => ['PNI::Command'] );
+
 $command->start;
 

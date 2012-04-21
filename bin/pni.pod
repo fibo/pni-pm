@@ -17,5 +17,9 @@ It is a L<Mojo::Command> pointing to the "PNI::Command" namespace.
 
     $ pni daemon
 
+=head1 ENVIRONMENT
+
+=head2 MOJO_MODE
+
 =cut
 
