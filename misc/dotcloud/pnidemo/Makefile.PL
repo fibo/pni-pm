@@ -7,7 +7,7 @@ WriteMakefile(
     PREREQ_PM => {
 
         'Plack'      => 0.9986,
-        'PNI'        => 0.31,
+        'PNI'        => 0.32,
         'Test::More' => 0,
         'YAML'       => 0,
 
