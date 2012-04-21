@@ -1,11 +1,15 @@
 Revision history for Perl Node Interface.
 
+0.32  2012-04-21
+    - added PNI_DEV env var
+    - few bug fixing
+
 0.31  2012-04-20
-	- removed sub parents from PNI::Node
-	- dropped PNI.pm subs
-	- PNI::Command namespace for pni Mojo::Command
-	- added google analytics code
-	- better scenario controller
+    - removed sub parents from PNI::Node
+    - dropped PNI.pm subs
+    - PNI::Command namespace for pni Mojo::Command
+    - added google analytics code
+    - better scenario controller
 
 0.30  2012-04-15
     - added Perl::Critic power
