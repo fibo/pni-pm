@@ -17,9 +17,13 @@ It is a L<Mojo::Command> pointing to the "PNI::Command" namespace.
 
     $ pni daemon
 
-=head1 ENVIRONMENT
+=head1 ENVIRONMENT VARIABLES
 
-=head2 MOJO_MODE
+=head2 PNI_DEV
+
+Set the run mode for the L<Mojolicious> application to C<development>.
+
+    PNI_DEV=1
 
 =cut
 

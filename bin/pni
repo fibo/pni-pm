@@ -15,8 +15,9 @@ use lib join '/',
 # Set app name.
 $ENV{MOJO_APP} = 'PNI::GUI';
 
-# App mode defaults to "production".
-$ENV{MOJO_MODE} |= 'production';
+# App mode defaults to "production", unless PNI_DEV is set.
+$ENV{MOJO_MODE} = 'production';
+$ENV{MOJO_MODE} = 'development' if defined $ENV{PNI_DEV};
 
 # Override "namespaces" to restrict command set.
 my $command = Mojolicious::Commands->new( namespaces => ['PNI::Command'] );
