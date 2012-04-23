@@ -23,14 +23,13 @@ sub task {
     return 1;
 }
 
-# TODO this method is EXPERIMENTAL, needs tests and code cleaning.
 sub to_hash {
     my $self = shift;
 
     return {
-        id     => $self->id,
-        source => $self->source,
-        target => $self->target,
+        id        => $self->id,
+        source_id => $self->source->id,
+        target_id => $self->target->id,
     };
 }
 
@@ -64,6 +63,12 @@ PNI::Edge - is used to connect
     $edge->task;
 
 If edge is connected, pass data from target to source.
+
+=head2 to_hash
+
+    my $edge_hash = $edge->to_hash;
+
+Returns an hash ref representing the edge.
 
 =cut
 

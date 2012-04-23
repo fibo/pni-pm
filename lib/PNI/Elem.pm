@@ -3,7 +3,7 @@ use PNI::Mo;
 
 use Scalar::Util;
 
-has id => ( default => sub { Scalar::Util::refaddr(shift) } );
+has id => ( default => sub { return Scalar::Util::refaddr(shift); } );
 
 1;
 

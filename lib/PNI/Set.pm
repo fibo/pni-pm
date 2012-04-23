@@ -22,6 +22,7 @@ sub add {
 
 sub del {
     my $self = shift;
+
     if ( $self->min ) {
         scalar( $self->list ) > $self->min or return;
     }
@@ -29,9 +30,9 @@ sub del {
     return delete $self->elem->{ $elem->id };
 }
 
-sub ids { return keys %{ shift->elem } }
+sub ids { return keys %{ shift->elem }; }
 
-sub list { return values %{ shift->elem } }
+sub list { return values %{ shift->elem }; }
 
 # TODO ma devo mettere Return the element oppure Returns con la s ?
 

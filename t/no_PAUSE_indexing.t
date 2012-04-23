@@ -9,7 +9,11 @@ if ( not $ENV{TEST_AUTHOR} ) {
     plan( skip_all => $msg );
 }
 
-my @no_indexed;
+my @no_index_files;
+my @no_index_dirs = (
+    File::Spec->catfile(qw(lib PNI Node)),
+    File::Spec->catfile(qw(lib PNI GUI))
+);
 
 # Find all PNI nodes.
 find(
@@ -17,14 +21,14 @@ find(
         wanted => sub {
             return unless $_ =~ m/\.pm/;
             return if $_ eq 'Mo.pm';
-            push @no_indexed, $File::Find::name;
+            push @no_index_files, $File::Find::name;
         },
         chdir => 0
     },
-    File::Spec->catfile(qw(lib PNI Node))
+    @no_index_dirs
 );
 
-for (@no_indexed) {
+for (@no_index_files) {
     open( my $fh, '<', $_ ) or die "Unable to open $_\n";
     my @rows = <$fh>;
     ok $rows[0] =~ /^package\s*\#/, "$_ avoids PAUSE indexing";
