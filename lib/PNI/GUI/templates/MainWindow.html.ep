@@ -35,41 +35,17 @@
   })();
 
   </SCRIPT>
-
  </HEAD>
  <BODY onmousedown="return false;">
   <DIV id="container">
-   <DIV id="accordion">
-    <H3><A href="#">Inspector</A></H3>
-     <DIV id="inspector">
-     </DIV>
-    <H3><A href="#">Nodes</A></H3>
-     <DIV>
-     </DIV>
-   </DIV> <!-- accordion -->
-   <DIV id="tabs">
-    <UL>
-     <LI> <A href="#scenario-tab">Scenario</A> </LI>
-	 <!-- TODO metti la dashboard per prima --><LI> <A href="#dashboard-tab">Dashboard</A> </LI>
-    </UL>
-    <DIV id="dashboard-tab">
-     <P>Welcome to Perl Node Interface!</P>
-     <P>Still work in progress :P</P>
-     <UL>
-      <LI> <A href="http://search.cpan.org/~fibo/Perl-Node-Interface/">PNI on CPAN</A> </LI>
-      <LI> <A href="http://perl-node-interface.blogspot.com">PNI blog</A> </LI>
-      <LI> <A href="https://github.com/fibo/pni-pm">PNI repo</A> </LI>
-    </UL>
-    </DIV> <!-- dashboard-tab -->
-    <DIV id="scenario-tab">
-     <DIV id="scenario-container">
-      <DIV id="node-selector-container" class="ui-widget">
-       <INPUT id="node-selector-input">
-      </DIV> <!-- node-selector-container -->
-      <!-- Canvas created by Kinect.js here -->
-     </DIV> <!-- scenario-container -->
-    </DIV> <!-- scenario-tab -->
-   </DIV> <!-- tabs -->
-  </DIV> <!-- container -->
+  <DIV id="scenario">
+   <DIV id="node-selector" class="ui-widget">
+    <INPUT id="node-selector-input">
+   </DIV> <!-- node-selector -->
+   <DIV id="node-inspector" class="ui-widget">
+   </DIV> <!-- node-inspector -->
+   <!-- Canvas created by Kinect.js here -->
+  </DIV> <!-- scenario -->
+  </DIV> <!-- scenario -->
  </BODY>
 </HTML>

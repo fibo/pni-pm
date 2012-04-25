@@ -3,27 +3,15 @@
   height: 100%;
   width: 100%;
 }
-#accordion {
-  position: fixed;
-  float: left;
-  height: 100%;
-  width: 20%;
-}
-#tabs {
-  position: relative;
-  float: right;
-  height: 100%;
-  width: 80%;
-}
-#node-selector-container {
+#node-selector {
   border: 1px solid black;
   position: absolute;
 }
-#scenario-tab {
-  height: 100%;
-  width: 100%;
+#node-inspector {
+  border: 1px solid black;
+  position: absolute;
 }
-#scenario-container {
+#scenario {
   position: relative;
   height: 100%;
   width: 100%;

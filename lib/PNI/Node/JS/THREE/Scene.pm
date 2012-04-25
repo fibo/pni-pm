@@ -4,7 +4,11 @@ use PNI::Node::Mo;
 
 extends 'PNI::Node';
 
-sub BUILD { }
+sub BUILD { 
+my $self = shift;
+
+$self->label('svarionz');
+}
 
 sub task { }
 
