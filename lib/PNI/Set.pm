@@ -2,12 +2,9 @@ package PNI::Set;
 use PNI::Mo;
 extends 'PNI::Elem';
 
-# TODO: change to this ... has elem => ( default => sub { return {}; } );
-has elem => ( default => sub { +{} } );
+has elem => ( default => sub { return {}; } );
 has min  => ( default => sub { return 0; } );
-
-# TODO perlcritic should complain
-has max => ( default => sub { 0 } );
+has max  => ( default => sub { return 0; } );
 
 sub add {
     my $self = shift;
@@ -18,7 +15,7 @@ sub add {
     return $self->elem->{ $elem->id } = $elem;
 }
 
-# TODO consider to add ... sub cardinality { return scalar( shift->list ); }
+sub cardinality { return scalar( shift->list ); }
 
 sub del {
     my $self = shift;
@@ -33,8 +30,6 @@ sub del {
 sub ids { return keys %{ shift->elem }; }
 
 sub list { return values %{ shift->elem }; }
-
-# TODO ma devo mettere Return the element oppure Returns con la s ?
 
 1;
 
@@ -86,6 +81,12 @@ it would be the empty set.
 
 Add a L<PNI::Elem> to this L<PNI::Set>.
 
+=head2 cardinality
+
+    my $num_elems = $set->cardinality;
+
+Returns the number of elements in the set.
+
 =head2 del
 
     $set->del($elem);
@@ -96,13 +97,13 @@ Remove a L<PNI::Elem> from this L<PNI::Set>.
 
     my @ids = $set->ids;
 
-Return a list containing every C<id> of the elements cointained in the set.
+Returns a list containing every C<id> of the elements cointained in the set.
 
 =head2 list
 
     my @elems = $set->list;
 
-Return a list containing every C<element> of the set.
+Returnx a list containing every C<element> of the set.
 
 =cut
 

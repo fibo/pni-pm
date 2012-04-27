@@ -1,5 +1,8 @@
 Revision history for Perl Node Interface.
 
+0.33  2012-05-xx
+    - added some HTTP verbs (PUT,GET,DELETE...)
+
 0.32  2012-04-21
     - added PNI_DEV env var
     - few bug fixing

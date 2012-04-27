@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 13;
+use Test::More tests => 14;
 use PNI::Elem;
 use PNI::Set;
 
@@ -43,5 +43,8 @@ my @ids2 = sort $set->ids;
 is_deeply \@ids1, \@ids2, 'ids';
 
 is $set->add($elem4), $elem4, 'add returns its argument';
+
+is $set->cardinality, 4, 'cardinality';
+
 is $set->del($elem4), $elem4, 'del returns its argument';
 

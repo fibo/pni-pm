@@ -15,12 +15,12 @@ color-severity-medium = blue
 
 # 5 Bangs::ProhibitBitwiseOperators [bugs core]
 # 2 Bangs::ProhibitCommentedOutCode [bangs maintenance]
+[Bangs::ProhibitCommentedOutCode]
+add_themes = all
 
 # 2 Bangs::ProhibitFlagComments [bangs maintenance]
-# TODO turn it on !
 [Bangs::ProhibitFlagComments]
-#add_themes = all
-add_themes = tests
+add_themes = all
 
 # 2 Bangs::ProhibitNoPlan [bangs tests]
 [Bangs::ProhibitNoPlan]
@@ -73,6 +73,9 @@ add_themes = all
 # 1 CodeLayout::RequireTrailingCommas [core cosmetic pbp]
 
 # 2 ControlStructures::ProhibitCStyleForLoops [core maintenance pbp]
+[ControlStructures::ProhibitCStyleForLoops]
+add_themes = all
+
 # 3 ControlStructures::ProhibitCascadingIfElse [complexity core maintenance pbp]
 # 3 ControlStructures::ProhibitDeepNests [complexity core maintenance]
 # 4 ControlStructures::ProhibitLabelsWithSpecialBlockNames [bugs core]
@@ -102,6 +105,9 @@ lib_sections = NAME | SYNOPSIS | DESCRIPTION
 # 3 ErrorHandling::RequireCheckingReturnValueOfEval [bugs core]
 
 # 3 InputOutput::ProhibitBacktickOperators [core maintenance]
+[InputOutput::ProhibitBacktickOperators]
+add_themes = nodes
+
 # 5 InputOutput::ProhibitBarewordFileHandles [bugs core pbp]
 # 4 InputOutput::ProhibitExplicitStdin [core maintenance pbp]
 # 5 InputOutput::ProhibitInteractiveTest [bugs core pbp]
@@ -178,6 +184,9 @@ add_themes = all
 add_themes = nodes
 
 # 1 RegularExpressions::ProhibitUnusualDelimiters [core cosmetic pbp]
+[RegularExpressions::ProhibitUnusualDelimiters]
+add_themes = nodes
+
 # 1 RegularExpressions::RequireBracesForMultiline [core cosmetic pbp]
 
 # 2 RegularExpressions::RequireDotMatchAnything [core cosmetic pbp]

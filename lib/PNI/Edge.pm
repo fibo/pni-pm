@@ -23,7 +23,7 @@ sub task {
     return 1;
 }
 
-sub to_hash {
+sub to_hashref {
     my $self = shift;
 
     return {
@@ -66,7 +66,7 @@ If edge is connected, pass data from target to source.
 
 =head2 to_hash
 
-    my $edge_hash = $edge->to_hash;
+    my $edge_hashref = $edge->to_hashref;
 
 Returns an hash ref representing the edge.
 

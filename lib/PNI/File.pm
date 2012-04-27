@@ -21,8 +21,7 @@ has path => (
     }
 );
 
-# TODO change this sub name: read is a builtin
-sub read {
+sub read_content {
     my $self = shift;
 
     local $/;
@@ -35,7 +34,7 @@ sub read {
     return 1;
 }
 
-sub write {
+sub write_content {
     my $self = shift;
 
     open my $fh, '>', $self->path;

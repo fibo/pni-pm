@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use PNI::Scenario;
-use Test::More tests => 26;
+use Test::More tests => 27;
 
 # Use some test nodes, under t/PNI/Node path.
 use lib 't';
@@ -27,8 +27,8 @@ is $scen->nodes->list, 2, 'nodes list';
 my $source1 = $node1->out;
 my $target1 = $node2->in;
 
-my $edge = $scen->add_edge( source => $source1, target => $target1 );
-isa_ok $edge , 'PNI::Edge', 'add_edge';
+my $edge1 = $scen->add_edge( source => $source1, target => $target1 );
+isa_ok $edge1 , 'PNI::Edge', 'add_edge';
 is $scen->edges->list, 1, 'edges list';
 
 # Create another node to have a chain like this:
@@ -36,7 +36,24 @@ is $scen->edges->list, 1, 'edges list';
 my $node3   = $scen->add_node('Empty');
 my $source2 = $node2->out;
 my $target2 = $node3->in;
-$scen->add_edge( source => $source2, target => $target2 );
+my $edge2   = $scen->add_edge( source => $source2, target => $target2 );
+
+is_deeply $scenario->to_hashref,
+  {
+    id        => $scenario->id,
+    edges     => [],
+    nodes     => [],
+    scenarios => [
+        {
+            id => $scen->id,
+            nodes =>
+              [ $node1->to_hashref, $node2->to_hashref, $node3->to_hashref ],
+            edges     => [ $edge1->to_hashref, $edge2->to_hashref ],
+            scenarios => [],
+        }
+    ]
+  },
+  'to_hashref';
 
 # Delete node2: this should also delete its edges.
 $scen->del_node($node2);
@@ -44,8 +61,8 @@ is $scen->nodes->list, 2, 'del_node';
 is $scen->edges->list, 0, 'del_node cleans edges';
 
 # Create another edge, then delete it.
-my $edge2 = $scen->add_edge( source => $source1, target => $target2 );
-$scen->del_edge($edge2);
+my $edge3 = $scen->add_edge( source => $source1, target => $target2 );
+$scen->del_edge($edge3);
 ok !$source1->is_connected, 'del_edge cleans source';
 ok !$target2->is_connected, 'del_edge cleans target';
 

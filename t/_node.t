@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 21;
+use Test::More tests => 22;
 use PNI;
 use PNI::Node;
 use PNI::Scenario;
@@ -27,6 +27,18 @@ ok my $out = $node->out, 'out constructor';
 is $out->id, 'out', 'default out id';
 isa_ok $out, 'PNI::Out';
 is $out, $node->out, 'out accessor';
+
+is_deeply $node->to_hashref,
+  {
+    id    => $node->id,
+    label => $node->label,
+    type  => $node->type,
+    ins   => [ $in->id ],
+    outs  => [ $out->id ],
+    x     => $node->x,
+    y     => $node->y,
+  },
+  'to_hashref';
 
 my $in1 = $node->in(1);
 isa_ok $in1, 'PNI::In', 'in(number)';

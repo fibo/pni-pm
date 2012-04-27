@@ -26,13 +26,17 @@ sub startup {
         }
     );
 
-    $r->get('/scenario/create')->to('scenario#create');
-    $r->get('/scenario/:scenario_id/')->to('scenario#to_json');
-    $r->get('/scenario/:scenario_id/add_edge')->to('scenario#add_edge');
-    $r->get('/scenario/:scenario_id/add_node')->to('scenario#add_node');
-    $r->get('/scenario/:scenario_id/edge/:edge_id')->to('scenario#get_edge');
-    $r->get('/scenario/:scenario_id/node/:node_id')->to('scenario#get_node');
-    $r->get('/scenario/:scenario_id/slot/:slot_id')->to('scenario#get_slot');
+    $r->delete('/edge/:edge_id')->to('scenario#del_edge');
+    $r->get('/edge/:edge_id')->to('scenario#to_json');
+    $r->put('/edge')->to('scenario#add_edge');
+
+    $r->delete('/node/:node_id')->to('scenario#del_node');
+    $r->get('/node/:node_id')->to('scenario#to_json');
+    $r->put('/node')->to('scenario#add_node');
+
+    $r->delete('/scenario/:scenario_id')->to('scenario#del');
+    $r->get('/scenario/:scenario_id')->to('scenario#to_json');
+    $r->put('/scenario')->to('scenario#add');
 
 }
 
@@ -51,6 +55,24 @@ Talking with MVC terms, code outside the PNI::GUI namespace builds the Model.
 Perl code inside PNI::GUI belongs to the Controller, everything else (HTML/CSS/JavaScript) is part of the View. 
 
 =head1 ROUTES
+
+=head2 DEL /edge/:edge_id
+
+=head2 GET /edge/:edge_id
+
+=head2 PUT /edge
+
+=head2 DEL /node/:node_id
+
+=head2 GET /node/:node_id
+
+=head2 PUT /node
+
+=head2 DEL /scenario/:scenario_id
+
+=head2 GET /scenario/:scenario_id
+
+=head2 PUT /scenario
 
 =cut
 

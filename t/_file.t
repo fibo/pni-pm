@@ -15,8 +15,8 @@ my $text    = <$fh>;
 my $content = decode_json($text);
 close $fh;
 
-$file->read;
-is_deeply $file->content, $content, 'read content';
+$file->read_content;
+is_deeply $file->content, $content, 'read_content';
 
 # If path is not provided, defaults to a temporary file with empty content.
 my $empty_content = { edges => {}, nodes => {} };

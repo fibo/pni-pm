@@ -6,21 +6,14 @@ use PNI::In;
 use PNI::Out;
 use PNI::Set;
 
-has _on => ( default => sub { 1 } );
+has _on => ( default => sub { return 1; } );
 
-has ins => ( default => sub { PNI::Set->new } );
+has ins => ( default => sub { return PNI::Set->new; } );
 has label => ();
-has outs  => ( default => sub { PNI::Set->new } );
+has outs  => ( default => sub { return PNI::Set->new; } );
 has type  => ();
-
-# TODO documenta  aggiungi test per x e y: anche se sono attributi grafici devo metterli nel model
-#       per fare in modo che in futuro un' altra persona che sta editando la patch possa
-#       vedere i cambiamenti, cioe che sia collaborativa, questo perchè il controller potrebbe interrogare
-#       un' istanza di PNI su un' altra macchina ... AD OGNI MODO RISULTA PIU FACILE COSI (mi sembra anche piu logico ... cosa diranno
-#       i puristi dei pattern ? :)
-#
-has x => ( default => sub { 0 } );
-has y => ( default => sub { 0 } );
+has x     => ( default => sub { return 0; } );
+has y     => ( default => sub { return 0; } );
 
 sub get_outs_edges {
     return map { $_->edges->list } shift->outs->list;
@@ -73,8 +66,7 @@ sub out {
 # This method is abstract.
 sub task { die; }
 
-# TODO this method is EXPERIMENTAL, needs tests and code cleaning.
-sub to_hash {
+sub to_hashref {
     my $self = shift;
 
     my @ins_list;
@@ -224,9 +216,11 @@ If you pass digit C<x> as output_name, it will be replaced by C<outx>.
 This is an abstract method that must be implemented by every class that extends L<PNI::Node>.
 It is the chunk of code that the node implements.
 
-=head2 to_hash
+=head2 to_hashref
 
-    my $data_hashref = $node->to_hash;
+    my $node_hashref = $node->to_hashref;
+
+Returns an hash ref representing the node.
 
 =cut
 
