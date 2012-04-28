@@ -69,14 +69,11 @@ sub task { die; }
 sub to_hashref {
     my $self = shift;
 
-    my @ins_ids = $self->ins->ids;
-    my @outs_ids = $self->outs->ids;
-
     return {
         id    => $self->id,
         label => $self->label,
-        ins   => \@ins_ids,
-        outs  => \@outs_ids,
+        ins   => [$self->ins->ids],
+        outs  => [$self->outs->ids],
         x     => $self->x,
         y     => $self->y,
     };

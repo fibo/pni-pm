@@ -47,6 +47,7 @@ my $source2 = $node2->out;
 my $target2 = $node3->in;
 my $edge2   = $scen->add_edge( source => $source2, target => $target2 );
 
+
 # Delete node2: this should also delete its edges.
 $scen->del_node($node2);
 is $scen->nodes->list, 2, 'del_node';
