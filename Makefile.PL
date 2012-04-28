@@ -11,9 +11,7 @@ WriteMakefile(
     NAME      => 'Perl-Node-Interface',
     PREREQ_PM => {
         'File::Find'            => 0,
-        'File::Temp'            => 0,
         'File::Spec::Functions' => 0,
-        'JSON::PP'              => 0,
         'List::Util'            => 0,
         'Module::Pluggable'     => 0,
         'Mojolicious'           => '2.85',

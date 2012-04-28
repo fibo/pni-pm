@@ -2,18 +2,14 @@ package    # Avoid PAUSE indexing.
   PNI::GUI::Scenario;
 use Mojo::Base 'Mojolicious::Controller';
 
-use Mojo::Log;
 use PNI::Scenario;
 use PNI::Set;
 
-my $log   = Mojo::Log->new;
 my $model = PNI::Set->new;
-my $root  = PNI::Scenario->new( id => 'root' );
-
-$model->add($root);
 
 sub add_edge {
     my $self = shift;
+    my $log = $self->app->log;
 
     my $scenario_id    = $self->req->param('scenario_id');
     my $source_node_id = $self->req->param('source_node_id');
@@ -37,6 +33,7 @@ sub add_edge {
 
 sub add_node {
     my $self = shift;
+    my $log = $self->app->log;
 
     my $scenario_id = $self->req->param('scenario_id');
     my $type        = $self->req->param('type');
@@ -48,7 +45,6 @@ sub add_node {
     $log->debug("add_node ($type)");
     my $node = $scenario->add_node( $type, x => $x, y => $y );
 
-    $self->ua->put(
     $self->render_json( $node->to_hashref, status => 201 );
 }
 

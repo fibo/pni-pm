@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 22;
+use Test::More tests => 24;
 use PNI;
 use PNI::Node;
 use PNI::Scenario;
@@ -15,6 +15,8 @@ is $node->get_ins_edges,  0,     'default get_ins_edges';
 is $node->get_outs_edges, 0,     'default get_outs_edges';
 is $node->label,          undef, 'default label';
 is $node->type,           undef, 'default type';
+is $node->x,              undef, 'default x';
+is $node->y,              undef, 'default y';
 ok !$node->is_off, 'node is_off is false by default';
 ok $node->is_on, 'node is_on by default';
 
@@ -32,7 +34,6 @@ is_deeply $node->to_hashref,
   {
     id    => $node->id,
     label => $node->label,
-    type  => $node->type,
     ins   => [ $in->id ],
     outs  => [ $out->id ],
     x     => $node->x,

@@ -12,8 +12,8 @@ has ins => ( default => sub { return PNI::Set->new; } );
 has label => ();
 has outs  => ( default => sub { return PNI::Set->new; } );
 has type  => ();
-has x     => ( default => sub { return 0; } );
-has y     => ( default => sub { return 0; } );
+has x     => ();
+has y     => ();
 
 sub get_outs_edges {
     return map { $_->edges->list } shift->outs->list;
@@ -69,22 +69,14 @@ sub task { die; }
 sub to_hashref {
     my $self = shift;
 
-    my @ins_list;
-    for my $in ( $self->ins->list ) {
-        push @ins_list, $in->id;
-    }
-
-    my @outs_list;
-    for my $out ( $self->outs->list ) {
-        push @outs_list, $out->id;
-    }
+    my @ins_ids = $self->ins->ids;
+    my @outs_ids = $self->outs->ids;
 
     return {
         id    => $self->id,
         label => $self->label,
-        type  => $self->type,
-        ins   => \@ins_list,
-        outs  => \@outs_list,
+        ins   => \@ins_ids,
+        outs  => \@outs_ids,
         x     => $self->x,
         y     => $self->y,
     };

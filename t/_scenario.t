@@ -13,6 +13,15 @@ is $scenario->nodes->list,     0, 'default nodes';
 is $scenario->edges->list,     0, 'default edges';
 is $scenario->scenarios->list, 0, 'default scenarios';
 
+is_deeply $scenario->to_hashref,
+  {
+    id        => $scenario->id,
+    edges     => [],
+    nodes     => [],
+    scenarios => [],
+  },
+  'default to_hashref';
+
 # Add a sub scenario.
 my $scen = $scenario->add_scenario;
 isa_ok $scen, 'PNI::Scenario', 'add_scenario';
@@ -37,23 +46,6 @@ my $node3   = $scen->add_node('Empty');
 my $source2 = $node2->out;
 my $target2 = $node3->in;
 my $edge2   = $scen->add_edge( source => $source2, target => $target2 );
-
-is_deeply $scenario->to_hashref,
-  {
-    id        => $scenario->id,
-    edges     => [],
-    nodes     => [],
-    scenarios => [
-        {
-            id => $scen->id,
-            nodes =>
-              [ $node1->to_hashref, $node2->to_hashref, $node3->to_hashref ],
-            edges     => [ $edge1->to_hashref, $edge2->to_hashref ],
-            scenarios => [],
-        }
-    ]
-  },
-  'to_hashref';
 
 # Delete node2: this should also delete its edges.
 $scen->del_node($node2);

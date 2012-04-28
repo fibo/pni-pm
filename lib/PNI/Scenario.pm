@@ -3,7 +3,6 @@ use PNI::Mo;
 extends 'PNI::Node';
 
 use PNI::Edge;
-use PNI::File;
 use PNI::Node;
 use PNI::Set;
 
@@ -12,8 +11,6 @@ require UNIVERSAL::require;
 has edges     => ( default => sub { PNI::Set->new; } );
 has nodes     => ( default => sub { PNI::Set->new; } );
 has scenarios => ( default => sub { PNI::Set->new; } );
-
-has file => ( default => sub { PNI::File->new; } );
 
 sub add_edge {
     my $self = shift;
