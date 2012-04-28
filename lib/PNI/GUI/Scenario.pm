@@ -48,6 +48,7 @@ sub add_node {
     $log->debug("add_node ($type)");
     my $node = $scenario->add_node( $type, x => $x, y => $y );
 
+    $self->ua->put(
     $self->render_json( $node->to_hashref, status => 201 );
 }
 

@@ -46,23 +46,25 @@ Blah blah blah. ( this was the h2xs command :-)
 
 L<PNI::Guides>
 
-L<PNI::Edge>
-
-L<PNI::Node>
-
-L<PNI::Scenario>
-
 L<PNI demo|http://pnidemo-fibo.dotcloud.com>
+
+=head1 DEVELOPMENT
+
+L<PNI repository|http://github.com/fibo/pni-pm>
 
 =head1 RESOURCES
 
 L<PNI blog|http://perl-node-interface.blogspot.com>
 
-L<PNI repository|http://github.com/fibo/pni-pm>
-
 L<PNI class diagram|http://goo.gl/MQ89f>
 
 L<PNI node coverage|http://goo.gl/hfAoU>
+
+=head1 SUPPORT
+
+L<#pni IRC channel on freenode|irc://freenode/pni>
+
+L<PNI mailing list|http://groups.google.com/group/perl-node-interface>
 
 =head1 AUTHOR
 
