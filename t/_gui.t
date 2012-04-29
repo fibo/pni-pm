@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 24;
+use Test::More tests => 29;
 use Test::Mojo;
 
 # Use some test nodes, under t/PNI/Node path.
@@ -34,6 +34,35 @@ $t->get_ok('/')
 
 # GET /scenario
 $t->get_ok('/scenario')
+
+  # Status is ok.
+  ->status_is(200)
+
+  # Check content type.
+  ->content_type_is('application/json')
+
+  # End of GET /scenario endpoint tests.
+  ;
+
+# GET /node/:node_id
+use PNI::Scenario;
+my $scenario = PNI::Scenario->new;
+my $node1    = $scenario->add_node('Twice');
+$t->get_ok( '/node/' . $node1->id )
+
+  # Status is ok.
+  ->status_is(200)
+
+  # Check content type.
+  ->content_type_is('application/json')
+
+  # End of GET /scenario endpoint tests.
+  ;
+
+# GET /edge/:edge_id
+my $node2 = $scenario->add_node('Twice');
+my $edge = $scenario->add_edge( source => $node1->out, target => $node2->in );
+$t->get_ok( '/edge/' . $edge->id )
 
   # Status is ok.
   ->status_is(200)

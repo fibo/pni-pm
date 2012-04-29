@@ -26,13 +26,11 @@ sub startup {
         }
     );
 
-    $r->delete('/edge/:edge_id')->to('scenario#del_edge');
-    $r->get('/edge/:edge_id')->to('scenario#to_json');
-    $r->put('/edge')->to('scenario#add_edge');
+    $r->get('/edge/:edge_id')->to('edge#to_json');
+    $r->post('/edge')->to('scenario#add_edge');
 
-    $r->delete('/node/:node_id')->to('scenario#del_node');
-    $r->get('/node/:node_id')->to('scenario#to_json');
-    $r->put('/node')->to('scenario#add_node');
+    $r->get('/node/:node_id')->to('node#to_json');
+    $r->post('/node')->to('scenario#add_node');
 
     $r->get('/scenario')->to('scenario#to_json');
 

@@ -16,7 +16,7 @@ sub BUILD {
 }
 
 sub by_id {
-    my $id = shift;
+    my $id = shift or return;
 
     return $instance_map{$id};
 }
