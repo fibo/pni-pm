@@ -7,7 +7,8 @@ use warnings;
 # considering version x.yy stable, a new release will be versioned
 # as x.yy_zz so it will not be listed by CPAN.pm as the last.
 # After test results will be ok, it can be officially released x.(yy+1) version.
-our $VERSION = '0.33';
+
+our $VERSION = '0.34';
 $VERSION = eval $VERSION;
 
 1;
@@ -26,21 +27,9 @@ Then point your browser to http://localhost:3000 and use the gui.
 
 =head1 DESCRIPTION
 
-Hi all! I'm an italian mathematician.  I really like Perl philosophy as Larry jokes a lot even if he is one of the masters of hacking.
-
-PNI stands for Perl Node Interface.
-
-It is my main project, my contribution to the great Perl community. Node programming is really interesting since makes possible to realize a program even if you have no idea about programming. 
-
-Think about genetic researchers, for example. They need to focus on protein chains, not on what a package is. Maybe they can do an extra effort and say the world "variable" or "string" or even "regular expression" and that makes them proud, but they don't care about inheritance.
-
-They want things working and they need Perl ... but if you say L<Strawberry|http://strawberryperl.com/> they think about yogurt, not about Windows.
-
-There are a lot of node programming languages (L<VVVV|http://vvvv.org/>, L<Puredata|http://puredata.info/>, L<Max/Msp|http://cycling74.com/>) but normally they target artists and interaction designers. I saw a lot of vjs and musicians do really complex programs with those software, and they never wrote a line of code.
-
-This is my effort to provide a node interface that brings Perl power to people who don't know the Perl language.
-
-Blah blah blah. ( this was the h2xs command :-)
+Perl Node Interface is a node programming IDE via browser. 
+It is thinked to give Perl power to people who don-t know Perl.
+It is very easy for Perl coders to extend it adding new nodes.
 
 =head1 SEE ALSO
 

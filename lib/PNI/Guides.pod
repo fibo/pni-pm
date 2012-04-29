@@ -7,6 +7,8 @@ PNI::Guides - Perl Node Interface guide
 
 =over 4
 
+=item L<PNI::Guides::GettingStarted>
+
 =item L<PNI::Guides::Scripting>
 
 The Perl Node Interface was created as a node programming ide via browser ...
