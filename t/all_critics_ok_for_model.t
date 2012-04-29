@@ -20,10 +20,9 @@ for my $module (qw( Test::Perl::Critic Perl::Critic::Bangs )) {
 my @model_files;
 
 push @model_files, File::Spec->catfile( 'lib', 'PNI.pm' );
-push @model_files, File::Spec->catfile( 'lib', 'PNI', "$_.pm" ) for qw (
+push @model_files, File::Spec->catfile( 'lib', 'PNI', $_ . '.pm' ) for qw (
   Edge
   Elem
-  File
   Finder
   In
   Node

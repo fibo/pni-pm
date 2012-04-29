@@ -6,14 +6,15 @@ use PNI::In;
 use PNI::Out;
 use PNI::Set;
 
+my %id_from_label_map;
+
 has _on => ( default => sub { return 1; } );
 
-has ins => ( default => sub { return PNI::Set->new; } );
-has label => ();
-has outs  => ( default => sub { return PNI::Set->new; } );
-has type  => ();
-has x     => ();
-has y     => ();
+has ins  => ( default => sub { return PNI::Set->new; } );
+has outs => ( default => sub { return PNI::Set->new; } );
+has type => ();
+has x    => ();
+has y    => ();
 
 sub get_outs_edges {
     return map { $_->edges->list } shift->outs->list;
@@ -25,18 +26,27 @@ sub get_ins_edges {
 
 sub in {
     my $self = shift;
-    my $id = shift || 'in';
+    my $label = shift || 'in';
 
-    # If id is a number, prefix it with 'in'.
-    $id =~ /^\d*$/ and $id = 'in' . $id;
+    # If "label" is a number, prefix it with 'in'.
+    $label =~ /^\d*$/ and $label = 'in' . $label;
 
-    return $self->ins->elem->{$id}
-      || $self->ins->add(
-        PNI::In->new(
-            node => $self,
-            id   => $id,
-        )
-      );
+    if ( my $id = $id_from_label_map{ $self->id }{$label} ) {
+
+        return $self->ins->elem->{$id};
+    }
+    else {
+        my $in = PNI::In->new(
+            label => $label,
+            node  => $self,
+        );
+
+        $self->ins->add($in);
+
+        $id_from_label_map{ $self->id }{$label} = $in->id;
+
+        return $in;
+    }
 }
 
 sub is_off { return !shift->_on; }
@@ -49,18 +59,27 @@ sub on { return shift->_on(1); }
 
 sub out {
     my $self = shift;
-    my $id = shift || 'out';
+    my $label = shift || 'out';
 
-    # If id is a number, prefix it with 'out'.
-    $id =~ /^\d*$/ and $id = 'out' . $id;
+    # If "label" is a number, prefix it with 'out'.
+    $label =~ /^\d*$/ and $label = 'out' . $label;
 
-    return $self->outs->elem->{$id}
-      || $self->outs->add(
-        PNI::Out->new(
-            node => $self,
-            id   => $id,
-        )
-      );
+    if ( my $id = $id_from_label_map{ $self->id }{$label} ) {
+
+        return $self->outs->elem->{$id};
+    }
+    else {
+        my $out = PNI::Out->new(
+            label => $label,
+            node  => $self,
+        );
+
+        $self->outs->add($out);
+
+        $id_from_label_map{ $self->id }{$label} = $out->id;
+
+        return $out;
+    }
 }
 
 # This method is abstract.
@@ -72,11 +91,17 @@ sub to_hashref {
     return {
         id    => $self->id,
         label => $self->label,
-        ins   => [$self->ins->ids],
-        outs  => [$self->outs->ids],
+        ins   => [ $self->ins->ids ],
+        outs  => [ $self->outs->ids ],
         x     => $self->x,
         y     => $self->y,
     };
+}
+
+sub DESTROY {
+    my $self = shift;
+
+    delete $id_from_label_map{ $self->id };
 }
 
 1;

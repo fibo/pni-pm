@@ -163,9 +163,9 @@ sub to_hashref {
     }
 
     return {
-        id    => $self->id,
-        edges => $edges_list,
-        nodes => $nodes_list,
+        id        => $self->id,
+        edges     => $edges_list,
+        nodes     => $nodes_list,
         scenarios => $scenarios_list,
     };
 }

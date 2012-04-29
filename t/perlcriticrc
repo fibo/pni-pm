@@ -16,7 +16,7 @@ color-severity-medium = blue
 # 5 Bangs::ProhibitBitwiseOperators [bugs core]
 # 2 Bangs::ProhibitCommentedOutCode [bangs maintenance]
 [Bangs::ProhibitCommentedOutCode]
-add_themes = all
+add_themes = nodes
 
 # 2 Bangs::ProhibitFlagComments [bangs maintenance]
 [Bangs::ProhibitFlagComments]
@@ -198,8 +198,7 @@ add_themes = nodes
 # 2 Subroutines::ProhibitAmpersandSigils [core maintenance pbp]
 
 # 4 Subroutines::ProhibitBuiltinHomonyms [bugs core pbp]
-[-Subroutines::ProhibitBuiltinHomonyms]
-# TODO turn it on !
+[Subroutines::ProhibitBuiltinHomonyms]
 add_themes = all
 
 # 3 Subroutines::ProhibitExcessComplexity [complexity core maintenance]
@@ -224,10 +223,7 @@ add_themes = all
 
 # 3 Subroutines::ProtectPrivateSubs [core maintenance]
 # 4 Subroutines::RequireArgUnpacking [core maintenance pbp]
-
 # 4 Subroutines::RequireFinalReturn [bugs core pbp]
-[Subroutines::RequireFinalReturn]
-add_themes = model
 
 # 5 TestingAndDebugging::ProhibitNoStrict [bugs core pbp]
 [TestingAndDebugging::ProhibitNoStrict]

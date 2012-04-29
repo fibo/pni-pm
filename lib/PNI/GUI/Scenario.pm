@@ -3,21 +3,16 @@ package    # Avoid PAUSE indexing.
 use Mojo::Base 'Mojolicious::Controller';
 
 use PNI::Scenario;
-use PNI::Set;
-
-my $model = PNI::Set->new;
+my $scenario = PNI::Scenario->new;
 
 sub add_edge {
     my $self = shift;
-    my $log = $self->app->log;
+    my $log  = $self->app->log;
 
-    my $scenario_id    = $self->req->param('scenario_id');
     my $source_node_id = $self->req->param('source_node_id');
     my $source_slot_id = $self->req->param('source_slot_id');
     my $target_node_id = $self->req->param('target_node_id');
     my $target_slot_id = $self->req->param('target_slot_id');
-
-    my $scenario = $model->elem->{$scenario_id};
 
     my $source_node = $scenario->nodes->elem->{$source_node_id};
     my $target_node = $scenario->nodes->elem->{$target_node_id};
@@ -33,14 +28,11 @@ sub add_edge {
 
 sub add_node {
     my $self = shift;
-    my $log = $self->app->log;
+    my $log  = $self->app->log;
 
-    my $scenario_id = $self->req->param('scenario_id');
-    my $type        = $self->req->param('type');
-    my $x           = $self->req->param('x');
-    my $y           = $self->req->param('y');
-
-    my $scenario = $model->elem->{$scenario_id};
+    my $type = $self->req->param('type');
+    my $x    = $self->req->param('x');
+    my $y    = $self->req->param('y');
 
     $log->debug("add_node ($type)");
     my $node = $scenario->add_node( $type, x => $x, y => $y );
@@ -51,15 +43,7 @@ sub add_node {
 sub to_json {
     my $self = shift;
 
-    my $scenario_id = $self->stash('scenario_id');
-    my $scenario    = $model->elem->{$scenario_id};
-
-    if ( defined $scenario ) {
-        $self->render_json( $scenario->to_hashref );
-    }
-    else {
-        $self->render_json( {}, status => 404 );
-    }
+    $self->render_json( $scenario->to_hashref );
 }
 
 1;

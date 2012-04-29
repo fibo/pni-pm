@@ -34,9 +34,7 @@ sub startup {
     $r->get('/node/:node_id')->to('scenario#to_json');
     $r->put('/node')->to('scenario#add_node');
 
-    $r->delete('/scenario/:scenario_id')->to('scenario#del');
-    $r->get('/scenario/:scenario_id')->to('scenario#to_json');
-    $r->put('/scenario')->to('scenario#add');
+    $r->get('/scenario')->to('scenario#to_json');
 
 }
 
