@@ -19,7 +19,7 @@ sub BUILD {
 sub by_id {
     my $elem = PNI::Elem::by_id(@_);
 
-    if ( defined $elem->isa('PNI::Edge') ) {
+    if ( defined $elem and $elem->isa('PNI::Edge') ) {
         return $elem;
     }
     else {

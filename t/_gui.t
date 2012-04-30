@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 29;
+use Test::More tests => 30;
 use Test::Mojo;
 
 # Use some test nodes, under t/PNI/Node path.
@@ -27,7 +27,7 @@ $t->get_ok('/')
   ->content_type_is('text/html;charset=UTF-8')
 
   # Check title.
-  #->text_is( 'html head title' => 'Perl Node Interface', 'title' )
+  ->text_is( 'html head title' => 'Perl Node Interface', 'title' )
 
   # End of Main Window tests.
   ;

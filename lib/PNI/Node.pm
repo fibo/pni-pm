@@ -21,7 +21,7 @@ has y    => ();
 sub by_id {
     my $elem = PNI::Elem::by_id(@_);
 
-    if ( defined $elem and $elem->isa('PNI::Edge') ) {
+    if ( defined $elem and $elem->isa('PNI::Node') ) {
         return $elem;
     }
     else {
@@ -112,6 +112,8 @@ sub to_hashref {
 
 sub DESTROY {
     my $self = shift;
+
+    $self->SUPER::DESTROY;
 
     delete $id_from_label_map{ $self->id };
 }

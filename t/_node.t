@@ -49,14 +49,14 @@ my $out2 = $node->out(2);
 isa_ok $out2, 'PNI::Out', 'out(number)';
 is $out2->label, 'out2', 'out(number) label';
 
-is $node, PNI::Node::by_id( $node->id ), 'by_id';
-is undef, PNI::Node::by_id(-1), 'by_id check id';
-is undef, PNI::Node::by_id( $in1->id ), 'by_id checks type';
+is PNI::Node::by_id( $node->id ), $node, 'by_id';
+is PNI::Node::by_id(-1), undef, 'by_id check id';
+is PNI::Node::by_id( $in1->id ), undef, 'by_id checks type';
 
 my $node_id = $node->id;
 
-$edge->DESTROY;
-is undef, PNI::Edge::by_id($edge_id), 'DESTROY';
+$node->DESTROY;
+is undef, PNI::Node::by_id($node_id), 'DESTROY';
 my $scen = PNI::Scenario->new;
 
 my $node1 = $scen->add_node('Empty');
