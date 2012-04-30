@@ -2,6 +2,8 @@ package PNI::Node;
 use PNI::Mo;
 extends 'PNI::Elem';
 
+use PNI::Elem;
+
 use PNI::In;
 use PNI::Out;
 use PNI::Set;
@@ -15,6 +17,17 @@ has outs => ( default => sub { return PNI::Set->new; } );
 has type => ();
 has x    => ();
 has y    => ();
+
+sub by_id {
+    my $elem = PNI::Elem::by_id(@_);
+
+    if ( defined $elem and $elem->isa('PNI::Edge') ) {
+        return $elem;
+    }
+    else {
+        return;
+    }
+}
 
 sub get_outs_edges {
     return map { $_->edges->list } shift->outs->list;
@@ -32,7 +45,6 @@ sub in {
     $label =~ /^\d*$/ and $label = 'in' . $label;
 
     if ( my $id = $id_from_label_map{ $self->id }{$label} ) {
-
         return $self->ins->elem->{$id};
     }
     else {
@@ -151,6 +163,14 @@ Holds a L<PNI::Set> of <PNI::Out>.
 =head2 type
 
 =head1 METHODS
+
+=head2 by_id
+
+    use PNI::Node;
+
+    my $node = PNI::Node::by_id($node_id);
+
+Given an node id, returns a reference to the node.
 
 =head2 get_ins_edges
 

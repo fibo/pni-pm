@@ -2,6 +2,8 @@ package PNI::Edge;
 use PNI::Mo;
 extends 'PNI::Elem';
 
+use PNI::Elem;
+
 has source => ();
 has target => ();
 
@@ -12,6 +14,17 @@ sub BUILD {
     $self->target->edge($self);
 
     return;
+}
+
+sub by_id {
+    my $elem = PNI::Elem::by_id(@_);
+
+    if ( defined $elem->isa('PNI::Edge') ) {
+        return $elem;
+    }
+    else {
+        return;
+    }
 }
 
 sub task {
@@ -58,13 +71,21 @@ PNI::Edge - is used to connect
 
 =head1 METHODS
 
+=head2 by_id
+
+    use PNI::Edge;
+
+    my $edge = PNI::Edge::by_id($edge_id);
+
+Given an edge id, returns a reference to the edge.
+
 =head2 task
 
     $edge->task;
 
 If edge is connected, pass data from target to source.
 
-=head2 to_hash
+=head2 to_hashref
 
     my $edge_hashref = $edge->to_hashref;
 
