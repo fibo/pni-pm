@@ -30,14 +30,24 @@ is $out->label, 'out', 'default out label';
 isa_ok $out, 'PNI::Out';
 is $out, $node->out, 'out accessor';
 
+my $type = 'Foo';
+my $label = 'bar';
+my $x = 10;
+my $y = 20;
+$node->label($label);
+$node->type($type);
+$node->x($x);
+$node->y($y);
+
 is_deeply $node->to_hashref,
   {
     id    => $node->id,
-    label => $node->label,
+    label => $label,
     ins   => [ $in->id ],
     outs  => [ $out->id ],
-    x     => $node->x,
-    y     => $node->y,
+    type => $type,
+    x     => $x,
+    y     => $y,
   },
   'to_hashref';
 

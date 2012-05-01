@@ -105,6 +105,7 @@ sub to_hashref {
         label => $self->label,
         ins   => [ $self->ins->ids ],
         outs  => [ $self->outs->ids ],
+        type => $self->type,
         x     => $self->x,
         y     => $self->y,
     };

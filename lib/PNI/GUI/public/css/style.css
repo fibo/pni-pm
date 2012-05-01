@@ -16,3 +16,8 @@
   height: 100%;
   width: 100%;
 }
+.pni-io {
+  border: 1px solid black;
+  position: absolute;
+  display: block;
+}

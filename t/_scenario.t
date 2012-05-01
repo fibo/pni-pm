@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use PNI::Scenario;
-use Test::More tests => 27;
+use Test::More tests => 30;
 
 # Use some test nodes, under t/PNI/Node path.
 use lib 't';
@@ -31,6 +31,10 @@ my $node1 = $scen->add_node('Empty');
 isa_ok $node1, 'PNI::Node', 'add_node';
 my $node2 = $scen->add_node('Empty');
 is $scen->nodes->list, 2, 'nodes list';
+
+is PNI::Scenario::by_id( $scen->id ), $scen, 'by_id';
+is PNI::Scenario::by_id(-1), undef, 'by_id check id';
+is PNI::Scenario::by_id( $node1->id ), undef, 'by_id checks type';
 
 # Connect nodes with an edge.
 my $source1 = $node1->out;
