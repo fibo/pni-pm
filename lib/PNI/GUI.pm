@@ -30,6 +30,7 @@ sub startup {
     $r->post('/edge')->to('scenario#add_edge');
 
     $r->get('/node/:node_id')->to('node#to_json');
+    $r->put('/node/:node_id')->to('node#update_position');
     $r->post('/node')->to('scenario#add_node');
 
     $r->get('/scenario')->to('scenario#to_json');
