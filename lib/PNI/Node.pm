@@ -128,13 +128,44 @@ PNI::Node - is a basic unit of code
 
 =head1 SYNOPSIS
 
-    # Create a node in a scenario.
-    use PNI::Scenario;
-    my $scen = PNI::Scenario->new;
-    my $node = $scenario->add_node( type => 'Foo::Bar' );
+    # Define "Foo::Bar" node.
+    # in file PNI/Node/Foo/Bar.pm
 
-    # Decorate node, add an input and an output.
-    my $in = $node->in('lead');
+    package PNI::Node::Foo::Bar;
+    use PNI::Node::Mo;
+    extends 'PNI::Node';
+
+    sub BUILD {
+        my $self = shift;
+
+        # Decorate node, add an input and an output.
+        $self->in('lead');
+        $self->out('gold');
+
+    }
+
+    sub task {
+        my $self = shift;
+
+        my $in  = $self->in('lead');
+        my $out = $self->out('gold');
+
+        # Turn lead into gold.
+        ...
+
+          $out->data( $in->data );
+
+    }
+
+    1;
+
+    # Somewhere else in your code.
+
+    # Create a "Foo::Bar" node.
+    use PNI::Node;
+    my $node = PNI::Node->new( type => 'Foo::Bar' );
+
+    my $in  = $node->in('lead');
     my $out = $node->out('gold');
 
     # Fill input data.

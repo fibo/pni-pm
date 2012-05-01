@@ -3,6 +3,27 @@
 
 PNI::Guides::FAQ
 
+=head2 What is PNI?
+
+PNI stands for Perl Node Interface. It is a node based L<visual programming language|http://en.wikipedia.org/wiki/Visual_programming_language>, so it permits you to build programs graphically even if you are not a programmer.
+
+=head2 Which is PNI target?
+
+PNI could be used for really every purpouse, but, the main target is genetic researchers which are not  full time programmers and need to use Perl to do their job.
+If one day one person will get well from a genetic disease thanks to PNI, it will be the greatest satisfaction for my work.
+
+=head2 Does PNI run on my OS?
+
+Yes, probably! Check out this L<report|http://matrix.cpantesters.org/?dist=Perl-Node-Interface>.
+
+=head2 What are nodes and edges?
+
+Consider a node just like a lego block of code that you can wire with other nodes using edges. This allow you to rapidly create a program.
+
+=head2 Is it possible to extend PNI?
+
+Yes, even if you are a begginer Perl programmer it is easy to extend PNI writing new nodes.
+
 =cut
 
 

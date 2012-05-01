@@ -11,7 +11,7 @@ PNI stands for Perl Node Interface.
 
 It is my main project, my contribution to the great Perl community. Node programming is really interesting since makes possible to realize a program even if you have no idea about programming. 
 
-Think about genetic researchers, for example. They need to focus on protein chains, not on what a package is. Maybe they can do an extra effort and say the world "variable" or "string" or even "regular expression" and that makes them proud, but they don't care about inheritance.
+Think about genetic researchers, for example. They need to focus on protein chains, not on what a package is. Maybe they can do an extra effort and say the world "variable" or "string" or even "regular expression" and that makes them proud, but they think about inheritance ... you know, not as software but as genetic.
 
 They want things working and they need Perl ... but if you say L<Strawberry|http://strawberryperl.com/> they think about yogurt, not about Windows.
 

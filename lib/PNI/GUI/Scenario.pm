@@ -18,7 +18,7 @@ sub add_edge {
     my $source = PNI::Elem::by_id($source_id);
     my $target = PNI::Elem::by_id($target_id);
 
-    $log->debug("Added edge ($source_id => $target_id");
+    $log->debug("Added edge ($source_id => $target_id)");
     my $edge = $scenario->add_edge( source => $source, target => $target );
 
     $self->render_json( $edge->to_hashref, status => 201 );

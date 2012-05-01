@@ -16,6 +16,7 @@ sub add_edge {
     my $self = shift;
 
     my $edge = PNI::Edge->new(@_);
+
     return $self->edges->add($edge);
 }
 
