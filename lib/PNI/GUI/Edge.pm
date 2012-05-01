@@ -6,6 +6,7 @@ use PNI::Edge;
 
 sub to_json {
     my $self = shift;
+    my $log  = $self->app->log;
 
     my $edge_id = $self->stash('edge_id');
 
