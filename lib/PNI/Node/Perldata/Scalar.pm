@@ -1,15 +1,20 @@
 package    # Avoid PAUSE indexing.
-  PNI::Node::PNI::In;
+  PNI::Node::Perldata::Scalar;
 use PNI::Node::Mo;
 extends 'PNI::Node';
 
 sub BUILD {
     my $self = shift;
 
+    $self->in;
     $self->out;
 }
 
-sub task { }
+sub task { 
+    my $self = shift;
+
+    $self->out->data($self->in);
+}
 
 1;
 
