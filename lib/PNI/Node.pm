@@ -204,7 +204,7 @@ Holds a L<PNI::Set> of <PNI::Out>.
 
     my $node = PNI::Node::by_id($node_id);
 
-Given an node id, returns a reference to the node.
+Given a node id, returns a reference to the node.
 
 =head2 get_ins_edges
 

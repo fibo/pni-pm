@@ -3,6 +3,7 @@ use PNI::Mo;
 extends 'PNI::Node';
 
 use PNI::Edge;
+use PNI::Elem;
 use PNI::Node;
 use PNI::Set;
 
@@ -40,6 +41,17 @@ sub add_scenario {
     my $scenario = PNI::Scenario->new(@_);
 
     return $self->scenarios->add($scenario);
+}
+
+sub by_id {
+    my $elem = PNI::Elem::by_id(@_);
+
+    if ( defined $elem and $elem->isa('PNI::Scenario') ) {
+        return $elem;
+    }
+    else {
+        return;
+    }
 }
 
 sub del_edge {
@@ -227,6 +239,14 @@ A L<PNI::Set> containing <PNI::Scenario>s.
 =head2 add_scenario
 
     $sub_scenario = $scenario->add_scenario;
+
+=head2 by_id
+
+    use PNI::Scenario;
+
+    my $scenario = PNI::Scenario::by_id($scenario_id);
+
+Given a scenario  id, returns a reference to the scenario.
 
 =head2 del_edge
 

@@ -35,6 +35,7 @@ sub startup {
 
     $r->get('/scenario')->to('scenario#to_json');
 
+    $r->get('/slot/:slot_id/data')->to('slot#get_data');
 }
 
 1;

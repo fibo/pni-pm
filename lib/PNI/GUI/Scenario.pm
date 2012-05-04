@@ -24,6 +24,9 @@ sub add_edge {
     $self->render_json( $edge->to_hashref, status => 201 );
 }
 
+use Mojo::JSON;
+my $json = Mojo::JSON->new;
+
 sub add_node {
     my $self = shift;
     my $log  = $self->app->log;
@@ -31,9 +34,17 @@ sub add_node {
     my $type = $self->req->param('type');
     my $x    = $self->req->param('x');
     my $y    = $self->req->param('y');
+    my $ins  = $self->req->param('ins');
+    $ins = $json->decode($ins);
+
+    # TODO da aggiustare 
+    
+# TODO vedi bene sta cosa, devo forzare x e y ad essere interi altrimenti json me li mette tra ""
+    $x += 0;
+    $y += 0;
 
     $log->debug("Added node ($type)");
-    my $node = $scenario->add_node( $type, x => $x, y => $y );
+    my $node = $scenario->add_node( $type, x => $x, y => $y,ins=>$ins );
 
     $self->render_json( $node->to_hashref, status => 201 );
 }
