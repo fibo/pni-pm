@@ -60,7 +60,7 @@ isa_ok $out2, 'PNI::Out', 'out(number)';
 is $out2->label, 'out2', 'out(number) label';
 
 is PNI::Node::by_id( $node->id ), $node, 'by_id';
-is PNI::Node::by_id(-1), undef, 'by_id check id';
+is PNI::Node::by_id(-1), undef, 'by_id checks id';
 is PNI::Node::by_id( $in1->id ), undef, 'by_id checks type';
 
 my $node_id = $node->id;

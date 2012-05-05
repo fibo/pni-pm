@@ -49,8 +49,18 @@ sub add_node {
     $self->render_json( $node->to_hashref, status => 201 );
 }
 
+sub run_task {
+    my $self = shift;
+    my $log  = $self->app->log;
+
+    $scenario->task;
+
+    $self->render_json( $scenario->to_hashref );
+}
+
 sub to_json {
     my $self = shift;
+    my $log  = $self->app->log;
 
     $self->render_json( $scenario->to_hashref );
 }

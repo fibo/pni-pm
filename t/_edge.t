@@ -19,7 +19,7 @@ is_deeply $edge->to_hashref,
   'to_hashref';
 
 is PNI::Edge::by_id( $edge->id ), $edge, 'by_id';
-is PNI::Edge::by_id(-1), undef, 'by_id check id';
+is PNI::Edge::by_id(-1), undef, 'by_id checks id';
 is PNI::Edge::by_id( $node->id ), undef, 'by_id checks type';
 
 my $edge_id = $edge->id;

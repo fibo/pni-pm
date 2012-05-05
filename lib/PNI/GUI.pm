@@ -34,6 +34,7 @@ sub startup {
     $r->post('/node')->to('scenario#add_node');
 
     $r->get('/scenario')->to('scenario#to_json');
+    $r->get('/task')->to('scenario#run_task');
 
     $r->get('/slot/:slot_id/data')->to('slot#get_data');
 }

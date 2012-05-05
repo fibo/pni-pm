@@ -30,7 +30,20 @@ sub add_node {
 
     $node_class->require or return;
 
-    my $node = $node_class->new( type => $type, @_ );
+    my $arg = {@_};
+
+    my $node = $node_class->new( 
+        type => $type, 
+   x=>$arg->{x},
+   y=>$arg->{y},
+    );
+
+    for ( @{$arg->{ins}} ) {
+        my $data = $_->{data};
+        my $label = $_->{label};
+
+        $node->in($label)->data($data);
+    }
 
     return $self->nodes->add($node);
 }

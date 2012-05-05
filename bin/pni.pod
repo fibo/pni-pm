@@ -25,5 +25,9 @@ Set run mode for the L<Mojolicious> application to C<development>.
 
     PNI_DEV=1
 
+=head1 SEE ALSO
+
+L<PNI>
+
 =cut
 
