@@ -6,6 +6,8 @@ extends 'PNI::Node';
 sub BUILD {
     my $self = shift;
 
+    $self->label('$');
+
     $self->in;
     $self->out;
 }
