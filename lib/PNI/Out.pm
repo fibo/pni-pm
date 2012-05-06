@@ -1,9 +1,22 @@
 package PNI::Out;
 use PNI::Mo;
 extends 'PNI::Slot';
+
+use PNI::Elem;
 use PNI::Set;
 
-has edges => ( default => sub { PNI::Set->new } );
+has edges => ( default => sub { return PNI::Set->new; } );
+
+sub by_id {
+    my $elem = PNI::Elem::by_id(@_);
+
+    if ( defined $elem and $elem->isa('PNI::Out') ) {
+        return $elem;
+    }
+    else {
+        return;
+    }
+}
 
 sub is_connected { return shift->edges->list ? 1 : 0 }
 
@@ -36,6 +49,8 @@ PNI::Out - is a node output
     my @edges = $out->edges->list;
 
 =head1 METHODS
+
+=head2 by_id
 
 =head2 is_connected
 

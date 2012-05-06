@@ -9,10 +9,6 @@ isa_ok $slot, 'PNI::Slot';
 is $slot->data, undef, 'default data';
 is $slot->node, undef, 'default node';
 
-is PNI::Slot::by_id( $slot->id ), $slot, 'by_id';
-is PNI::Slot::by_id(-1), undef, 'by_id checks id';
-is PNI::Slot::by_id( $in1->id ), undef, 'by_id checks type';
-
 $slot->data(1);
 ok $slot->is_number, 'is_number';
 
