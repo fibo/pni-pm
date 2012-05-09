@@ -32,14 +32,14 @@ sub add_node {
 
     my $arg = {@_};
 
-    my $node = $node_class->new( 
-        type => $type, 
-   x=>$arg->{x},
-   y=>$arg->{y},
+    my $node = $node_class->new(
+        type => $type,
+        x    => $arg->{x},
+        y    => $arg->{y},
     );
 
-    for ( @{$arg->{ins}} ) {
-        my $data = $_->{data};
+    for ( @{ $arg->{ins} } ) {
+        my $data  = $_->{data};
         my $label = $_->{label};
 
         $node->in($label)->data($data);

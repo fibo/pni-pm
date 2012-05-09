@@ -100,12 +100,24 @@ sub task { die; }
 sub to_hashref {
     my $self = shift;
 
+    my @ins_to_hashref;
+    for my $in_id ( $self->ins->ids ) {
+        my $in = PNI::In::by_id($in_id);
+        push @ins_to_hashref, $in->to_hashref;
+    }
+
+    my @outs_to_hashref;
+    for my $in_id ( $self->ins->ids ) {
+        my $in = PNI::In::by_id($in_id);
+        push @ins_to_hashref, $in->to_hashref;
+    }
+
     return {
         id    => $self->id,
         label => $self->label,
-        ins   => [ $self->ins->ids ],
-        outs  => [ $self->outs->ids ],
-        type => $self->type,
+        ins   => \@ins_to_hashref,
+        outs  => \@outs_to_hashref,
+        type  => $self->type,
         x     => $self->x,
         y     => $self->y,
     };

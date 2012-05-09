@@ -3,7 +3,7 @@ use warnings;
 use PNI::Edge;
 use PNI::Node;
 use PNI::In;
-use Test::More tests => 7;
+use Test::More tests => 9;
 
 my $node = PNI::Node->new;
 my $in = PNI::In->new( node => $node );
@@ -16,7 +16,12 @@ my $out = $node->out;
 my $edge = PNI::Edge->new( source => $out, target => $in );
 is $in->is_connected, 1, 'is_connected';
 
-is PNI::In::by_id( $in->id ), $in, 'by_id';
+my $in_id = $in->id;
+
+is PNI::In::by_id($in_id), $in, 'by_id';
 is PNI::In::by_id(-1), undef, 'by_id checks id';
 is PNI::In::by_id( $node->id ), undef, 'by_id checks type';
+
+$in->DESTROY;
+is PNI::In::by_id($in_id), undef, 'DESTROY';
 

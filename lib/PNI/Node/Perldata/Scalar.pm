@@ -12,10 +12,10 @@ sub BUILD {
     $self->out;
 }
 
-sub task { 
+sub task {
     my $self = shift;
 
-    $self->out->data($self->in);
+    $self->out->data( $self->in->data );
 }
 
 1;

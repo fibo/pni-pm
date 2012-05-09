@@ -30,22 +30,24 @@ is $out->label, 'out', 'default out label';
 isa_ok $out, 'PNI::Out';
 is $out, $node->out, 'out accessor';
 
-my $type = 'Foo';
+my $type  = 'Foo';
 my $label = 'bar';
-my $x = 10;
-my $y = 20;
+my $x     = 10;
+my $y     = 20;
 $node->label($label);
 $node->type($type);
 $node->x($x);
 $node->y($y);
 
+my $node_id = $node->id;
+
 is_deeply $node->to_hashref,
   {
-    id    => $node->id,
+    id    => $node_id,
     label => $label,
-    ins   => [ $in->id ],
-    outs  => [ $out->id ],
-    type => $type,
+    ins   => [ $in->to_hashref ],
+    outs  => [ $out->to_hashref ],
+    type  => $type,
     x     => $x,
     y     => $y,
   },
@@ -59,14 +61,13 @@ my $out2 = $node->out(2);
 isa_ok $out2, 'PNI::Out', 'out(number)';
 is $out2->label, 'out2', 'out(number) label';
 
-is PNI::Node::by_id( $node->id ), $node, 'by_id';
+is PNI::Node::by_id( $node_id ), $node, 'by_id';
 is PNI::Node::by_id(-1), undef, 'by_id checks id';
 is PNI::Node::by_id( $in1->id ), undef, 'by_id checks type';
 
-my $node_id = $node->id;
-
 $node->DESTROY;
 is undef, PNI::Node::by_id($node_id), 'DESTROY';
+
 my $scen = PNI::Scenario->new;
 
 my $node1 = $scen->add_node('Empty');

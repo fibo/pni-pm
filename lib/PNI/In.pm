@@ -49,6 +49,12 @@ hold only one edge.
 
 =head2 by_id
 
+    use PNI::In;
+
+    my $in = PNI::In::by_id($in_id);
+
+Given a slot id, returns a reference to the slot.
+
 =head2 is_connected
 
     $in->is_connected;

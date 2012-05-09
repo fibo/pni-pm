@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 18;
+use Test::More tests => 19;
 use PNI::Slot;
 
 my $slot = PNI::Slot->new;
@@ -8,6 +8,19 @@ isa_ok $slot, 'PNI::Slot';
 
 is $slot->data, undef, 'default data';
 is $slot->node, undef, 'default node';
+
+my $data = [
+    qw(foo bar),
+    { pinco => 'pallo' },
+    'Nel mezzo del cammin di nostra vita, mi ritrovai per una selva oscura'
+];
+$slot->data($data);
+is_deeply $slot->to_hashref,
+  {
+    id   => $slot->id,
+    data => $data,
+  },
+  'to_hashref';
 
 $slot->data(1);
 ok $slot->is_number, 'is_number';

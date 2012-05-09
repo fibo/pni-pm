@@ -28,6 +28,15 @@ sub is_string {
 
 sub is_undef { return shift->type eq 'UNDEF' ? 1 : 0; }
 
+sub to_hashref {
+    my $self = shift;
+
+    return {
+        id   => $self->id,
+        data => $self->data
+    };
+}
+
 sub type {
     my $data = shift->data;
 
@@ -93,6 +102,12 @@ to its L<PNI::Node>.
 =head2 is_string
 
 =head2 is_undef
+
+=head2 to_hashref
+
+    my $slot_hashref = $slot->to_hashref;
+
+Returns an hash ref representing the slot.
 
 =head2 type
 

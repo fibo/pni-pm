@@ -52,6 +52,12 @@ PNI::Out - is a node output
 
 =head2 by_id
 
+    use PNI::Out;
+
+    my $out = PNI::Out::by_id($out_id);
+
+Given a slot id, returns a reference to the slot.
+
 =head2 is_connected
 
     $out->is_connected;
