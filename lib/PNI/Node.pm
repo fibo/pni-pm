@@ -107,9 +107,9 @@ sub to_hashref {
     }
 
     my @outs_to_hashref;
-    for my $in_id ( $self->ins->ids ) {
-        my $in = PNI::In::by_id($in_id);
-        push @ins_to_hashref, $in->to_hashref;
+    for my $out_id ( $self->outs->ids ) {
+        my $out = PNI::Out::by_id($out_id);
+        push @outs_to_hashref, $out->to_hashref;
     }
 
     return {

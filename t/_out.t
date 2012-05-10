@@ -3,7 +3,7 @@ use warnings;
 use PNI::Edge;
 use PNI::Node;
 use PNI::Out;
-use Test::More tests => 6;
+use Test::More tests => 7;
 
 my $node = PNI::Node->new;
 my $out = PNI::Out->new( node => $node );

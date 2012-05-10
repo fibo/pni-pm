@@ -7,7 +7,9 @@ sub BUILD {
     my $self = shift;
     $self->label('print');
 
+    $self->in('filehandle');
     $self->in('list');
+    $self->in('do_print');
     $self->out('return_code');
 }
 

@@ -41,18 +41,6 @@ $node->y($y);
 
 my $node_id = $node->id;
 
-is_deeply $node->to_hashref,
-  {
-    id    => $node_id,
-    label => $label,
-    ins   => [ $in->to_hashref ],
-    outs  => [ $out->to_hashref ],
-    type  => $type,
-    x     => $x,
-    y     => $y,
-  },
-  'to_hashref';
-
 my $in1 = $node->in(1);
 isa_ok $in1, 'PNI::In', 'in(number)';
 is $in1->label, 'in1', 'in(number) label';
@@ -61,7 +49,30 @@ my $out2 = $node->out(2);
 isa_ok $out2, 'PNI::Out', 'out(number)';
 is $out2->label, 'out2', 'out(number) label';
 
-is PNI::Node::by_id( $node_id ), $node, 'by_id';
+my @ins_to_hashref;
+my @outs_to_hashref;
+
+$in1->data( [qw(foo bar)] );
+$out2->data( { foo => 'bar' } );
+
+push @ins_to_hashref,  $in->to_hashref;
+push @ins_to_hashref,  $in1->to_hashref;
+push @outs_to_hashref, $out->to_hashref;
+push @outs_to_hashref, $out2->to_hashref;
+
+is_deeply $node->to_hashref,
+  {
+    id    => $node_id,
+    label => $label,
+    ins   => \@ins_to_hashref,
+    outs  => \@outs_to_hashref,
+    type  => $type,
+    x     => $x,
+    y     => $y,
+  },
+  'to_hashref';
+
+is PNI::Node::by_id($node_id), $node, 'by_id';
 is PNI::Node::by_id(-1), undef, 'by_id checks id';
 is PNI::Node::by_id( $in1->id ), undef, 'by_id checks type';
 
