@@ -7,5 +7,5 @@ use Mojolicious::Commands;
 $ENV{MOJO_APP} = 'PNI::GUI';
 $ENV{MOJO_MODE} = 'production';
 
-Mojolicious::Commands->start_app;
+Mojolicious::Commands->start;
 
