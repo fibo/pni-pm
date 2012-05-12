@@ -112,14 +112,20 @@ sub to_hashref {
         push @outs_to_hashref, $out->to_hashref;
     }
 
+    # TODO risolvi la questione del tipo di dati in JSON
+    my $x = $self->x;
+    my $y = $self->y;
+$x += 0;
+$y += 0;
+
     return {
         id    => $self->id,
         label => $self->label,
         ins   => \@ins_to_hashref,
         outs  => \@outs_to_hashref,
         type  => $self->type,
-        x     => $self->x,
-        y     => $self->y,
+        x     => $x,
+        y     => $y,
     };
 }
 
