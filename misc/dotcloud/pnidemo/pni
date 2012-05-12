@@ -1,26 +1,11 @@
 #!/usr/bin/env perl
 use Mojo::Base -strict;
 
-use File::Basename 'dirname';
-use File::Spec;
-
 use Mojolicious::Commands;
 
-# Make it work if it is not installed.
-use lib join '/',
-  File::Spec->splitdir( dirname(__FILE__) ),
-  File::Spec->updir,
-  'lib';
-
-# Set app name.
+# Set app name and mojo mode.
 $ENV{MOJO_APP} = 'PNI::GUI';
-
-# App mode defaults to "production", unless PNI_DEV is set.
 $ENV{MOJO_MODE} = 'production';
-$ENV{MOJO_MODE} = 'development' if defined $ENV{PNI_DEV};
 
-# Override "namespaces" to restrict command set.
-my $command = Mojolicious::Commands->new( namespaces => ['PNI::Command'] );
-
-$command->start;
+Mojolicious::Commands->start_app;
 
