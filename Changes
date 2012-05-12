@@ -1,6 +1,6 @@
 Revision history for Perl Node Interface.
 
-0.34  2012-05-xx
+0.34  2012-05-12
     - page refresh works good
     - added PNI::Node::Perldata::Scalar
     - can run task via browser
