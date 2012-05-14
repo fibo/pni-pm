@@ -19,5 +19,27 @@ There are a lot of node programming languages (L<VVVV|http://vvvv.org/>, L<Pured
 
 This is my effort to provide a node interface that brings Perl power to people who don't know the Perl language.
 
+=head1 DEVELOPMENT
+
+L<PNI repository|http://github.com/fibo/pni-pm>
+
+=head1 RESOURCES
+
+L<PNI blog|http://perl-node-interface.blogspot.com>
+
+L<PNI class diagram|http://goo.gl/MQ89f>
+
+L<PNI node coverage|http://goo.gl/hfAoU>
+
+=head1 SUPPORT
+
+L<#pni IRC channel on freenode|irc://freenode/pni>
+
+L<PNI mailing list|http://groups.google.com/group/perl-node-interface>
+
+=head1 SEE ALSO
+
+L<PNI::Guides>
+
 =cut
 

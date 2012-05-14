@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 30;
+use Test::More tests => 31;
 use Test::Mojo;
 
 use PNI::Scenario;
@@ -77,9 +77,9 @@ $t->get_ok( '/edge/' . $edge->id )
   ;
 
 # GET /node_list
-#use PNI::Finder;
-#my $find      = PNI::Finder->new;
-#my $node_listref = [$find->nodes];
+use PNI::Finder;
+my $find      = PNI::Finder->new;
+my @node_list = $find->nodes;
 
 $t->get_ok('/node_list')
 
@@ -90,7 +90,7 @@ $t->get_ok('/node_list')
   ->content_type_is('application/json')
 
   # Check json content.
-  #->json_is( $node_listref )
+  ->json_is( \@node_list )
 
   # End of GET /scenario endpoint tests.
   ;

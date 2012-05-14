@@ -14,7 +14,7 @@ If one day one person will get well from a genetic disease thanks to PNI, it wil
 
 =head2 Does PNI run on my OS?
 
-Yes, probably! Check out this L<report|http://matrix.cpantesters.org/?dist=Perl-Node-Interface>.
+Yes, probably! Check out L<this report|http://matrix.cpantesters.org/?dist=Perl-Node-Interface>.
 
 =head2 What are nodes and edges?
 

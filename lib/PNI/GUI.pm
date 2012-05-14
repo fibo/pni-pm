@@ -31,7 +31,7 @@ sub startup {
 
     $r->get('/node/:node_id')->to('node#to_json');
     # Questa put dovrebbe essere una post
-    $r->put('/node/:node_id')->to('node#update_position');
+    $r->post('/node/:node_id')->to('node#update_position');
     $r->post('/node')->to('scenario#add_node');
 
     $r->get('/scenario/:scenario_id')->to('scenario#to_json');
