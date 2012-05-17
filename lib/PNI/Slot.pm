@@ -2,7 +2,7 @@ package PNI::Slot;
 use PNI::Mo;
 extends 'PNI::Elem';
 
-use Scalar::Util;
+use Scalar::Util qw(looks_like_number);
 
 has data => ();
 has node => ();
@@ -15,7 +15,7 @@ sub is_defined { return defined( shift->data ); }
 
 sub is_hash { return shift->type eq 'HASH' ? 1 : 0; }
 
-sub is_number { return Scalar::Util::looks_like_number( shift->data ) ? 1 : 0; }
+sub is_number { return looks_like_number( shift->data ) ? 1 : 0; }
 
 sub is_scalar { return shift->type eq 'SCALAR' ? 1 : 0; }
 

@@ -95,7 +95,7 @@ sub out {
 }
 
 # This method is abstract.
-sub task { die; }
+sub task { }
 
 sub to_hashref {
     my $self = shift;
@@ -115,8 +115,8 @@ sub to_hashref {
     # TODO risolvi la questione del tipo di dati in JSON
     my $x = $self->x;
     my $y = $self->y;
-$x += 0;
-$y += 0;
+    $x += 0;
+    $y += 0;
 
     return {
         id    => $self->id,

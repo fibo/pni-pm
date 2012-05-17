@@ -12,5 +12,7 @@ sub BUILD {
     $self->out->data('0.34');
 }
 
+sub task { }
+
 1;
 

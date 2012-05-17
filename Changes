@@ -1,5 +1,9 @@
 Revision history for Perl Node Interface.
 
+0.35  2012-06-xx
+    - added PNI::Node::Perldata::Array
+    - added PNI::Node::Perldata::Hash
+
 0.34  2012-05-12
     - page refresh works good
     - added PNI::Node::Perldata::Scalar
