@@ -20,6 +20,7 @@ WriteMakefile(
         #'File::Find'            => 0,
         #'File::Spec::Functions' => 0,
         #'List::Util'            => 0,
+        'File::HomeDir'            => 0,
         'Module::Pluggable'     => 0,
         'Mojolicious'           => '2.85',
         #'Scalar::Util'          => 0,
