@@ -45,10 +45,25 @@ sub add_node {
     $x += 0;
     $y += 0;
 
-    $log->debug("Added node ($type)");
     my $node = $scenario->add_node( $type, x => $x, y => $y, ins => $ins );
 
+    $log->debug( "ADD node ($type) " . $node->id );
+
     $self->render_json( $node->to_hashref, status => 201 );
+}
+
+sub del_node {
+    my $self = shift;
+    my $log  = $self->app->log;
+
+    my $node_id = $self->stash('node_id');
+
+    my $node = PNI::Node::by_id($node_id);
+
+    $scenario->del_node($node);
+    $log->debug("DEL node $node_id");
+
+    $self->render_json( {}, status => 200 );
 }
 
 sub run_task {
