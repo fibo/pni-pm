@@ -2,20 +2,9 @@ use strict;
 use warnings;
 use File::Find;
 use File::Spec;
+use Perl::Critic::Bangs;
 use Test::More;
-require UNIVERSAL::require;
-
-if ( not $ENV{TEST_AUTHOR} ) {
-    my $msg = 'Author test.  Set $ENV{TEST_AUTHOR} to a true value to run';
-    plan( skip_all => $msg );
-}
-
-for my $module (qw( Test::Perl::Critic Perl::Critic::Bangs )) {
-
-    my $msg = "$module required to run tests";
-    $module->require or plan( skip_all => $msg );
-
-}
+use Test::Perl::Critic;
 
 my @node_dirs;
 my @node_files;
@@ -34,7 +23,7 @@ find(
     @node_dirs
 );
 
-my $rcfile = File::Spec->catfile( 't', 'perlcriticrc' );
+my $rcfile = File::Spec->catfile( 'xt', 'perlcriticrc' );
 Test::Perl::Critic->import( -profile => $rcfile, -theme => 'all + nodes' );
 critic_ok($_) for @node_files;
 

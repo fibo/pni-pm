@@ -30,9 +30,9 @@ sub startup {
     $r->post('/edge')->to('scenario#add_edge');
 
     $r->get('/node/:node_id')->to('node#to_json');
-    # Questa put dovrebbe essere una post
-    $r->post('/node/:node_id')->to('node#update_position');
     $r->post('/node')->to('scenario#add_node');
+    $r->post('/node/:node_id')->to('node#update_position');
+    $r->delete('/node/:node_id')->to('scenario#del_node');
 
     $r->get('/scenario/:scenario_id')->to('scenario#to_json');
     $r->get('/scenario/:scenario_id/task')->to('scenario#run_task');

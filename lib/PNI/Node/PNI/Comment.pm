@@ -5,7 +5,7 @@ extends 'PNI::Node';
 
 sub BUILD { shift->label('#'); }
 
-sub task {}
+sub task { }
 
 1;
 
