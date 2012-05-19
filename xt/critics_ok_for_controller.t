@@ -14,7 +14,7 @@ push @controller_files, File::Spec->catfile( 'lib', 'PNI', 'GUI', "$_.pm" )
   Scenario
 );
 
-my $rcfile = File::Spec->catfile( 't', 'perlcriticrc' );
+my $rcfile = File::Spec->catfile( 'xt', 'perlcriticrc' );
 Test::Perl::Critic->import( -profile => $rcfile, -theme => 'all + controller' );
 critic_ok($_) for @controller_files;
 

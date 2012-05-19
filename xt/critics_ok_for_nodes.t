@@ -23,7 +23,7 @@ find(
     @node_dirs
 );
 
-my $rcfile = File::Spec->catfile( 't', 'perlcriticrc' );
+my $rcfile = File::Spec->catfile( 'xt', 'perlcriticrc' );
 Test::Perl::Critic->import( -profile => $rcfile, -theme => 'all + nodes' );
 critic_ok($_) for @node_files;
 

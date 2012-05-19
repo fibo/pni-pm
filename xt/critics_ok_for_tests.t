@@ -18,7 +18,7 @@ find(
     't'
 );
 
-my $rcfile = File::Spec->catfile( 't', 'perlcriticrc' );
+my $rcfile = File::Spec->catfile( 'xt', 'perlcriticrc' );
 Test::Perl::Critic->import( -profile => $rcfile, -theme => 'all + tests' );
 critic_ok($_) for @test_files;
 

@@ -21,7 +21,7 @@ push @model_files, File::Spec->catfile( 'lib', 'PNI', $_ . '.pm' ) for qw (
   Slot
 );
 
-my $rcfile = File::Spec->catfile( 't', 'perlcriticrc' );
+my $rcfile = File::Spec->catfile( 'xt', 'perlcriticrc' );
 Test::Perl::Critic->import( -profile => $rcfile, -theme => 'all + model' );
 critic_ok($_) for @model_files;
 

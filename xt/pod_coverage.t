@@ -3,11 +3,7 @@ use warnings;
 use Test::More;
 use Test::Pod::Coverage;
 
-ok;
-#use lib 'xt';
-#use PNI::Files;
-
-# esporta model, nodes, controller ... vedi un po
+ok 0;
 
 done_testing;
 
