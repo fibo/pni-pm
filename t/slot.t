@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 19;
+use Test::More tests => 22;
 use PNI::Slot;
 
 my $slot = PNI::Slot->new;
@@ -8,6 +8,12 @@ isa_ok $slot, 'PNI::Slot';
 
 is $slot->data, undef, 'default data';
 is $slot->node, undef, 'default node';
+
+$slot->bang(1);
+ok $slot->is_bang, 'is_bang';
+ok $slot->bang,    'bang on';
+$slot->bang(0);
+ok !$slot->bang, 'bang off';
 
 my $data = [
     qw(foo bar),
@@ -19,6 +25,7 @@ is_deeply $slot->to_hashref,
   {
     id   => $slot->id,
     data => $data,
+    type => $slot->type
   },
   'to_hashref';
 

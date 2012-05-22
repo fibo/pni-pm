@@ -9,9 +9,9 @@ use PNI::Set;
 
 require UNIVERSAL::require;
 
-has edges     => ( default => sub { PNI::Set->new; } );
-has nodes     => ( default => sub { PNI::Set->new; } );
-has scenarios => ( default => sub { PNI::Set->new; } );
+has edges     => ( default => sub { PNI::Set->new; }, is => 'ro' );
+has nodes     => ( default => sub { PNI::Set->new; }, is => 'ro' );
+has scenarios => ( default => sub { PNI::Set->new; }, is => 'ro' );
 
 sub add_edge {
     my $self = shift;
@@ -164,10 +164,10 @@ sub task {
         $has_run_task_of{$node} or goto RUN_TASKS;
     }
 
-    # Finally, run all sub scenarios tasks.
+    # Run all sub scenarios tasks.
     $_->task for ( $self->scenarios->list );
 
-    return 1;
+    return $self->on;
 }
 
 sub to_hashref {

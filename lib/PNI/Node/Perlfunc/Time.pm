@@ -7,20 +7,19 @@ sub BUILD {
     my $self = shift;
     $self->label('time');
 
-    $self->in('update'); # TODO deve essere un bang
-    $self->out; # TODO deve essere un single
+    $self->in('update')->bang(0);
+    $self->out->data(time);
 }
 
 sub task {
-    my $self = shift;
-    my $update   = $self->in('update');
-    my $out  = $self->out;
+    my $self   = shift;
+    my $update = $self->in('update');
+    my $out    = $self->out;
 
-    $in->is_number or return $self->off;
-
-    $out->data( time );
+    if ( $update->bang ) {
+        $out->data(time);
+    }
 }
 
 1;
-
 

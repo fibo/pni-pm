@@ -28,7 +28,7 @@ Then point your browser to http://localhost:3000 and use the gui.
 =head1 DESCRIPTION
 
 Perl Node Interface is a node programming IDE via browser. 
-It is thinked to give Perl power to people who don-t know Perl.
+It's thought to give Perl power to people who don-t know Perl.
 It is very easy for Perl coders to extend it adding new nodes.
 
 =head1 SEE ALSO
