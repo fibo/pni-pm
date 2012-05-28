@@ -2,9 +2,9 @@ package PNI::Set;
 use PNI::Mo;
 extends 'PNI::Elem';
 
-has elem => ( default => sub { return {}; } );
-has min  => ( default => sub { return 0; } );
-has max  => ( default => sub { return 0; } );
+has elem => ( is => 'ro', default => sub { return {}; } );
+has min  => ( is => 'rw', default => sub { return 0; } );
+has max  => ( is => 'rw', default => sub { return 0; } );
 
 sub add {
     my $self = shift;

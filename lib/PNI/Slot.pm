@@ -9,9 +9,11 @@ has node => ( is => 'ro' );
 
 sub bang {
     my $self = shift;
-    defined $_[0] or return ${$self->data};
 
-    $self->data( bless \shift, 'BANG' );
+    defined $_[0] or return ${ $self->data };
+
+    my $flag = shift;
+    $self->data( bless \$flag, 'BANG' );
 }
 
 sub is_bang { return shift->type eq 'BANG' ? 1 : 0; }

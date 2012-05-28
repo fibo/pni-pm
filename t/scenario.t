@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 use PNI::Scenario;
-use Test::More tests => 30;
+use Test::More tests => 31;
 
 # Use some test nodes, under t/PNI/Node path.
 use lib 't';
@@ -29,8 +29,14 @@ isa_ok $scen, 'PNI::Scenario', 'add_scenario';
 # Empty.pm is a dummy node.
 my $node1 = $scen->add_node('Empty');
 isa_ok $node1, 'PNI::Node', 'add_node';
-my $node2 = $scen->add_node('Empty');
+
+# Bang.pm is a node with a BANG slot.
+my $node2 = $scen->add_node('Bang');
 is $scen->nodes->list, 2, 'nodes list';
+
+$node2->in->bang(1);
+$scen->task;
+is $node2->in->bang, 0, 'reset bangs after task';
 
 is PNI::Scenario::by_id( $scen->id ), $scen, 'by_id';
 is PNI::Scenario::by_id(-1), undef, 'by_id check id';

@@ -4,6 +4,9 @@ use Test::More;
 use File::Find;
 use File::Spec;
 
+use UNIVERSAL::require;
+PNI::Devel->require or plan( skip_all => 'PNI::Devel tests' );
+
 my @no_index_files;
 my @no_index_dirs = (
     File::Spec->catfile(qw(lib PNI Node)),

@@ -145,9 +145,9 @@ sub task {
             $_->task for ( $node->get_ins_edges );
 
             # Ok, now it's time to run node task:
-            eval { $node->task }
+            eval { $node->task; }
 
-              # if task sub return undef, turn off the node.
+              # if task sub returns undef, turn off the node.
               or $node->off;
 
             # Remember that this node has run its task.
@@ -166,6 +166,13 @@ sub task {
 
     # Run all sub scenarios tasks.
     $_->task for ( $self->scenarios->list );
+
+    # Reset all BANG slots.
+    for my $node ( $self->nodes->list ) {
+        for my $slot ( $node->ins->list, $node->outs->list ) {
+            $slot->bang(0) if $slot->is_bang;
+        }
+    }
 
     return $self->on;
 }

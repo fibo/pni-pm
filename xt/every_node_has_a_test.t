@@ -1,8 +1,11 @@
 use strict;
 use warnings;
-use Test::More;
 use File::Find;
 use File::Spec;
+use Test::More;
+
+use UNIVERSAL::require;
+PNI::Devel->require or plan( skip_all => 'PNI::Devel tests' );
 
 ok 0;
 done_testing;

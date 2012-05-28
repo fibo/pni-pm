@@ -11,9 +11,9 @@ is $slot->node, undef, 'default node';
 
 $slot->bang(1);
 ok $slot->is_bang, 'is_bang';
-ok $slot->bang,    'bang on';
+is $slot->bang, 1, 'bang on';
 $slot->bang(0);
-ok !$slot->bang, 'bang off';
+is $slot->bang, 0, 'bang off';
 
 my $data = [
     qw(foo bar),

@@ -1,9 +1,10 @@
 Revision history for Perl Node Interface.
 
-0.35  2012-06-xx
+0.35  2012-06-26
     - added PNI::Node::Perldata::Array
     - added PNI::Node::Perldata::Hash
     - added PNI::Node::File::HomeDir
+    - can delete nodes
 
 0.34  2012-05-12
     - page refresh works good
