@@ -1,11 +1,12 @@
 use strict;
 use warnings;
-use Test::More;
-use File::Find;
-use File::Spec;
 
 use UNIVERSAL::require;
 PNI::Devel->require or plan( skip_all => 'PNI::Devel tests' );
+
+use Test::More;
+use File::Find;
+use File::Spec;
 
 my @no_index_files;
 my @no_index_dirs = (
@@ -33,4 +34,5 @@ for (@no_index_files) {
     close $fh;
 }
 
-done_testing
+done_testing;
+

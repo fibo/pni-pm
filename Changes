@@ -1,6 +1,9 @@
 Revision history for Perl Node Interface.
 
-0.35  2012-06-26
+0.36  2012-06-xx
+    - added PNI.SemiEdge
+
+0.35  2012-05-26
     - added PNI::Node::Perldata::Array
     - added PNI::Node::Perldata::Hash
     - added PNI::Node::File::HomeDir

@@ -1,14 +1,14 @@
 use strict;
 use warnings;
-use File::Find;
-use File::Spec;
-use Test::More;
 
 use UNIVERSAL::require;
 PNI::Devel->require or plan( skip_all => 'PNI::Devel tests' );
 
-#Test::Perl::Critic->require  or plan( skip_all => 'PNI::Devel tests' );
-#Perl::Critic::Bangs->require or plan( skip_all => 'PNI::Devel tests' );
+use File::Find;
+use File::Spec;
+use Test::More;
+use Test::Perl::Critic;
+use Perl::Critic::Bangs;
 
 my @test_files;
 

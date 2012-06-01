@@ -8,7 +8,7 @@ use warnings;
 # as x.yy_zz so it will not be listed by CPAN.pm as the last.
 # After test results will be ok, it can be officially released x.(yy+1) version.
 
-our $VERSION = '0.35';
+our $VERSION = '0.36';
 $VERSION = eval $VERSION;
 
 1;
@@ -35,7 +35,14 @@ It is very easy for Perl coders to extend it adding new nodes.
 
 L<PNI::Guides>
 
-L<PNI demo|http://pnidemo-fibo.dotcloud.com>
+=cut
+
+# TODO fix dotcloud or use something else, maybe stackato.
+# PNI demo on dotcloud is broken, probably cause there are few workers
+# and they should be synched while by now every worker keep its Scenario in memory.
+# L<PNI demo|http://pnidemo-fibo.dotcloud.com>
+
+=pod
 
 =head1 AUTHOR
 

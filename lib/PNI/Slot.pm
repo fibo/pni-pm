@@ -87,10 +87,14 @@ to its L<PNI::Node>.
 
 =head1 METHODS
 
+=head2 bang
+
 =head2 is_array
 
     $slot->data([qw(foo bar)]);
     $slot->is_array; # true
+
+=head2 is_bang
 
 =head2 is_code
 
