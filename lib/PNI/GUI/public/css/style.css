@@ -21,3 +21,7 @@
   position: absolute;
   display: block;
 }
+#toolbar {
+  padding: 2px 10px;
+}
+
