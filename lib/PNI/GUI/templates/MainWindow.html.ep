@@ -37,6 +37,8 @@
   </SCRIPT>
  </HEAD>
  <BODY onmousedown="return false;">
+
+
 <span id="toolbar" class="ui-widget-header ui-corner-all">
 	<button id="beginning">go to beginning</button>
 	<button id="rewind">rewind</button>
@@ -54,15 +56,11 @@
 	</span>
 </span>
 
-  <DIV id="container">
   <DIV id="scenario">
    <DIV id="node-selector" class="ui-widget">
     <INPUT id="node-selector-input">
    </DIV> <!-- node-selector -->
-   <DIV id="node-inspector" class="ui-widget">
-   </DIV> <!-- node-inspector -->
-   <!-- Canvas created by Kinect.js here -->
   </DIV> <!-- scenario -->
-  </DIV> <!-- scenario -->
+
  </BODY>
 </HTML>
