@@ -1,63 +1,41 @@
 <!DOCTYPE HTML>
 <HTML>
- <HEAD>
-  <TITLE>Perl Node Interface</TITLE>
+<HEAD>
+	<TITLE>Perl Node Interface</TITLE>
 
-  <!-- Import style sheets. -->
-  <LINK rel="stylesheet" href="css/reset.css" type="text/css" />
-  <LINK rel="stylesheet" href="css/style.css" type="text/css" />
-  <LINK rel="stylesheet" href="css/black-tie/jquery-ui-1.8.18.custom.css" type="text/css" />
+	<!-- Import style sheets. -->
+	<LINK rel="stylesheet" href="css/reset.css" type="text/css" />
+	<LINK rel="stylesheet" href="css/style.css" type="text/css" />
+	<LINK rel="stylesheet" href="css/black-tie/jquery-ui-1.8.18.custom.css" type="text/css" />
 
-  <!-- Load external JavaScript libs. -->
-  <SCRIPT src="js/jquery-1.7.1.min.js" type="text/javascript" ></SCRIPT>
-  <SCRIPT src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript" ></SCRIPT>
+	<!-- Load external JavaScript libs. -->
+	<SCRIPT src="js/jquery-1.7.1.min.js" type="text/javascript" ></SCRIPT>
+	<SCRIPT src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript" ></SCRIPT>
 
-  <!-- Load internal JavaScript libs. -->
-  <SCRIPT src="js/pni.js" type="text/javascript" ></SCRIPT>
+	<!-- Load internal JavaScript libs. -->
+	<SCRIPT src="js/pni.js" type="text/javascript" ></SCRIPT>
 
-  <!-- Resource onload.js should be last JavaScript loaded.  -->
-  <SCRIPT src="js/onload.js" type="text/javascript" ></SCRIPT>
+	<!-- Resource onload.js should be last JavaScript loaded.  -->
+	<SCRIPT src="js/onload.js" type="text/javascript" ></SCRIPT>
 
-  <!-- Google Analytics tracking code. -->
-  <SCRIPT type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12635045-9']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-  </SCRIPT>
- </HEAD>
- <BODY onmousedown="return false;">
-
-
-<span id="toolbar" class="ui-widget-header ui-corner-all">
-	<button id="beginning">go to beginning</button>
-	<button id="rewind">rewind</button>
-	<button id="play">play</button>
-	<button id="stop">stop</button>
-	<button id="forward">fast forward</button>
-	<button id="end">go to end</button>
-	
-	<input type="checkbox" id="shuffle" /><label for="shuffle">Shuffle</label>
-	
-	<span id="repeat">
-		<input type="radio" id="repeat0" name="repeat" checked="checked" /><label for="repeat0">No Repeat</label>
-		<input type="radio" id="repeat1" name="repeat" /><label for="repeat1">Once</label>
-		<input type="radio" id="repeatall" name="repeat" /><label for="repeatall">All</label>
-	</span>
-</span>
-
-  <DIV id="scenario">
-   <DIV id="node-selector" class="ui-widget">
-    <INPUT id="node-selector-input">
-   </DIV> <!-- node-selector -->
-  </DIV> <!-- scenario -->
-
+	<!-- Google Analytics tracking code. -->
+	<SCRIPT type="text/javascript">
+		var _gaq=_gaq||[];
+		_gaq.push(['_setAccount','UA-12635045-9']);
+		_gaq.push(['_trackPageview']);
+		(function(){
+			var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;
+			ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';
+			var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);
+		})();
+	</SCRIPT>
+</HEAD>
+<BODY>
+	<DIV id="scenario">
+		<CANVAS id="edges-layer">Opss ... no canvas support :-(</CANVAS>
+		<DIV id="node-selector" class="ui-widget">
+			<INPUT id="node-selector-input">
+		</DIV> 
+	</DIV> 
  </BODY>
 </HTML>

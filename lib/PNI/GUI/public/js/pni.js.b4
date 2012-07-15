@@ -1,0 +1,1416 @@
+// vim: ai tw=80
+// vim: fdm=marker fmr=\\[,\\] fdc=4
+/////////////////////////////////////
+
+/******************************************************************************
+ *
+ *
+ *              _________________   ______              ______   _________
+ *             /                /  /      \            /     /| /        /|
+ *            /                /  /        \          /     / |/        / |
+ *           /                /  /          \        /     /  /        /  |
+ *          /                /  /            \      /     /  /        /   |
+ *         /    ____________/  /     /\       \    /     /  /        /    !.
+ *        /    /              /     /  \       \  /     /  /        /    /
+ *       /    /              /     /    \       \/     /  /        /    /
+ *      /    /              /     /      \            /  /        /    /
+ *     /    /              /     /        \          /  /        /    /
+ *    /    /              /     /          \        /  /        /    /
+ *   /____/              /_____/            \______/  /________/    /
+ *                                          |      |  |        |   /
+ *                                          |      |  |        |  /
+ *                                          |      | /|        | /
+ *                                          |______|/ |________|/
+ *
+ *
+ *****************************************************************************/
+
+var $j = jQuery.noConflict();
+
+// TODO USA requestAnimationFrame, e fai qualcosa tipo PNI.Renderer
+// in realta potrei riimplementare un semplice PNI.Canvas, mettendo poi la
+// requestAnimationFrame come da manuale, oppure ancora meglio fare un porting
+// della lib di Kinectjs prendendo solo quello che mi serve.
+/*
+requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||  
+                        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;  
+  
+var start = window.mozAnimationStartTime;  // Only supported in FF. Other browsers can use something like Date.now().  
+  
+function step(timestamp) {  
+  var progress = timestamp - start;  
+  d.style.left = Math.min(progress/10, 200) + "px";  
+  if (progress < 2000) {  
+    requestAnimationFrame(step);  
+  }  
+}  
+requestAnimationFrame(step);  
+*/
+
+// PNI //[
+
+PNI = {
+
+    // Global map id <--> PNI.Elem instance.
+    elemById: {},
+
+    // Inheritance.
+    extend: function( subClass, superClass ) { //[
+
+        for (var key in superClass.prototype) {
+
+            if ( 
+            // Inherit from superClass ...
+            superClass.prototype.hasOwnProperty(key) 
+            && 
+            // except when subClass overrides ...
+            ! subClass.prototype.hasOwnProperty(key) 
+            && 
+            // and when key is __SUPER__
+            // TODO TODO TODO ancora non la uso sta uber,
+            // sarebbe per il parent.
+            key != 'uber'
+            ) {
+                
+                subClass.prototype[key] = superClass.prototype[key];
+
+            }
+        }
+
+    }, //]
+
+requestAnimFrame: function(callback){
+    return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function(callback){
+        window.setTimeout(callback, 1000 / 60);
+    };
+},
+
+    Theme: {
+
+        fontFamily: 'Calibri',
+        fontSize: 12,
+
+        edgeStrokeStyle: 'black',
+        edgeLineWidth: 2,
+
+        nodeBoxTransitionDuration: 0.2,
+        nodeFill: 'grey',
+        nodeHeight: 30,
+
+        slotSide: 10,
+        strokeWidth: 2,
+        textFill: 'black',
+
+    }
+
+};
+
+//]
+
+// PNI.Elem //[
+
+PNI.Elem = function(arg) { 
+
+    this.model = arg.model;
+    this.scenario = arg.scenario;
+
+    // TODO aggiustare bene sta cosa dell id, soprattuto per l' edge visto che
+    // glielo aggiungo dopo
+    if ( ( typeof this.model != 'undefined' ) && ( typeof this.model.id != 'undefined' ) ) {
+        PNI.elemById[this.model.id] = this;
+    }
+
+}
+
+PNI.Elem.prototype = { };
+
+//]
+
+// PNI.Scenario //[
+
+PNI.Scenario = function(arg) { //[
+
+    if ( typeof arg != 'Object' ) {
+        var arg = {};
+    }
+
+    // Set default model.
+    if ( typeof arg.model == 'undefined' ) {
+        arg.model = {
+            id: 1,
+            nodes: [],
+            edges: []
+        }
+    }
+
+    PNI.Elem.call(this,arg);
+
+
+    this.$container = $j("#scenario");
+
+    this.height = this.$container.height();
+    this.width = this.$container.width();
+
+    this.canvas = document.createElement('canvas');
+    this.canvas.height = this.height;
+    this.canvas.width = this.width;
+    this.canvas.style.position = 'absolute';
+    this.$container.append(this.canvas);
+
+    this.context2d = this.canvas.getContext('2d');
+
+    /*this.context2d.fillRect(100, 50, 200, 200);*/
+
+    this.nodeSelector = new PNI.NodeSelector( {scenario:this} );
+    this.toolbar = new PNI.Toolbar( {scenario:this} );
+    //this.nodeSelector.update();
+
+    this.edges = [];
+    this.nodes = [];
+
+    /*this.stage = new Kinetic.Stage("scenario",this.width,this.height);
+    this.layer = new Kinetic.Layer();*/
+
+    this.currentSlot = undefined;
+    this.currentNode = undefined;
+    this.semiEdge = undefined;
+
+    this.updateView();
+
+    // Event bindings.
+
+    var that = this;
+
+    this.$container
+    //.click(function(ev) {console.log(ev);} )
+    .dblclick( function(ev) { //[
+
+        var nodeSelector = that.nodeSelector;
+
+        // Doubleclick toggles nodeSelector visibility.
+        if ( nodeSelector.isVisible ) {
+            nodeSelector.hide();
+            return;
+        }
+
+
+        var $offset = that.$container.offset();
+        var x = ev.pageX - $offset.left; 
+        var y = ev.pageY - $offset.top;
+
+        // Update nodeSelector position and show it.
+        nodeSelector.x = x;
+        nodeSelector.y = y;
+        nodeSelector.show();
+
+        /*
+        nodeSelector.$input.autocomplete({ 
+
+        select: function( ev, ui ) {
+
+        nodeSelector.hide();
+
+        that.addNode( {
+        type: ui.item.value,
+        x: x,
+        y: y
+        } );
+        }
+        } );
+        */
+    } ) //]
+    .keypress( function( ev ) { //[
+
+        // # char.
+        if ( ev.charCode == 35 ) { //[
+
+            if ( that.nodeSelector.isVisible === true ) {
+
+                that.addNode({
+                    type:"PNI::Comment",
+                    x:that.nodeSelector.x,
+                    y:that.nodeSelector.y
+                } );
+
+                that.nodeSelector.hide();
+
+            }
+
+        } //]
+
+        // $ char.
+        if ( ev.charCode == 36 ) { //[
+
+            if ( that.nodeSelector.isVisible === true ) {
+
+                // TODO fai che passi tutto in un unico parametro request
+                //var insJSON = JSON.stringify([{label:"in",data:that.nodeSelector.$input.val()}]);
+
+                that.addNode({
+                    type:"Perldata::Scalar",
+                    x:that.nodeSelector.x,
+                    y:that.nodeSelector.y
+                } );
+
+                that.nodeSelector.hide();
+
+            }
+
+        } //]
+
+        // % char.
+        if ( ev.charCode == 37 ) { //[
+
+            if ( that.nodeSelector.isVisible === true ) {
+
+                that.addNode({
+                    type:"Perldata::Hash",
+                    x:that.nodeSelector.x,
+                    y:that.nodeSelector.y
+                } );
+
+                that.nodeSelector.hide();
+
+            }
+        } //]
+
+        // @ char.
+        if ( ev.charCode == 64 ) { //[
+
+            if ( that.nodeSelector.isVisible === true ) {
+
+                that.addNode({
+                    type:"Perldata::Array",
+                    x:that.nodeSelector.x,
+                    y:that.nodeSelector.y
+                } );
+
+                that.nodeSelector.hide();
+
+            }
+
+        } //]
+
+    } ) //]
+    ;
+
+
+    $j(that.canvas).click( function(ev) {
+        var $offset = $j(that.canvas).offset();
+        var x = ev.pageX - $offset.left;
+        var y = ev.pageY - $offset.top;
+
+        console.log(x);
+        console.log(y);
+    } );
+    this.canvas.onmousedown = function(ev) { console.log(ev); }
+    //this.canvas.onmousemove = function(ev) { console.log(ev); }
+    this.canvas.onmouseup = function(ev) { console.log(ev); }
+
+    // Finally, tell brand new scenario to draw itself.
+    this.draw();
+
+} //]
+
+PNI.Scenario.prototype = { //[
+
+    addEdge: function(requestData) { //[
+
+        requestData.scenario_id = this.model.id;
+
+        var that = this;
+
+        $j.ajax({
+            type: 'POST',
+            url: '/edge',
+            data: requestData,
+            success: function(responseData) {
+
+            }
+
+        } );
+
+    }, //]
+
+    addNode: function(requestData) { //[
+
+        requestData.scenario_id = this.model.id;
+
+        var that = this;
+
+        $j.ajax({
+            type: 'POST',
+            url: '/node',
+            data: requestData,
+            success: function(responseData) {
+
+                var arg = {};
+                arg.model = responseData;
+                arg.scenario = that;
+                var node;
+
+                if ( arg.model.type == "Perldata::Array" ) {
+                    node = new PNI.Node.Perldata.Array(arg);
+                }
+                if ( arg.model.type == "Perldata::Hash" ) {
+                    node = new PNI.Node.Perldata.Hash(arg);
+                }
+                if ( arg.model.type == "Perldata::Scalar" ) {
+                    node = new PNI.Node.Perldata.Scalar(arg);
+                }
+                else {
+                    node = new PNI.Node(arg);
+                }
+
+                that.nodes.push(node);
+
+                // Make new node the currentNode.
+                that.currentNode = node;
+console.log(node);
+node.draw();
+            }
+
+        } );
+
+    }, //]
+
+    /*
+    clearCanvas: function(){
+    var context = this.getContext2d();
+    var canvas = this.getCanvas();
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    },
+    */
+
+	delNode:function(node){
+		$j.ajax({
+			type: 'DELETE',
+			url: '/node/'+node.model.id,
+			success: function(responseData) {
+				node.destroy();
+			}
+		});
+	},
+	draw:function(){
+		for(var i in this.model.nodes){
+			try{this.model.nodes[i].draw(this.context2d);}
+			catch(ex){console.error(ex);}
+		}
+	},
+
+    runTask: function() { //[
+
+        var that = this;
+
+        $j.ajax({
+            type: 'GET',
+            url: '/scenario/'+this.model.id+'/task',
+            success: function(responseData) {
+                that.model = responseData;
+                that.renderView();
+            }
+        } );
+
+    }, //]
+
+    updateView: function() { //[
+
+        var that = this;
+
+        $j.ajax({
+            type: 'GET',
+            url: '/scenario/'+this.model.id,
+            success: function(responseData) {
+                that.model = responseData;
+                that.renderView();
+            }
+        } );
+
+    }, //]
+
+    renderView: function() { //[
+
+        console.log('renderView');
+
+        /*
+        this.layer.clear();
+        for ( var i in this.nodes ) {
+        this.nodes[i].destroy();
+        console.log(this.nodes[i]);
+        }
+        for ( var i in this.edges ) {
+        this.edges[i].destroy();
+        }
+        this.nodes=[];
+        this.edges=[];
+
+        for ( var i in this.model.nodes ) {
+
+        var model = this.model.nodes[i];
+        var maybeNode = PNI.elemById[model.id];
+        console.log(maybeNode);
+        // TODO dovrebbe funzionare prendere il nodo da PNI.elemById
+        var node;
+
+        var arg = {};
+        arg.scenario = this;
+        arg.model = model;
+
+        if ( model.type == 'JS::THREE::Scene' ) {
+        // TODO lo lascio qua giusto per fare lo sborone
+        require(['JS/THREE/Scene']);
+        }
+
+        if ( model.type == 'Perldata::Array' ) {
+        node = new PNI.Node.Perldata.Array(arg);
+        }
+        if ( model.type == 'Perldata::Hash' ) {
+        node = new PNI.Node.Perldata.Hash(arg);
+        }
+        if ( model.type == 'Perldata::Scalar' ) {
+        node = new PNI.Node.Perldata.Scalar(arg);
+        }
+        else {
+        node = new PNI.Node(arg);
+        }
+
+        this.nodes.push(node);
+
+        }
+
+        for ( var i in this.model.edges ) {
+
+        var model = this.model.edges[i];
+        var maybeEdge = PNI.elemById[model.id];
+        console.log(maybeEdge);
+
+        var arg = {};
+        arg.source = PNI.elemById[model.source_id];
+        arg.target = PNI.elemById[model.target_id];
+        arg.scenario = this;
+        arg.model = model;
+
+        var edge = new PNI.Edge(arg);
+        edge.draw();
+
+        this.edges.push(edge);
+
+        }
+        */
+
+    } //]
+
+}; //]
+
+PNI.extend( PNI.Scenario,PNI.Elem);
+
+//]
+
+// PNI.NodeSelector //[
+
+PNI.NodeSelector = function(arg) { //[
+
+    this.x = undefined;
+    this.y = undefined;
+    this.scenario = arg.scenario;
+
+    this.$container = $j("#node-selector");
+    this.$container.hide();
+
+    this.$input = $j("#node-selector-input");
+
+    var that = this;
+
+    this.$input.autocomplete( {
+        select: function( ev, ui ) {
+
+            that.hide();
+
+            that.scenario.addNode( {
+                type: ui.item.value,
+                x: that.x,
+                y: that.y
+            } );
+
+        },
+        source:'node_list'
+    } );
+
+    this.isVisible = false;
+
+} //]
+
+PNI.NodeSelector.prototype = { //[
+
+    hide: function() { 
+
+        this.isVisible = false;
+
+        this.$input.autocomplete("close");
+        this.$input.val("");
+
+        this.$container.hide();
+
+    },
+
+    show: function() {
+
+        this.isVisible = true;
+
+        this.$input.val("");
+
+        this.$container
+        .css({left:this.x,top:this.y} )
+        .show()
+        ;
+
+        this.$input.focus();
+
+    }/*,
+
+    update: function() {
+
+        var that = this;
+
+        $j.getJSON( 'node_list', function(nodeList) { 
+
+            that.$input.autocomplete({source:nodeList} ); 
+
+        } );
+
+    }*/
+
+}; //]
+
+//]
+
+// PNI.Node //[
+
+PNI.Node = function(arg) {
+
+    PNI.Elem.call( this, arg );
+
+    this.layer = new Kinetic.Layer();
+    this.label = this.model.label || 'Node';
+    this.height = PNI.Theme.nodeHeight;
+    this.width = Math.max( this.model.label.length * PNI.Theme.fontSize, 3 * PNI.Theme.slotSide );
+
+    // Force x and y to be numbers since they come from JSON data.
+    // TODO in teoria ora dovrebbe essere ok lato server
+    //this.x = Number(arg.x);
+    //this.y = Number(arg.y);
+    this.x = this.model.x;
+    this.y = this.model.y;
+
+    this.ins = [];
+    this.outs = [];
+
+    this.group = new Kinetic.Group({draggable:true} );
+
+    // Create box. //[
+
+        this.box = new Kinetic.Rect({ 
+
+            x: this.x,
+            y: this.y,
+            height: this.height,
+            width: this.width,
+            fill: PNI.Theme.nodeFill,
+            stroke: "black",
+            strokeWidth: PNI.Theme.strokeWidth,
+
+        } );
+
+        this.group.add(this.box);
+
+    //]
+
+    // Create label. //[
+
+        this.label = new Kinetic.Text({
+
+            x: this.x + this.width / 2,
+            y: this.y,
+            text: this.model.label,
+            fontSize: PNI.Theme.fontSize,
+            fontFamily: PNI.Theme.fontFamily,
+            textFill: PNI.Theme.textFill,
+            padding: 10,
+            align: "center",
+            verticalAlign: "top",
+
+        } );
+
+        this.group.add(this.label);
+
+    //]
+
+    // Create in slots //[
+
+        for ( var i in this.model.ins ) {
+
+            var arg = {};
+            arg.model = this.model.ins[i];
+            arg.stage = this.stage;
+            arg.layer = this.layer;
+            arg.node = this;
+            arg.order = i;
+            arg.scenario = this.scenario;
+
+            var slot = new PNI.In(arg);
+            this.ins.push(slot);
+            this.group.add(slot.box);
+
+        }
+
+    //]
+
+    // Create out slots //[
+
+        for ( var i in this.model.outs ) {
+
+            var arg = {};
+            arg.model = this.model.outs[i];
+            arg.stage = this.stage;
+            arg.layer = this.layer;
+            arg.node = this;
+            arg.order = i;
+            arg.scenario = this.scenario;
+
+            var slot = new PNI.Out(arg);
+            this.outs.push(slot);
+            this.group.add(slot.box);
+
+        }
+
+    //]
+
+    /*this.layer.add(this.group);
+    this.scenario.stage.add(this.layer);*/
+
+    // events //[
+
+    var that = this;
+
+    this.group.on( 'click', function(ev) { that.scenario.currentNode = that; } );
+
+    this.group.on( "mouseover", function(ev) { document.body.style.cursor = "pointer"; } );
+    this.group.on( "mouseout", function(ev) { document.body.style.cursor = "default"; } );
+    this.group.on( "dragmove", function(ev) {
+
+        // Update node position.
+        var position = that.box.getAbsolutePosition();
+        that.y = position.y;
+        that.x = position.x;
+
+        // Draw out edges.
+        for ( var i in that.outs ) {
+
+            for (  var j in that.outs[i].edges ) {
+
+                that.outs[i].edges[j].draw();
+
+            }
+        }
+    } );
+    this.group.on( "dragend",function(ev) {
+
+        var requestData = {x:that.x,y:that.y};
+
+        $j.ajax({
+            type: 'POST',
+            url: '/node/'+that.model.id,
+            data: requestData
+        } );
+
+    } );
+
+    // end events //]
+
+}
+
+PNI.Node.prototype = { 
+
+    // TODO forse è meglio rinominarlo in cleanUp ?
+    // QUESTO E' UNO DI QUEI METODI CHE DEVONO RICHIAMARE __SUPER__
+    destroy: function()
+    {
+        this.scenario.stage.remove(this.layer);
+    },
+    draw: function()
+    {
+        console.log('draw');
+    }
+};
+
+PNI.extend( PNI.Node,PNI.Elem);
+
+//]
+
+PNI.Node.Perldata = {};
+
+// PNI.Node.Perldata.Scalar //[
+
+PNI.Node.Perldata.Scalar = function(arg) { //[
+
+    PNI.Node.call( this, arg );
+
+    this.$dataEditor = $j('<div class="ui-widget"></div>')
+    .css({top:this.y,left:this.x+this.height} )
+    .css({height:this.height,width:10} )
+    .css({position:"absolute",display:"block"} )
+    .appendTo(this.scenario.$container)
+    .show()
+    ;
+
+    this.$dataEditorInput = $j('<input>')
+    .attr( 'id', this.model.id )
+    .appendTo(this.$dataEditor)
+    .val(this.model.ins[0].data)
+    .show()
+    .focus()
+    ;
+
+    // events //[
+
+        var that = this;
+
+        this.$dataEditorInput //[
+
+            .click( function(ev) { that.$dataEditorInput.focus(); } )
+
+            .focusout( function(ev) { //[
+
+                // Update model if input data is changed.
+                if ( that.model.ins[0].data != that.$dataEditorInput.val() ) {
+
+                    that.model.ins[0].data = that.$dataEditorInput.val();
+                    var requestData = { data: that.model.ins[0].data };
+
+                    // TODO dovrebbe essere un metodo gestito da PNI.Slot
+                    $j.ajax({
+                        type: 'POST',
+                        url: '/slot/'+that.model.ins[0].id+'/data',
+                        data: requestData,
+                        success: function(responseData) {}
+                    } );
+
+                } 
+
+            } ) //]
+
+            .keypress( function( ev ) { //[
+
+                // ENTER.
+                if ( ev.charCode == 13 ) { //[
+
+                    //TODO COPIATO MALAMENTE DA QUI SOPRA
+
+                    // Update model if input data is changed.
+                    if ( that.model.ins[0].data != that.$dataEditorInput.val() ) {
+
+                        that.model.ins[0].data = that.$dataEditorInput.val();
+                        var requestData = { data: that.model.ins[0].data };
+
+                        // TODO dovrebbe essere un metodo gestito da PNI.Slot
+                        $j.ajax({
+                            type: 'POST',
+                            url: '/slot/'+that.model.ins[0].id+'/data',
+                            data: requestData,
+                            success: function(responseData) {}
+                        } );
+
+                    } 
+
+                } //]
+
+            } ) //]
+
+    ; //]
+
+    this.group.on( "click", function(ev) { that.$dataEditorInput.toggle(); } );
+
+    this.group.on( "dragmove", function(ev) {
+
+        // TODO questo e' preso dalla classe padre, CERCA DI FARE QUALCOSA PIU FURBO,
+        // tipo usare il prototype
+
+        // Update node position.
+        var position = that.box.getAbsolutePosition();
+        that.y = position.y;
+        that.x = position.x;
+
+        that.$dataEditor.css({top:that.y,left:that.x+that.height} );
+
+        // Draw out edges.
+        for ( var i in that.outs ) {
+
+            for (  var j in that.outs[i].edges ) {
+
+                that.outs[i].edges[j].draw();
+
+            }
+        }
+    } );
+
+    // end events //]
+
+} //]
+
+PNI.Node.Perldata.Scalar.prototype = {
+
+    // TODO dovrei richiamare anche il destroy del padre, per ora scrivo il
+    // codice direttamente, cioe la remove del layer.
+    destroy: function() {
+
+        this.scenario.stage.remove(this.layer);
+
+        this.$dataEditor.remove();
+
+    }
+
+};
+
+PNI.extend( PNI.Node.Perldata.Scalar, PNI.Node );
+
+//]
+
+// PNI.Node.Perldata.Array //[
+
+PNI.Node.Perldata.Array = function(arg) { //[
+
+    PNI.Node.call( this, arg );
+
+} //]
+
+PNI.Node.Perldata.Array.prototype = {};
+
+PNI.extend( PNI.Node.Perldata.Array, PNI.Node );
+
+//]
+
+// PNI.Node.Perldata.Hash //[
+
+PNI.Node.Perldata.Hash = function(arg) { //[
+
+    PNI.Node.call( this, arg );
+
+} //]
+
+PNI.Node.Perldata.Hash.prototype = {};
+
+PNI.extend( PNI.Node.Perldata.Hash, PNI.Node );
+
+//]
+
+// PNI.Slot //[
+
+PNI.Slot = function(arg) {
+
+    PNI.Elem.call(this,arg);
+
+    this.node = arg.node;
+    this.order = arg.order;
+    this.data = arg.data;
+
+    this.box = new Kinetic.Rect({ 
+
+        x: this.getX(),
+        y: this.getY(),
+        height: PNI.Theme.slotSide,
+        width: PNI.Theme.slotSide,
+        fill: PNI.Theme.nodeFill,
+        stroke: "black",
+        strokeWidth: PNI.Theme.strokeWidth,
+
+    } );
+
+    var that = this;
+
+    this.box.on("mouseover", function(ev) {
+
+        that.scenario.currentSlot = that;
+
+    } );
+
+    this.box.on("mouseout", function(ev) {
+
+        that.scenario.currentSlot = undefined;
+
+    } );
+
+}
+
+PNI.Slot.prototype = { //[
+
+    getData: function() { 
+
+        var that = this;
+
+        $j.ajax({
+            type: 'GET',
+            url: '/slot/'+that.model.id+'/data',
+            success: function(responseData) {
+
+                that.data = responseData;
+
+            }
+        } );
+
+        return this.data;
+    },
+
+    getX: function() {
+
+        var x = this.node.x;
+
+        if ( this.order > 0 ) {
+            x += this.order * ( this.node.width - PNI.Theme.slotSide ) / ( this.node.model.ins.length - 1 ); 
+        }
+
+        return x;
+
+    }
+
+}; //]
+
+PNI.extend( PNI.Slot, PNI.Elem );
+
+//]
+
+// PNI.In //[
+
+PNI.In = function(arg) { //[
+
+    PNI.Slot.call( this, arg );
+
+    this.edge;
+
+    // events //[
+
+    var that = this;
+
+    this.box.on( 'click' , function() { //[
+
+        var semiEdge = that.scenario.semiEdge;
+
+        if ( typeof semiEdge != 'undefined' ) {
+
+            that.scenario.addEdge( {
+                source_id: semiEdge.start.model.id,
+                target_id: that.model.id
+            } );
+
+            //TODO semiEdge.destroy(); or hide()
+
+        }
+
+    } ); //]
+
+    // end events //]
+
+} //]
+
+PNI.In.prototype = { //[
+
+    getY: function() { return this.node.y - PNI.Theme.slotSide; }
+
+}; //]
+
+PNI.extend( PNI.In, PNI.Slot );
+
+//]
+
+// PNI.Out //[
+
+PNI.Out = function(arg) { //[
+
+    PNI.Slot.call( this, arg );
+
+    this.edges = [];
+
+    var that = this;
+
+    this.box.on( 'click', function(ev) {
+
+        var arg = {};
+        arg.scenario = that.scenario;
+        //arg.source = that;
+        arg.start = that;
+        /*var edge = new PNI.Edge(arg);
+        edge.draw();
+        that.edges.push(edge);*/
+        var semiEdge = new PNI.SemiEdge(arg);
+
+    } );
+
+} //]
+
+PNI.Out.prototype = { //[
+
+    getY: function() { return this.node.y + this.node.height; }
+
+}; //]
+
+PNI.extend( PNI.Out, PNI.Slot );
+
+//]
+
+// PNI.Toolbar //[
+
+PNI.Toolbar = function(arg) { //[
+
+$j(function() {
+		$j( "#beginning" ).button({
+			text: false,
+			icons: {
+				primary: "ui-icon-seek-start"
+			}
+		});
+		$j( "#rewind" ).button({
+			text: false,
+			icons: {
+				primary: "ui-icon-seek-prev"
+			}
+		});
+		$j( "#play" ).button({
+			text: false,
+			icons: {
+				primary: "ui-icon-play"
+			}
+		})
+		.click(function() {
+			var options;
+			if ( $j( this ).text() === "play" ) {
+				options = {
+					label: "pause",
+					icons: {
+						primary: "ui-icon-pause"
+					}
+				};
+			} else {
+				options = {
+					label: "play",
+					icons: {
+						primary: "ui-icon-play"
+					}
+				};
+			}
+			$j( this ).button( "option", options );
+		});
+		$j( "#stop" ).button({
+			text: false,
+			icons: {
+				primary: "ui-icon-stop"
+			}
+		})
+		.click(function() {
+			$j( "#play" ).button( "option", {
+				label: "play",
+				icons: {
+					primary: "ui-icon-play"
+				}
+			});
+		});
+		$j( "#forward" ).button({
+			text: false,
+			icons: {
+				primary: "ui-icon-seek-next"
+			}
+		});
+		$j( "#end" ).button({
+			text: false,
+			icons: {
+				primary: "ui-icon-seek-end"
+			}
+		});
+		$j( "#shuffle" ).button();
+		$j( "#repeat" ).buttonset();
+	});
+
+    this.scenario = arg.scenario;
+    this.x = 10;
+    this.y = 10;
+
+    this.$container = $j('<div class="ui-widget"></div>')
+    .css({top:this.y,left:this.x,"z-index":1} )
+    .css({position:"absolute",display:"block"} )
+    .appendTo(this.scenario.$container)
+    .show()
+    ;
+
+    var that = this;
+
+    this.$taskButton = $j('<button id="task">task</button>')
+    .click( function() {
+        that.scenario.runTask();
+        that.scenario.renderView();
+    } )
+    .button()
+    .appendTo(this.$container)
+    .show()
+    ;
+
+    // TODO vedi bene la toolbar di jQuery.
+    this.$delNodeButton = $j('<button id="del">del</button>')
+    .click( function() {
+
+        var node = that.scenario.currentNode;
+
+        if ( node != 'undefined' ) {
+            that.scenario.delNode(node);
+            // TODO vedi se la renderView deve stare nel metodo delNode,
+            // vedi anceh per gli altri casi
+            that.scenario.renderView();
+        }
+
+    } )
+    .button()
+    .appendTo(this.$container)
+    .show()
+    ;
+
+} //]
+
+PNI.Toolbar.prototype = { };
+
+//]
+
+// PNI.SemiEdge //[
+
+PNI.SemiEdge = function(arg) { //[
+
+    this.visible = false;
+    this.layer = new Kinetic.Layer();
+    this.scenario = arg.scenario;
+    this.start = arg.start; // TODO deve essere un PNI.Slot
+
+    this.scenario.stage.add(this.layer);
+
+    var that = this;
+
+    this.scenario.stage.on( 'mousemove', function(ev) {
+        that.draw();
+    } );
+
+    // TODO: per ora uso questo accrocchio, perche quando creo il semiEdge
+    // mi scatta un click
+    that.gotFirstClick=false;
+    this.scenario.stage.on( 'click', function(ev) {
+
+        if ( that.gotFirstClick ) { that.destroy(); }
+
+        that.gotFirstClick=true;
+
+    } );
+
+    this.scenario.semiEdge = this;
+
+    // TODO questa classe rappresenta un edge ancora non collegato
+    // si deve vedere come una linea, poi l' edge collegato invece e' come una
+    // bezier. Sull' onrelease del mouse non si deve distruggere perchè ogni
+    // scenario ne ha un' istanza, deve pero sparire.
+
+} //]
+
+PNI.SemiEdge.prototype = { //[
+
+    destroy: function() { //[
+
+        console.log('DESTROY '+this);
+        this.scenario.updateView();
+
+        /*
+        this.scenario.stage.remove(this.layer);
+        this.scenario.semiEdge = undefined;
+
+            // TODO dovrei usare questo ma non funziona
+            // anche se documentato:
+            // that.scenario.stage.off( "mousemove" );
+            this.scenario.stage.on( 'mousemove' , function() {} );
+        */
+    }, //]
+
+    draw: function() { 
+
+        var context = this.layer.getContext();
+        this.layer.clear();
+
+        // TODO se queste funzioni sono usate solo nella draw, meglio spostare qui
+        // dentro direttamente
+        var endY = this.getEndY();
+        var endX = this.getEndX();
+        var startY = this.getStartY();
+        var startX = this.getStartX();
+
+        context.beginPath();
+        context.moveTo( startX, startY );
+        context.lineTo(
+            endX, 
+            endY
+        );
+        context.strokeStyle = PNI.Theme.edgeStrokeStyle;
+        context.lineWidth = PNI.Theme.edgeLineWidth;
+        context.stroke();
+
+
+    },
+
+    getEndY: function() { //[
+
+        var position = this.scenario.stage.getMousePosition();
+        return position.y;
+
+    }, //]
+
+    getEndX: function() { //[
+
+        var position = this.scenario.stage.getMousePosition();
+        return position.x;
+
+    }, //]
+
+    getStartY: function() { //[
+
+        var startY = this.start.getY() + ( PNI.Theme.slotSide / 2 );
+        return startY;
+
+    }, //]
+
+    getStartX: function() { //[
+
+        var startX = this.start.getX() + ( PNI.Theme.slotSide / 2 );
+        return startX;
+
+    } //]
+
+}; //]
+
+//]
+
+// PNI.Edge //[
+
+PNI.Edge = function(arg) { //[
+
+    PNI.Elem.call( this, arg );
+
+    this.source = arg.source;
+    this.target = arg.target;
+    this.layer = new Kinetic.Layer();
+
+    var that = this;
+
+    /*
+    if ( this.target !== 'undefined' ) {
+
+    this.scenario.stage.on( "mousemove", function(ev) {
+    that.draw();
+    } );
+
+    this.scenario.semiEdge = this;
+
+    }
+    */
+
+    this.scenario.stage.add(this.layer);
+
+} //]
+
+PNI.Edge.prototype = { //[
+
+    destroy: function() { //[
+
+        this.scenario.stage.remove(this.layer);
+
+    }, //]
+
+    draw: function() { //[
+
+        var context = this.layer.getContext();
+        this.layer.clear();
+
+        var startX = this.source.getX() + ( PNI.Theme.slotSide / 2 );
+        var startY = this.source.getY() + ( PNI.Theme.slotSide / 2 );
+
+        var endY = this.getEndY();
+        var endX = this.getEndX();
+
+        context.beginPath();
+        context.moveTo( startX, startY );
+        context.bezierCurveTo(
+            startX, 
+            (startY+endY)/2, 
+            endX, 
+            (startY+endY)/2, 
+            endX, 
+            endY
+        );
+        context.strokeStyle = PNI.Theme.edgeStrokeStyle;
+        context.lineWidth = PNI.Theme.edgeLineWidth;
+        context.stroke();
+
+    }, //]
+
+    getEndY: function() { //[
+
+        if ( typeof this.target !== 'undefined' ) {
+
+            return this.target.getY() + ( PNI.Theme.slotSide / 2 );
+
+        }
+        else {
+
+            var position = this.scenario.stage.getMousePosition();
+            return position.y;
+
+        }
+
+    }, //]
+
+    getEndX: function() { //[
+
+        if ( typeof this.target !== 'undefined' ) {
+
+            return this.target.getX() + ( PNI.Theme.slotSide / 2 );
+
+        }
+        else {
+
+            var position = this.scenario.stage.getMousePosition();
+            return position.x;
+
+        }
+
+    } //]
+
+}; //]
+
+
+PNI.extend( PNI.Edge, PNI.Elem );
+
+//]
+
+// TODO PNI.CanvasElem
+
+PNI.Node.HTML5 = {};
+
+PNI.Node.HTML5.Canvas = {};
+
+PNI.Node.HTML5.Canvas.Rectangle = {};
+PNI.Node.HTML5.Canvas.Rectangle.prototype = {
+
+    draw: function(context){
+        context.beginPath();
+        context.rect(0, 0, this.width, this.height);
+        context.closePath();
+        this.fillStroke();
+    }
+
+};
+
+

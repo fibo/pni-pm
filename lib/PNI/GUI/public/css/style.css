@@ -15,10 +15,11 @@
   width: 100%;
 }
 
-.pni-node-perldata-scalar {
-  border: 1px solid black;
-  position: absolute;
-  display: block;
+#edges-layer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
 }
 
 #toolbar {

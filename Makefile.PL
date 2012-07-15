@@ -20,6 +20,8 @@ WriteMakefile(
         #'File::Find'            => 0,
         #'File::Spec::Functions' => 0,
         #'List::Util'            => 0,
+        'DBD::SQLite'            => 0,
+        'DBIx::Class'            => 0,
         'File::HomeDir'            => 0,
         'Module::Pluggable'     => 0,
         'Mojolicious'           => '2.85',
