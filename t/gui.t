@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 28;
+use Test::More tests => 22;
 use Test::Mojo;
 
 use PNI::Scenario;
@@ -13,9 +13,6 @@ my $t = Test::Mojo->new('PNI::GUI');
 # Javascript resources.
 $t->get_ok('/js/jquery-1.7.1.min.js')->status_is(200);
 $t->get_ok('/js/jquery-ui-1.8.18.custom.min.js')->status_is(200);
-$t->get_ok('/js/kinetic-v3.8.5.min.js')->status_is(200);
-$t->get_ok('/js/Three.js')->status_is(200);
-$t->get_ok('/js/require.js')->status_is(200);
 $t->get_ok('/js/pni.js')->status_is(200);
 $t->get_ok('/js/onload.js')->status_is(200);
 
