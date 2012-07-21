@@ -27,6 +27,10 @@ PNI::Finder - searches for available nodes
     my $find = PNI::Finder->new;
     my @node_list = $find->nodes;
 
+=head1 ATTRIBUTES
+
+L<PNI::Finder> has no attribute.
+
 =head1 METHODS
 
 =head2 nodes
