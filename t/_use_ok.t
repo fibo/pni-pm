@@ -1,7 +1,6 @@
-
-# N.B. this file is called __use_ok.t with two underscores so it will run first.
-# Find all modules under "lib" dir and check if they compile or BAIL_OUT,
-# i.e. complain and end tests.
+# N.B. this file is called _use_ok.t starting with an underscore so it will run first.
+# It finds all modules under "lib" dir and check if they compile or BAIL_OUT,
+# i.e. complain and end all tests.
 
 use strict;
 use warnings;
